@@ -45,6 +45,15 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+        // Price Advisor button (MaterialCardView)
+        com.google.android.material.card.MaterialCardView btnPriceAdvisor = findViewById(R.id.btn_price_advisor);
+        if (btnPriceAdvisor != null) {
+            btnPriceAdvisor.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, PriceAdvisorActivity.class);
+                startActivity(intent);
+            });
+        }
+
         // Setup other features (Weather, Schemes) - To be implemented
         // findViewById(R.id.card_weather).setOnClickListener(...)
     }
