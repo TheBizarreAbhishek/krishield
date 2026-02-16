@@ -14,6 +14,7 @@
         android:backgroundTint="?attr/colorSurface"
         app:title="Chat with KriShield AI"
         app:navigationIcon="@android:drawable/ic_menu_close_clear_cancel"
+        app:menu="@menu/chat_menu"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Messages RecyclerView -->

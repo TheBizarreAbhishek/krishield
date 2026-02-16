@@ -1,7 +1,9 @@
 package com.krishield.activities;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -13,6 +15,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -52,6 +59,12 @@ public class ChatActivity extends AppCompatActivity {
     private Bitmap selectedImage;
     private boolean isVoiceMode = false;
 
+    // Chat history for memory retention
+    private ArrayList<ChatMessage> chatHistory = new ArrayList<>();
+    private static final String PREFS_NAME = "ChatHistory";
+    private static final String KEY_HISTORY = "history";
+    private static final int MAX_HISTORY_SIZE = 50;
+
     private static final int CAMERA_PERMISSION_CODE = 100;
     private static final int GALLERY_PERMISSION_CODE = 101;
     private static final int RECORD_AUDIO_PERMISSION_CODE = 102;
@@ -71,6 +84,9 @@ public class ChatActivity extends AppCompatActivity {
         setupImagePickers();
         setupVoiceRecognition();
 
+        // Load chat history for memory retention
+        loadChatHistory();
+
         // Check if voice mode was requested
         String mode = getIntent().getStringExtra("mode");
         if ("voice".equals(mode)) {
@@ -82,6 +98,15 @@ public class ChatActivity extends AppCompatActivity {
     private void initializeViews() {
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         toolbar.setNavigationOnClickListener(v -> finish());
+
+        // Handle menu clicks
+        toolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.action_new_chat) {
+                startNewChat();
+                return true;
+            }
+            return false;
+        });
 
         recyclerViewMessages = findViewById(R.id.recyclerViewMessages);
         editTextMessage = findViewById(R.id.editTextMessage);
@@ -301,7 +326,13 @@ public class ChatActivity extends AppCompatActivity {
             selectedImage = null;
             imagePreview.setVisibility(View.GONE);
         } else {
-            geminiService.sendTextMessage(messageText, executor, new GeminiService.ResponseCallback() {
+            // Add user message to history
+            chatHistory.add(new ChatMessage(messageText, ChatMessage.MessageType.USER));
+
+            // Build conversation context
+            String contextualMessage = buildConversationContext() + "Current question: " + messageText;
+
+            geminiService.sendTextMessage(contextualMessage, executor, new GeminiService.ResponseCallback() {
                 @Override
                 public void onSuccess(String response) {
                     runOnUiThread(() -> {
@@ -309,6 +340,10 @@ public class ChatActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         btnSend.setEnabled(true);
                         scrollToBottom();
+
+                        // Add AI response to history
+                        chatHistory.add(new ChatMessage(response, ChatMessage.MessageType.AI));
+                        saveChatHistory();
 
                         // Speak the response if in voice mode
                         if (isVoiceMode && ttsHelper != null) {
@@ -359,5 +394,96 @@ public class ChatActivity extends AppCompatActivity {
         if (ttsHelper != null) {
             ttsHelper.shutdown();
         }
+    }
+
+    /**
+     * Load chat history from SharedPreferences
+     */
+    private void loadChatHistory() {
+        try {
+            SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            String json = prefs.getString(KEY_HISTORY, "[]");
+
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<ChatMessage>>() {
+            }.getType();
+            chatHistory = gson.fromJson(json, type);
+
+            if (chatHistory == null) {
+                chatHistory = new ArrayList<>();
+            }
+        } catch (Exception e) {
+            chatHistory = new ArrayList<>();
+        }
+    }
+
+    /**
+     * Save chat history to SharedPreferences
+     */
+    private void saveChatHistory() {
+        try {
+            // Trim history if too large
+            while (chatHistory.size() > MAX_HISTORY_SIZE) {
+                chatHistory.remove(0);
+            }
+
+            SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            Gson gson = new Gson();
+            String json = gson.toJson(chatHistory);
+            prefs.edit().putString(KEY_HISTORY, json).apply();
+        } catch (Exception e) {
+            // Ignore save errors
+        }
+    }
+
+    /**
+     * Clear chat history (for starting new chat)
+     */
+    private void clearChatHistory() {
+        chatHistory.clear();
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        prefs.edit().remove(KEY_HISTORY).apply();
+    }
+
+    /**
+     * Start a new chat session (clear history and UI)
+     */
+    private void startNewChat() {
+        // Clear history
+        clearChatHistory();
+
+        // Clear chat adapter
+        chatAdapter = new ChatAdapter();
+        recyclerViewMessages.setAdapter(chatAdapter);
+
+        // Add welcome message
+        chatAdapter.addMessage(new ChatMessage(
+                "Hello! I'm KriShield AI, your farming assistant. How can I help you today?",
+                ChatMessage.MessageType.AI));
+
+        Toast.makeText(this, "New chat started", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Build conversation context from history for Gemini
+     */
+    private String buildConversationContext() {
+        if (chatHistory.isEmpty()) {
+            return "";
+        }
+
+        StringBuilder context = new StringBuilder();
+        context.append("Previous conversation:\\n");
+
+        // Include last 10 messages for context (to avoid token limits)
+        int startIndex = Math.max(0, chatHistory.size() - 10);
+        for (int i = startIndex; i < chatHistory.size(); i++) {
+            ChatMessage msg = chatHistory.get(i);
+            String role = msg.getType() == ChatMessage.MessageType.USER ? "User" : "Assistant";
+            context.append(role).append(": ").append(msg.getText()).append("\\n");
+        }
+        context.append("\\n");
+
+        return context.toString();
     }
 }
