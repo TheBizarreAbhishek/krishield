@@ -78,7 +78,7 @@
                 <EditText
                     android:id="@+id/et_crop_name"
                     android:layout_width="match_parent"
-                    android:layout_height="WRAP_CONTENT"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/bg_pill_blue"
                     android:padding="12dp"
                     android:textColor="@color/kri_text_primary"
