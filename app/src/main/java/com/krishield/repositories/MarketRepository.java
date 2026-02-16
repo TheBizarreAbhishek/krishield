@@ -30,7 +30,7 @@ public class MarketRepository {
 
     public void getMarketData(String city, String state, String season, boolean forceRefresh, MarketCallback callback) {
         String cacheKey = "market_data_" + city + "_" + state + "_" + season;
-        long lastUpdateKey = "last_update_" + city + "_" + state + "_" + season;
+        String lastUpdateKey = "last_update_" + city + "_" + state + "_" + season;
 
         long lastUpdate = prefs.getLong(lastUpdateKey, 0);
         long currentTime = System.currentTimeMillis();
