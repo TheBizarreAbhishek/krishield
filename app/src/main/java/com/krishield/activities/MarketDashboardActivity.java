@@ -20,6 +20,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.krishield.R;
 import com.krishield.services.GeminiService;
+import com.krishield.repositories.MarketRepository;
 
 import java.util.Calendar;
 import java.util.List;
