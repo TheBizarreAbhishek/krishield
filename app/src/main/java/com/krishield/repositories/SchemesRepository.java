@@ -30,7 +30,7 @@ public class SchemesRepository {
 
     public SchemesRepository(Context context) {
         this.prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        this.geminiService = new GeminiService(context); // Context used for API key if needed
+        this.geminiService = new GeminiService(null); // Use default API key
         this.gson = new Gson();
     }
 

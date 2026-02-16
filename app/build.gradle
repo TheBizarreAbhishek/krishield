@@ -66,6 +66,7 @@ dependencies {
     
     // GPS Location for Weather
     implementation 'com.google.android.gms:play-services-location:21.1.0'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     
     // Networking for Open-Meteo Weather API
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

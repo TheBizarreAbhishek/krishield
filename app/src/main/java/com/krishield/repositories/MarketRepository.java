@@ -24,7 +24,7 @@ public class MarketRepository {
 
     public MarketRepository(Context context) {
         this.prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        this.geminiService = new GeminiService(context);
+        this.geminiService = new GeminiService(null);
         this.executor = Executors.newSingleThreadExecutor();
     }
 

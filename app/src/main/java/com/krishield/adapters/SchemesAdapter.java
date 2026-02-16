@@ -37,7 +37,7 @@ public class SchemesAdapter extends RecyclerView.Adapter<SchemesAdapter.SchemeVi
     @Override
     public SchemeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_scheme.xml, parent, false);
+                .inflate(R.layout.item_scheme, parent, false);
         return new SchemeViewHolder(view);
     }
 
