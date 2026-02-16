@@ -1,8 +1,10 @@
-name: Build and Release
+name: Android CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
   workflow_dispatch:
 
 permissions:
@@ -11,53 +13,85 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     steps:
-    - uses: actions/checkout@v3
-
-    - name: set up JDK 17
-      uses: actions/setup-java@v3
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
-
-    - name: Decode Keystore
-      env:
-        KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
-      if: ${{ env.KEYSTORE_FILE != '' }}
-      run: |
-        echo $KEYSTORE_FILE | base64 --decode > app/release-key.jks
-
+        
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+      
+    - name: Create local.properties
+      run: |
+        echo "sdk.dir=$ANDROID_HOME" > local.properties
+        echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> local.properties
+        echo "WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY }}" >> local.properties
+        echo "NEWS_API_KEY=${{ secrets.NEWS_API_KEY }}" >> local.properties
+        echo "KEYSTORE_FILE=krishield-release-key.jks" >> local.properties
+        echo "KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> local.properties
+        echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> local.properties
+        echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> local.properties
+        
+    - name: Decode Keystore
+      run: |
+        echo "${{ secrets.KEYSTORE_FILE }}" | base64 --decode > krishield-release-key.jks
+        
+    - name: Build with Gradle
+      run: ./gradlew build --stacktrace
 
     - name: Build Release APK
-      env:
-        KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-        KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-        KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-      run: ./gradlew assembleRelease
-
-    - name: Sign Release APK
-      if: ${{ env.KEYSTORE_FILE != '' }}
-      uses: r0adkll/sign-android-release@v1
-      with:
-        releaseDirectory: app/build/outputs/apk/release
-        signingKeyBase64: ${{ secrets.KEYSTORE_FILE }}
-        alias: ${{ secrets.KEY_ALIAS }}
-        keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
-        keyPassword: ${{ secrets.KEY_PASSWORD }}
-      env:
-        BUILD_TOOLS_VERSION: "34.0.0"
-
-    - name: Upload APK
+      run: ./gradlew assembleRelease --stacktrace
+      
+    - name: Upload Release APK (Artifact)
       uses: actions/upload-artifact@v4
       with:
-        name: release-apk
-        path: app/build/outputs/apk/release/*.apk
+        name: krishield-release
+        path: app/build/outputs/apk/release/app-release.apk
 
-    - name: Create Release
-      uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
+    - name: Delete old releases
+      if: github.event_name == 'push'
+      uses: dev-drprasad/delete-older-releases@v0.3.4
       with:
-        files: app/build/outputs/apk/release/*.apk
+        keep_latest: 0
+        delete_tags: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Get short SHA
+      id: slug
+      run: echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+    - name: Create GitHub Release
+      if: github.event_name == 'push'
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: build-${{ steps.slug.outputs.sha }}
+        name: KriShield Release (${{ steps.slug.outputs.sha }})
+        body: |
+          Automated release build from commit ${{ github.sha }}
+          
+          Branch: ${{ github.ref_name }}
+          Commit: ${{ github.event.head_commit.message }}
+        files: app/build/outputs/apk/release/app-release.apk
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Run Tests
+      run: ./gradlew test --stacktrace
+      continue-on-error: true
+      
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: app/build/test-results/
