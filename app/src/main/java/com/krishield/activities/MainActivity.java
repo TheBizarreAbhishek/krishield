@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.krishield.R;
+import com.krishield.models.WeatherModels;
 import com.krishield.services.GeminiService;
 import com.krishield.services.OpenMeteoService;
 
