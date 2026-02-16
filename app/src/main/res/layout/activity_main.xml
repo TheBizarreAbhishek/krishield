@@ -3,22 +3,272 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_green_gradient"
+    android:background="@color/kri_background"
     android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="16dp">
 
-        <!-- Header Section -->
+        <!-- App Name Pill -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_pill_blue"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="12dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="App Icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/kri_text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Large Weather Pill -->
+        <LinearLayout
+            android:id="@+id/weather_pill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_pill_blue"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <!-- Location & Weather -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📍 Detecting location..."
+                        android:textColor="@color/kri_text_secondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_weather_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Loading weather..."
+                        android:textColor="@color/kri_text_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--°C"
+                    android:textColor="@color/kri_text_primary"
+                    android:textSize="48sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Weather Stats Grid -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Moisture -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💧 Moisture"
+                        android:textColor="@color/kri_text_secondary"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_moisture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textColor="@color/kri_text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <!-- Pests -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🐛 Pests"
+                        android:textColor="@color/kri_text_secondary"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_pests"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textColor="@color/kri_text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <!-- Sunlight -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="☀️ Sunlight"
+                        android:textColor="@color/kri_text_secondary"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_sunlight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textColor="@color/kri_text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Two Medium Pills Row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <!-- Market Prices Pill -->
+            <LinearLayout
+                android:id="@+id/pill_market"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_pill_dark"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📊"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Market\nPrices"
+                    android:textColor="@color/kri_text_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+            <!-- AI Chat Pill -->
+            <LinearLayout
+                android:id="@+id/pill_chat"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_pill_dark"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp"
+                android:layout_marginStart="8dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="💬"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AI Chat"
+                    android:textColor="@color/kri_text_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Large Settings Pill -->
+        <LinearLayout
+            android:id="@+id/pill_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_pill_dark"
+            android:orientation="horizontal"
+            android:padding="20dp"
             android:gravity="center_vertical"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⚙️"
+                android:textSize="36sp"
+                android:layout_marginEnd="16dp" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -27,409 +277,73 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_greeting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hello, Good Morning"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
+                    android:text="Settings"
+                    android:textColor="@color/kri_text_primary"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sunday, Dec 26, 2021"
-                    android:textColor="#E0FFFFFF"
-                    android:textSize="14sp"
+                    android:text="Configure app preferences"
+                    android:textColor="@color/kri_text_secondary"
+                    android:textSize="12sp"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/iv_profile"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher"
-                android:background="@drawable/bg_rounded_white"
-                android:padding="2dp"
-                android:contentDescription="Profile" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="›"
+                android:textColor="@color/kri_text_secondary"
+                android:textSize="24sp" />
         </LinearLayout>
 
-        <!-- Search Bar -->
+        <!-- Gemini Search Bar -->
         <LinearLayout
-            android:id="@+id/search_bar"
+            android:id="@+id/gemini_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_search_bar"
+            android:background="@drawable/bg_pill_dark"
             android:orientation="horizontal"
-            android:padding="14dp"
+            android:padding="16dp"
             android:gravity="center_vertical"
-            android:layout_marginBottom="20dp"
             android:clickable="true"
             android:focusable="true">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_search"
-                app:tint="@color/white"
-                android:contentDescription="Search" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textColor="@color/kri_text_secondary"
+                android:textSize="24sp"
+                android:layout_marginEnd="12dp" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Chat with Kri-Shield"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:layout_marginStart="12dp" />
+                android:text="Ask Gemini"
+                android:textColor="@color/kri_text_secondary"
+                android:textSize="16sp" />
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@android:drawable/ic_btn_speak_now"
-                app:tint="@color/white"
+                app:tint="@color/kri_text_secondary"
+                android:layout_marginEnd="8dp"
                 android:contentDescription="Voice" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_camera"
+                app:tint="@color/kri_text_secondary"
+                android:contentDescription="Camera" />
         </LinearLayout>
-
-        <!-- Weather Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/weather_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="4dp"
-            android:clickable="true"
-            android:focusable="true">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <!-- Location & Temp -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tv_location"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="📍 Surat, 53% · 14 km/h"
-                            android:textSize="14sp"
-                            android:textColor="@color/kri_text_secondary" />
-
-                        <TextView
-                            android:id="@+id/tv_temperature"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="+17°C"
-                            android:textSize="48sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/kri_text_primary"
-                            android:layout_marginTop="8dp" />
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/iv_weather_icon"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@android:drawable/ic_dialog_info"
-                        android:contentDescription="Weather" />
-                </LinearLayout>
-
-                <!-- Weather Details Grid -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="16dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Moisture"
-                            android:textSize="12sp"
-                            android:textColor="@color/kri_text_secondary" />
-
-                        <TextView
-                            android:id="@+id/tv_moisture"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="40%"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/kri_text_primary"
-                            android:layout_marginTop="4dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Pests"
-                            android:textSize="12sp"
-                            android:textColor="@color/kri_text_secondary" />
-
-                        <TextView
-                            android:id="@+id/tv_pests"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="15%"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/kri_text_primary"
-                            android:layout_marginTop="4dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Prescription"
-                            android:textSize="12sp"
-                            android:textColor="@color/kri_text_secondary" />
-
-                        <TextView
-                            android:id="@+id/tv_prescription"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="450 INR"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/kri_text_primary"
-                            android:layout_marginTop="4dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Sunlight"
-                            android:textSize="12sp"
-                            android:textColor="@color/kri_text_secondary" />
-
-                        <TextView
-                            android:id="@+id/tv_sunlight"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="7 hrs"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/kri_text_primary"
-                            android:layout_marginTop="4dp" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Features Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Features"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Features Grid -->
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:rowCount="2"
-            android:alignmentMode="alignMargins"
-            android:columnOrderPreserved="false">
-
-            <!-- AI Chat Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_ai_chat"
-                android:layout_width="0dp"
-                android:layout_height="120dp"
-                android:layout_row="0"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                android:clickable="true"
-                android:focusable="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="💬"
-                        android:textSize="40sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="AI Chat"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/kri_text_primary"
-                        android:layout_marginTop="8dp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Market Prices Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_market"
-                android:layout_width="0dp"
-                android:layout_height="120dp"
-                android:layout_row="0"
-                android:layout_column="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                android:clickable="true"
-                android:focusable="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="📊"
-                        android:textSize="40sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Market Prices"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/kri_text_primary"
-                        android:layout_marginTop="8dp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Weather Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_weather_full"
-                android:layout_width="0dp"
-                android:layout_height="120dp"
-                android:layout_row="1"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                android:clickable="true"
-                android:focusable="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🌤️"
-                        android:textSize="40sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Weather"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/kri_text_primary"
-                        android:layout_marginTop="8dp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Settings Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_settings"
-                android:layout_width="0dp"
-                android:layout_height="120dp"
-                android:layout_row="1"
-                android:layout_column="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                android:clickable="true"
-                android:focusable="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="⚙️"
-                        android:textSize="40sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Settings"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/kri_text_primary"
-                        android:layout_marginTop="8dp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </GridLayout>
 
     </LinearLayout>
 </ScrollView>

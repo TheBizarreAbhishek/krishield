@@ -8,15 +8,20 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     
-    <!-- KriShield Green Farming Theme -->
-    <color name="kri_primary">#2E7D32</color> <!-- Dark Green -->
-    <color name="kri_primary_dark">#1B5E20</color> <!-- Darker Green -->
-    <color name="kri_primary_light">#4CAF50</color> <!-- Light Green -->
-    <color name="kri_secondary">#1565C0</color> <!-- Blue -->
-    <color name="kri_background">#E8F5E9</color> <!-- Very Light Green -->
-    <color name="kri_surface">#FFFFFF</color>
+    <!-- KriShield Dark Theme (KernelSU Next Style) -->
+    <color name="kri_background">#0F0F0F</color> <!-- Almost Black -->
+    <color name="kri_surface">#1A1A1A</color> <!-- Dark Gray -->
+    <color name="kri_pill_blue">#1E3A5F</color> <!-- Dark Blue -->
+    <color name="kri_pill_blue_light">#2C5282</color> <!-- Medium Blue -->
+    <color name="kri_text_primary">#FFFFFF</color>
+    <color name="kri_text_secondary">#A0A0A0</color>
+    <color name="kri_accent_blue">#3B82F6</color> <!-- Bright Blue -->
+    
+    <!-- Legacy colors (keeping for compatibility) -->
+    <color name="kri_primary">#2E7D32</color>
+    <color name="kri_primary_dark">#1B5E20</color>
+    <color name="kri_primary_light">#4CAF50</color>
+    <color name="kri_secondary">#1565C0</color>
     <color name="kri_on_primary">#FFFFFF</color>
-    <color name="kri_text_primary">#1B5E20</color>
-    <color name="kri_text_secondary">#666666</color>
-    <color name="kri_card_bg">#F1F8E9</color> <!-- Light Green Tint -->
+    <color name="kri_card_bg">#F1F8E9</color>
 </resources>

@@ -1,24 +1,50 @@
 package com.krishield.activities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
-import com.google.android.material.card.MaterialCardView;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.krishield.R;
+import com.krishield.services.GeminiService;
+import com.krishield.services.OpenMeteoService;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tvGreeting, tvDate;
-    private View searchBar, weatherCard;
-    private MaterialCardView cardAiChat, cardMarket, cardWeatherFull, cardSettings;
+    private static final String TAG = "MainActivity";
+    private static final int LOCATION_PERMISSION_CODE = 100;
+
+    private TextView tvLocation, tvWeatherDesc, tvTemperature;
+    private TextView tvMoisture, tvPests, tvSunlight;
+    private View weatherPill, pillMarket, pillChat, pillSettings, geminiSearch;
+
+    private FusedLocationProviderClient fusedLocationClient;
+    private OpenMeteoService weatherService;
+    private GeminiService geminiService;
+    private Executor executor;
+
+    private String currentCity = "";
+    private String currentCountry = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,79 +52,214 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initializeViews();
-        setupGreeting();
+        initializeServices();
         setupClickListeners();
+        requestLocationAndLoadData();
     }
 
     private void initializeViews() {
-        tvGreeting = findViewById(R.id.tv_greeting);
-        tvDate = findViewById(R.id.tv_date);
-        searchBar = findViewById(R.id.search_bar);
-        weatherCard = findViewById(R.id.weather_card);
-        cardAiChat = findViewById(R.id.card_ai_chat);
-        cardMarket = findViewById(R.id.card_market);
-        cardWeatherFull = findViewById(R.id.card_weather_full);
-        cardSettings = findViewById(R.id.card_settings);
+        tvLocation = findViewById(R.id.tv_location);
+        tvWeatherDesc = findViewById(R.id.tv_weather_desc);
+        tvTemperature = findViewById(R.id.tv_temperature);
+        tvMoisture = findViewById(R.id.tv_moisture);
+        tvPests = findViewById(R.id.tv_pests);
+        tvSunlight = findViewById(R.id.tv_sunlight);
+
+        weatherPill = findViewById(R.id.weather_pill);
+        pillMarket = findViewById(R.id.pill_market);
+        pillChat = findViewById(R.id.pill_chat);
+        pillSettings = findViewById(R.id.pill_settings);
+        geminiSearch = findViewById(R.id.gemini_search);
     }
 
-    private void setupGreeting() {
-        // Set greeting based on time
-        Calendar calendar = Calendar.getInstance();
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-
-        String greeting;
-        if (hour < 12) {
-            greeting = "Hello, Good Morning";
-        } else if (hour < 17) {
-            greeting = "Hello, Good Afternoon";
-        } else {
-            greeting = "Hello, Good Evening";
-        }
-        tvGreeting.setText(greeting);
-
-        // Set current date
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMM dd, yyyy", Locale.getDefault());
-        String currentDate = dateFormat.format(calendar.getTime());
-        tvDate.setText(currentDate);
+    private void initializeServices() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        weatherService = new OpenMeteoService();
+        geminiService = new GeminiService(null);
+        executor = Executors.newSingleThreadExecutor();
     }
 
     private void setupClickListeners() {
-        // Search Bar - Opens Chat
-        searchBar.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ChatActivity.class);
-            intent.putExtra("mode", "text");
-            startActivity(intent);
-        });
-
-        // Weather Card - Opens Weather Details
-        weatherCard.setOnClickListener(v -> {
+        weatherPill.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
             startActivity(intent);
         });
 
-        // AI Chat Card
-        cardAiChat.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ChatActivity.class);
-            intent.putExtra("mode", "text");
-            startActivity(intent);
-        });
-
-        // Market Prices Card
-        cardMarket.setOnClickListener(v -> {
+        pillMarket.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, MarketDashboardActivity.class);
             startActivity(intent);
         });
 
-        // Weather Full Card
-        cardWeatherFull.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
+        pillChat.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ChatActivity.class);
             startActivity(intent);
         });
 
-        // Settings Card
-        cardSettings.setOnClickListener(v -> {
+        pillSettings.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         });
+
+        geminiSearch.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void requestLocationAndLoadData() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[] { Manifest.permission.ACCESS_FINE_LOCATION },
+                    LOCATION_PERMISSION_CODE);
+        } else {
+            getLocationAndLoadData();
+        }
+    }
+
+    private void getLocationAndLoadData() {
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
+            if (location != null) {
+                getLocationName(location.getLatitude(), location.getLongitude());
+                loadWeatherData(location.getLatitude(), location.getLongitude());
+                loadPestData(location.getLatitude(), location.getLongitude());
+            } else {
+                // Default to Delhi if location not available
+                tvLocation.setText("📍 Delhi, India");
+                loadWeatherData(28.6139, 77.2090);
+                loadPestData(28.6139, 77.2090);
+            }
+        });
+    }
+
+    private void getLocationName(double latitude, double longitude) {
+        try {
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            if (addresses != null && !addresses.isEmpty()) {
+                Address address = addresses.get(0);
+                currentCity = address.getLocality() != null ? address.getLocality() : "";
+                currentCountry = address.getCountryName() != null ? address.getCountryName() : "";
+                tvLocation.setText("📍 " + currentCity + ", " + currentCountry);
+            }
+        } catch (IOException e) {
+            Log.e(TAG, "Geocoder error", e);
+        }
+    }
+
+    private void loadWeatherData(double latitude, double longitude) {
+        weatherService.getCurrentWeather(latitude, longitude, new OpenMeteoService.WeatherCallback() {
+            @Override
+            public void onSuccess(OpenMeteoService.WeatherData data) {
+                runOnUiThread(() -> {
+                    tvTemperature.setText(String.format("%.0f°C", data.temperature));
+                    tvWeatherDesc.setText(getWeatherDescription(data.weatherCode));
+                    tvMoisture.setText(String.format("%.0f%%", data.humidity));
+
+                    // Calculate sunlight hours (simplified)
+                    int sunlightHours = calculateSunlightHours(latitude);
+                    tvSunlight.setText(sunlightHours + " hrs");
+                });
+            }
+
+            @Override
+            public void onError(String error) {
+                runOnUiThread(() -> {
+                    Toast.makeText(MainActivity.this, "Weather error: " + error, Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
+    }
+
+    private void loadPestData(double latitude, double longitude) {
+        // Use Gemini to get pest information based on location
+        String prompt = String.format(
+                "For farming location at coordinates %.2f, %.2f (%s, %s), " +
+                        "what is the current pest risk level? " +
+                        "Respond with ONLY a percentage (e.g., '15%%' or '30%%') indicating pest risk.",
+                latitude, longitude, currentCity, currentCountry);
+
+        geminiService.sendTextMessage(prompt, executor, new GeminiService.ResponseCallback() {
+            @Override
+            public void onSuccess(String response) {
+                runOnUiThread(() -> {
+                    // Extract percentage from response
+                    String pestRisk = extractPercentage(response);
+                    tvPests.setText(pestRisk);
+                });
+            }
+
+            @Override
+            public void onError(String error) {
+                runOnUiThread(() -> {
+                    tvPests.setText("Low");
+                });
+            }
+        });
+    }
+
+    private String getWeatherDescription(int weatherCode) {
+        // WMO Weather interpretation codes
+        if (weatherCode == 0)
+            return "Clear sky";
+        if (weatherCode <= 3)
+            return "Partly cloudy";
+        if (weatherCode <= 48)
+            return "Foggy";
+        if (weatherCode <= 67)
+            return "Rainy";
+        if (weatherCode <= 77)
+            return "Snowy";
+        if (weatherCode <= 82)
+            return "Rain showers";
+        if (weatherCode <= 86)
+            return "Snow showers";
+        return "Thunderstorm";
+    }
+
+    private int calculateSunlightHours(double latitude) {
+        // Simplified calculation based on latitude
+        // Tropical regions: ~12 hours, temperate: varies by season
+        if (Math.abs(latitude) < 23.5)
+            return 12; // Tropics
+        if (Math.abs(latitude) < 45)
+            return 10; // Subtropical
+        return 8; // Temperate
+    }
+
+    private String extractPercentage(String text) {
+        // Extract percentage from Gemini response
+        if (text.contains("%")) {
+            String[] parts = text.split("%");
+            if (parts.length > 0) {
+                String numPart = parts[0].trim();
+                // Get last word which should be the number
+                String[] words = numPart.split("\\s+");
+                return words[words.length - 1] + "%";
+            }
+        }
+        return "15%"; // Default
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+            @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == LOCATION_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLocationAndLoadData();
+            } else {
+                Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show();
+                // Load default Delhi data
+                tvLocation.setText("📍 Delhi, India");
+                loadWeatherData(28.6139, 77.2090);
+                loadPestData(28.6139, 77.2090);
+            }
+        }
     }
 }
