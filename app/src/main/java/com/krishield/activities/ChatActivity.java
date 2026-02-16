@@ -29,6 +29,7 @@ import com.krishield.R;
 import com.krishield.adapters.ChatAdapter;
 import com.krishield.models.ChatMessage;
 import com.krishield.services.GeminiService;
+import com.krishield.utils.TextToSpeechHelper;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,8 +47,10 @@ public class ChatActivity extends AppCompatActivity {
     private ChatAdapter chatAdapter;
     private GeminiService geminiService;
     private Executor executor;
+    private TextToSpeechHelper ttsHelper;
 
     private Bitmap selectedImage;
+    private boolean isVoiceMode = false;
 
     private static final int CAMERA_PERMISSION_CODE = 100;
     private static final int GALLERY_PERMISSION_CODE = 101;
@@ -103,6 +106,16 @@ public class ChatActivity extends AppCompatActivity {
     private void setupGemini() {
         geminiService = new GeminiService();
         executor = Executors.newSingleThreadExecutor();
+
+        // Initialize TTS for voice responses
+        ttsHelper = new TextToSpeechHelper(this, () -> {
+            // When speech completes, re-enable voice input if in voice mode
+            if (isVoiceMode) {
+                new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+                    startVoiceRecognition();
+                }, 500);
+            }
+        });
     }
 
     private void setupListeners() {
@@ -153,7 +166,12 @@ public class ChatActivity extends AppCompatActivity {
                             String spokenText = matches.get(0);
                             editTextMessage.setText(spokenText);
                             editTextMessage.setSelection(spokenText.length());
-                            Toast.makeText(this, "Voice recognized!", Toast.LENGTH_SHORT).show();
+
+                            // Auto-send after voice input
+                            new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+                                isVoiceMode = true; // Enable voice mode for response
+                                sendMessage();
+                            }, 500); // Small delay for visual feedback
                         }
                     }
                 });
@@ -259,6 +277,11 @@ public class ChatActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         btnSend.setEnabled(true);
                         scrollToBottom();
+
+                        // Speak the response if in voice mode
+                        if (isVoiceMode && ttsHelper != null) {
+                            ttsHelper.speak(response);
+                        }
                     });
                 }
 
@@ -285,6 +308,11 @@ public class ChatActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         btnSend.setEnabled(true);
                         scrollToBottom();
+
+                        // Speak the response if in voice mode
+                        if (isVoiceMode && ttsHelper != null) {
+                            ttsHelper.speak(response);
+                        }
                     });
                 }
 
