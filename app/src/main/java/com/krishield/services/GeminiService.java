@@ -55,7 +55,6 @@ public class GeminiService {
         GenerativeModel gm = new GenerativeModel("gemini-2.0-flash-exp", this.apiKey);
         model = GenerativeModelFutures.from(gm);
     }
-    }
 
     /**
      * Send a text message to Gemini and get a response
