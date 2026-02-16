@@ -18,7 +18,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file(project.hasProperty('KEYSTORE_FILE') ? project.property('KEYSTORE_FILE') : 'krishield-release-key.jks')
+            storeFile rootProject.file(project.hasProperty('KEYSTORE_FILE') ? project.property('KEYSTORE_FILE') : 'krishield-release-key.jks')
             storePassword project.hasProperty('KEYSTORE_PASSWORD') ? project.property('KEYSTORE_PASSWORD') : ''
             keyAlias project.hasProperty('KEY_ALIAS') ? project.property('KEY_ALIAS') : ''
             keyPassword project.hasProperty('KEY_PASSWORD') ? project.property('KEY_PASSWORD') : ''
