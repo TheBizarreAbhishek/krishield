@@ -37,7 +37,7 @@ public class MarketRepository {
 
         if (!forceRefresh && (currentTime - lastUpdate < CACHE_DURATION)) {
             String cachedResponse = prefs.getString(cacheKey, null);
-            if (cachedResponse != null && !cachedResponse.isEmpty()) {
+            if (cachedResponse != null && !cachedResponse.isEmpty() && isValidResponse(cachedResponse)) {
                 callback.onSuccess(cachedResponse);
                 return;
             }
@@ -67,24 +67,42 @@ public class MarketRepository {
         geminiService.sendTextMessage(prompt, executor, new GeminiService.ResponseCallback() {
             @Override
             public void onSuccess(String response) {
-                // Save to cache
-                prefs.edit()
-                        .putString(cacheKey, response)
-                        .putLong(timeKey, System.currentTimeMillis())
-                        .apply();
-                callback.onSuccess(response);
+                // Validate response before caching
+                if (isValidResponse(response)) {
+                    prefs.edit()
+                            .putString(cacheKey, response)
+                            .putLong(timeKey, System.currentTimeMillis())
+                            .apply();
+                    callback.onSuccess(response);
+                } else {
+                    // If response is an error message (rate limit, etc.), valid but useless
+                    // Do NOT cache it, and pass it to UI (or handle as error)
+                    callback.onError("API Response Error: " + response);
+                }
             }
 
             @Override
             public void onError(String error) {
-                // Try to return old cache if API fails
+                // Try to return old cache if API fails, BUT only if it's valid
                 String cachedResponse = prefs.getString(cacheKey, null);
-                if (cachedResponse != null) {
+                if (cachedResponse != null && isValidResponse(cachedResponse)) {
                     callback.onSuccess(cachedResponse);
                 } else {
                     callback.onError(error);
                 }
             }
         });
+    }
+
+    // Helper to check if response looks like valid market data
+    private boolean isValidResponse(String response) {
+        if (response == null || response.isEmpty())
+            return false;
+        String lower = response.toLowerCase();
+        // Check for common API error keywords
+        return !lower.contains("rate limit") &&
+                !lower.contains("quota exceeded") &&
+                !lower.contains("internal error") &&
+                !lower.contains("safety");
     }
 }
