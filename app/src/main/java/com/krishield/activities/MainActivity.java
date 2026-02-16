@@ -80,6 +80,13 @@ public class MainActivity extends AppCompatActivity {
         btnSettings = findViewById(R.id.btn_settings);
     }
 
+    private void initializeServices() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        weatherService = new OpenMeteoService();
+        geminiService = new GeminiService(null);
+        executor = Executors.newSingleThreadExecutor();
+    }
+
     // ... (skipping some lines)
 
     private void setupClickListeners() {
