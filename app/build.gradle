@@ -16,6 +16,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // Signing configuration temporarily disabled - will add back once unsigned build works
+    /*
     signingConfigs {
         release {
             storeFile rootProject.file(project.hasProperty('KEYSTORE_FILE') ? project.property('KEYSTORE_FILE') : 'krishield-release-key.jks')
@@ -24,12 +26,13 @@ android {
             keyPassword project.hasProperty('KEY_PASSWORD') ? project.property('KEY_PASSWORD') : ''
         }
     }
+    */
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            // signingConfig signingConfigs.release
         }
     }
     compileOptions {
