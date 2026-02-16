@@ -19,29 +19,6 @@ KriShield is an Android application designed for Indian farmers to leverage AI t
 - **Min SDK**: 24 (Android 7.0)
 - **Target SDK**: 34 (Android 14)
 
-## Building the App
-
-### Prerequisites
-
-- Android Studio (latest version)
-- JDK 17
-- Android SDK 34
-
-### Setup
-
-1. Clone the repository
-2. Open in Android Studio
-3. Sync Gradle files
-4. Run on device or emulator
-
-### Release Build
-
-The app uses GitHub Actions for automated builds. To build locally:
-
-```bash
-./gradlew assembleRelease
-```
-
 ## Project Structure
 
 ```
