@@ -7,6 +7,7 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ public class MarketDashboardActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private GeminiService geminiService;
 
+    private EditText etSearch;
     private TextView tvLocation, tvSeason, tvMarketData, tvAiRecommendation;
     private ProgressBar progressBar;
 
@@ -45,6 +47,7 @@ public class MarketDashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_market_dashboard);
 
         // Initialize views
+        etSearch = findViewById(R.id.et_search);
         tvLocation = findViewById(R.id.tv_location);
         tvSeason = findViewById(R.id.tv_season);
         tvMarketData = findViewById(R.id.tv_market_data);
@@ -54,6 +57,26 @@ public class MarketDashboardActivity extends AppCompatActivity {
         // Initialize services
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         geminiService = new GeminiService(null);
+
+        // Search button click handler
+        findViewById(R.id.btn_search).setOnClickListener(v -> {
+            String searchQuery = etSearch.getText().toString().trim();
+            if (!searchQuery.isEmpty()) {
+                searchCropPrice(searchQuery);
+            } else {
+                Toast.makeText(this, "Please enter crop/vegetable name", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Search on keyboard enter
+        etSearch.setOnEditorActionListener((v, actionId, event) -> {
+            String searchQuery = etSearch.getText().toString().trim();
+            if (!searchQuery.isEmpty()) {
+                searchCropPrice(searchQuery);
+                return true;
+            }
+            return false;
+        });
 
         // Detect season
         currentSeason = getCurrentSeason();
@@ -213,5 +236,51 @@ public class MarketDashboardActivity extends AppCompatActivity {
             tvMarketData.setText(response);
             tvAiRecommendation.setText("Check market data above");
         }
+    }
+
+    private void searchCropPrice(String cropName) {
+        progressBar.setVisibility(View.VISIBLE);
+        tvMarketData.setText("Searching for " + cropName + "...");
+        tvAiRecommendation.setText("Analyzing...");
+
+        String location = currentCity.isEmpty() ? "India" : currentCity + ", " + currentState;
+
+        String prompt = String.format(
+                "Search Google for current market price of %s in %s. " +
+                        "Provide:\n" +
+                        "1. Current mandi price (₹/quintal or ₹/kg)\n" +
+                        "2. Price trend (last 30 days)\n" +
+                        "3. Best selling time\n" +
+                        "4. Demand status\n\n" +
+                        "Format as:\n" +
+                        "PRICE:\n" +
+                        "• %s: ₹price/unit\n" +
+                        "• Trend: rising/falling/stable\n" +
+                        "• Quality grade prices if available\n\n" +
+                        "RECOMMENDATION:\n" +
+                        "• Best time to sell\n" +
+                        "• Market demand\n" +
+                        "• Price forecast",
+                cropName, location, cropName);
+
+        geminiService.sendTextMessage(prompt, Executors.newSingleThreadExecutor(),
+                new GeminiService.ResponseCallback() {
+                    @Override
+                    public void onSuccess(String response) {
+                        runOnUiThread(() -> {
+                            progressBar.setVisibility(View.GONE);
+                            parseAndDisplayResponse(response);
+                        });
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        runOnUiThread(() -> {
+                            progressBar.setVisibility(View.GONE);
+                            tvMarketData.setText("Error: " + error);
+                            tvAiRecommendation.setText("Unable to fetch price data");
+                        });
+                    }
+                });
     }
 }
