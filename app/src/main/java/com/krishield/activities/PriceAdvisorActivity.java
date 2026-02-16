@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.textfield.TextInputEditText;
 import com.krishield.R;
 import com.krishield.services.GeminiService;
 
@@ -25,8 +24,7 @@ import java.util.concurrent.Executors;
 
 public class PriceAdvisorActivity extends AppCompatActivity {
 
-    private Spinner spinnerCrop;
-    private TextInputEditText etCurrentPrice, etLastWeekPrice;
+    private Spinner spinnerCrop, spinnerMarket;
     private MaterialButton btnAnalyze;
     private ProgressBar progressBar;
     private MaterialCardView cardRecommendation;
@@ -44,13 +42,12 @@ public class PriceAdvisorActivity extends AppCompatActivity {
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Price Advisor");
+        getSupportActionBar().setTitle("AI Price Advisor");
         toolbar.setNavigationOnClickListener(v -> finish());
 
         // Initialize views
         spinnerCrop = findViewById(R.id.spinner_crop);
-        etCurrentPrice = findViewById(R.id.et_current_price);
-        etLastWeekPrice = findViewById(R.id.et_last_week_price);
+        spinnerMarket = findViewById(R.id.spinner_market);
         btnAnalyze = findViewById(R.id.btn_analyze);
         progressBar = findViewById(R.id.progress_bar);
         cardRecommendation = findViewById(R.id.card_recommendation);
@@ -59,8 +56,9 @@ public class PriceAdvisorActivity extends AppCompatActivity {
         tvReasoning = findViewById(R.id.tv_reasoning);
         tvAction = findViewById(R.id.tv_action);
 
-        // Setup crop spinner
+        // Setup spinners
         setupCropSpinner();
+        setupMarketSpinner();
 
         // Initialize Gemini
         geminiService = new GeminiService();
@@ -92,86 +90,103 @@ public class PriceAdvisorActivity extends AppCompatActivity {
         spinnerCrop.setAdapter(adapter);
     }
 
+    private void setupMarketSpinner() {
+        String[] markets = {
+                "Select Market",
+                "Delhi",
+                "Mumbai",
+                "Bangalore",
+                "Kolkata",
+                "Chennai",
+                "Hyderabad",
+                "Pune",
+                "Ahmedabad",
+                "Jaipur",
+                "Lucknow"
+        };
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_dropdown_item,
+                markets);
+        spinnerMarket.setAdapter(adapter);
+    }
+
     private void analyzePriceTrend() {
         // Validate inputs
         String crop = spinnerCrop.getSelectedItem().toString();
-        String currentPriceStr = etCurrentPrice.getText().toString().trim();
-        String lastWeekPriceStr = etLastWeekPrice.getText().toString().trim();
+        String market = spinnerMarket.getSelectedItem().toString();
 
         if (crop.equals("Select Crop")) {
             Toast.makeText(this, "Please select a crop", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (currentPriceStr.isEmpty() || lastWeekPriceStr.isEmpty()) {
-            Toast.makeText(this, "Please enter both prices", Toast.LENGTH_SHORT).show();
+        if (market.equals("Select Market")) {
+            Toast.makeText(this, "Please select a market", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        try {
-            double currentPrice = Double.parseDouble(currentPriceStr);
-            double lastWeekPrice = Double.parseDouble(lastWeekPriceStr);
+        // Show loading
+        progressBar.setVisibility(View.VISIBLE);
+        btnAnalyze.setEnabled(false);
+        cardRecommendation.setVisibility(View.GONE);
 
-            // Show loading
-            progressBar.setVisibility(View.VISIBLE);
-            btnAnalyze.setEnabled(false);
-            cardRecommendation.setVisibility(View.GONE);
+        // Create AI prompt for automatic price analysis
+        String prompt = createAutomaticAnalysisPrompt(crop, market);
 
-            // Create AI prompt
-            String prompt = createAnalysisPrompt(crop, currentPrice, lastWeekPrice);
+        // Call Gemini
+        geminiService.sendTextMessage(prompt, executor, new GeminiService.ResponseCallback() {
+            @Override
+            public void onSuccess(String response) {
+                runOnUiThread(() -> {
+                    parseAndDisplayRecommendation(response);
+                    progressBar.setVisibility(View.GONE);
+                    btnAnalyze.setEnabled(true);
+                });
+            }
 
-            // Call Gemini
-            geminiService.sendTextMessage(prompt, executor, new GeminiService.ResponseCallback() {
-                @Override
-                public void onSuccess(String response) {
-                    runOnUiThread(() -> {
-                        parseAndDisplayRecommendation(response);
-                        progressBar.setVisibility(View.GONE);
-                        btnAnalyze.setEnabled(true);
-                    });
-                }
-
-                @Override
-                public void onError(String error) {
-                    runOnUiThread(() -> {
-                        Toast.makeText(PriceAdvisorActivity.this,
-                                "Analysis failed: " + error, Toast.LENGTH_SHORT).show();
-                        progressBar.setVisibility(View.GONE);
-                        btnAnalyze.setEnabled(true);
-                    });
-                }
-            });
-
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, "Please enter valid prices", Toast.LENGTH_SHORT).show();
-        }
+            @Override
+            public void onError(String error) {
+                runOnUiThread(() -> {
+                    Toast.makeText(PriceAdvisorActivity.this,
+                            "Analysis failed: " + error, Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    btnAnalyze.setEnabled(true);
+                });
+            }
+        });
     }
 
-    private String createAnalysisPrompt(String crop, double currentPrice, double lastWeekPrice) {
-        double priceChange = currentPrice - lastWeekPrice;
-        double percentChange = (priceChange / lastWeekPrice) * 100;
-
+    private String createAutomaticAnalysisPrompt(String crop, String market) {
         return String.format(
-                "You are a market analysis expert for Indian farmers.\n\n" +
-                        "Analyze this price trend for %s:\n" +
-                        "- Last week's price: ₹%.2f per quintal\n" +
-                        "- Current price: ₹%.2f per quintal\n" +
-                        "- Price change: ₹%.2f (%.1f%%)\n\n" +
-                        "Provide a selling recommendation in this EXACT JSON format:\n" +
+                "You are an expert market analyst for Indian agriculture.\n\n" +
+                        "TASK: Analyze current market conditions for %s in %s market and provide a selling recommendation.\n\n"
+                        +
+                        "INSTRUCTIONS:\n" +
+                        "1. Search for CURRENT (today's) %s prices in %s market\n" +
+                        "2. Find price trends for the LAST 30 DAYS if available\n" +
+                        "3. Consider seasonal factors and market demand\n" +
+                        "4. Analyze if prices are rising, falling, or stable\n" +
+                        "5. Provide a clear SELL NOW or WAIT recommendation\n\n" +
+                        "REQUIRED OUTPUT FORMAT (JSON only, no other text):\n" +
                         "{\n" +
+                        "  \"current_price\": \"₹X per quintal (source: Y)\",\n" +
                         "  \"trend\": \"rising\" or \"falling\" or \"stable\",\n" +
+                        "  \"trend_percentage\": \"+X%%\" or \"-X%%\",\n" +
                         "  \"recommendation\": \"SELL NOW\" or \"WAIT\",\n" +
                         "  \"confidence\": \"high\" or \"medium\" or \"low\",\n" +
-                        "  \"reasoning\": \"Brief explanation in 2-3 sentences\",\n" +
-                        "  \"action\": \"Specific advice for the farmer\"\n" +
+                        "  \"reasoning\": \"2-3 sentences explaining the trend and factors\",\n" +
+                        "  \"action\": \"Specific advice: when to sell, expected price range, etc.\",\n" +
+                        "  \"data_source\": \"Where you found the price data\"\n" +
                         "}\n\n" +
-                        "Consider:\n" +
-                        "- Price trend direction\n" +
-                        "- Magnitude of change\n" +
-                        "- Typical seasonal patterns for %s\n" +
-                        "- Market demand factors\n\n" +
-                        "Respond ONLY with valid JSON, no other text.",
-                crop, lastWeekPrice, currentPrice, priceChange, percentChange, crop);
+                        "IMPORTANT:\n" +
+                        "- Use REAL current market data from your search\n" +
+                        "- If exact data unavailable, use best available recent data and mention it\n" +
+                        "- Consider Indian market conditions and seasonal patterns\n" +
+                        "- Provide actionable, practical advice for farmers\n\n" +
+                        "Respond ONLY with valid JSON, no additional text.",
+                crop, market, crop, market);
     }
 
     private void parseAndDisplayRecommendation(String response) {
@@ -191,16 +206,24 @@ public class PriceAdvisorActivity extends AppCompatActivity {
 
             JSONObject json = new JSONObject(jsonStr);
 
+            String currentPrice = json.optString("current_price", "Price data unavailable");
             String trend = json.getString("trend");
+            String trendPercentage = json.optString("trend_percentage", "");
             String recommendation = json.getString("recommendation");
             String reasoning = json.getString("reasoning");
             String action = json.getString("action");
+            String dataSource = json.optString("data_source", "");
 
             // Display results
-            tvTrend.setText("Trend: " + trend.toUpperCase());
+            tvTrend.setText("📊 Current: " + currentPrice + "\n" +
+                    "📈 Trend: " + trend.toUpperCase() + " " + trendPercentage);
             tvRecommendation.setText(recommendation);
             tvReasoning.setText(reasoning);
             tvAction.setText("💡 " + action);
+
+            if (!dataSource.isEmpty()) {
+                tvAction.append("\n\n📌 Source: " + dataSource);
+            }
 
             // Set colors based on recommendation
             if (recommendation.contains("SELL")) {
@@ -213,10 +236,10 @@ public class PriceAdvisorActivity extends AppCompatActivity {
 
         } catch (Exception e) {
             // Fallback: display raw response
-            tvTrend.setText("Analysis Result");
-            tvRecommendation.setText("AI Recommendation");
+            tvTrend.setText("AI Analysis Result");
+            tvRecommendation.setText("Market Recommendation");
             tvReasoning.setText(response);
-            tvAction.setText("Review the analysis above");
+            tvAction.setText("Review the detailed analysis above");
             cardRecommendation.setVisibility(View.VISIBLE);
         }
     }

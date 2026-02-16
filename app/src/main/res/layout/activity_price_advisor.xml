@@ -28,7 +28,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AI Price Advisor"
+                android:text="🤖 AI Price Advisor"
                 android:textAppearance="?attr/textAppearanceHeadlineSmall"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
@@ -36,7 +36,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Get AI-powered selling recommendations"
+                android:text="AI automatically searches current prices and analyzes 30-day trends"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?attr/colorOnSurfaceVariant"
                 android:layout_marginBottom="24dp" />
@@ -57,35 +57,19 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Current Price -->
+            <!-- Market Selection -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Current Price (₹/Quintal)"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:layout_marginBottom="16dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_current_price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Last Week Price -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Last Week's Price (₹/Quintal)"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:hint="Select Market"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_marginBottom="24dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_last_week_price"
+                <Spinner
+                    android:id="@+id/spinner_market"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
+                    android:minHeight="56dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +78,7 @@
                 android:id="@+id/btn_analyze"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Get AI Recommendation"
+                android:text="🔍 Analyze Market &amp; Get Recommendation"
                 android:textSize="16sp"
                 android:padding="16dp"
                 app:icon="@android:drawable/ic_menu_search"
@@ -107,6 +91,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:visibility="gone"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/tv_loading_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="🔍 AI is searching current market prices...\n⏳ Analyzing 30-day trends..."
+                android:textAlignment="center"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:visibility="gone"
                 android:layout_marginBottom="16dp" />
 
@@ -131,7 +127,7 @@
                         android:id="@+id/tv_trend"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Trend: RISING"
+                        android:text="📊 Current Price &amp; Trend"
                         android:textAppearance="?attr/textAppearanceTitleMedium"
                         android:textStyle="bold"
                         android:layout_marginBottom="8dp" />
@@ -151,7 +147,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Reasoning:"
+                        android:text="📝 Analysis:"
                         android:textAppearance="?attr/textAppearanceLabelLarge"
                         android:textStyle="bold"
                         android:layout_marginBottom="4dp" />
@@ -160,7 +156,7 @@
                         android:id="@+id/tv_reasoning"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Price analysis reasoning will appear here"
+                        android:text="AI analysis will appear here"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
                         android:layout_marginBottom="16dp" />
 
@@ -168,7 +164,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Recommended Action:"
+                        android:text="✅ Recommended Action:"
                         android:textAppearance="?attr/textAppearanceLabelLarge"
                         android:textStyle="bold"
                         android:layout_marginBottom="4dp" />

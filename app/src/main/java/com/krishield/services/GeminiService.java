@@ -13,12 +13,12 @@ import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.concurrent.Executor;
 
+import com.krishield.BuildConfig;
+
 public class GeminiService {
     private static final String TAG = "GeminiService";
-    // API key is now loaded from BuildConfig (set via local.properties)
-    private static final String API_KEY = com.krishield.BuildConfig.GEMINI_API_KEY;
+    private static final String API_KEY = BuildConfig.GEMINI_API_KEY;
 
-    // Custom system prompt for farming assistance
     private static final String SYSTEM_INSTRUCTION = "You are KriShield AI, an expert agricultural assistant for Indian farmers. "
             +
             "Your role is to provide practical, region-specific farming advice including:\n" +
@@ -28,15 +28,16 @@ public class GeminiService {
             "- Irrigation and water management\n" +
             "- Seasonal crop suggestions\n" +
             "- Organic farming methods\n" +
-            "- Government scheme information\n\n" +
+            "- Government scheme information\n" +
+            "- Market price analysis and selling recommendations\n\n" +
             "Always provide answers in simple language, considering the Indian farming context. " +
             "When analyzing crop images, identify diseases, pests, or deficiencies and suggest " +
-            "immediate remedies using locally available resources.";
+            "immediate remedies using locally available resources. " +
+            "When analyzing prices, search for current market data and provide data-driven recommendations.";
 
     private GenerativeModelFutures model;
 
     public GeminiService() {
-        // Using latest Gemini 2.5 Flash model (GA June 2025)
         GenerativeModel gm = new GenerativeModel("gemini-2.5-flash", API_KEY);
         model = GenerativeModelFutures.from(gm);
     }
@@ -46,7 +47,6 @@ public class GeminiService {
      */
     public void sendTextMessage(String userMessage, Executor executor, ResponseCallback callback) {
         try {
-            // Prepend system instruction to user message
             String fullPrompt = SYSTEM_INSTRUCTION + "\n\nUser: " + userMessage;
 
             Content content = new Content.Builder()
