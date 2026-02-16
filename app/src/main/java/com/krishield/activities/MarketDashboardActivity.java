@@ -181,28 +181,19 @@ public class MarketDashboardActivity extends AppCompatActivity {
         tvMarketData.setText("Loading market data...");
         tvAiRecommendation.setText("Analyzing prices...");
 
-        String prompt = String.format(
-                "Search Google for current market prices in %s, %s for %s crops. " +
-                        "Provide:\n" +
-                        "1. Top 5 crops with current mandi price (₹/quintal)\n" +
-                        "2. Brief 30-day trend (rising/falling/stable)\n" +
-                        "3. Short selling recommendation\n\n" +
-                        "Format as:\n" +
-                        "CROPS:\n" +
-                        "• Crop name: ₹price/quintal (trend)\n\n" +
-                        "RECOMMENDATION:\n" +
-                        "• Point 1\n" +
-                        "• Point 2\n" +
-                        "• Point 3",
-                currentCity, currentState, currentSeason);
-
-        geminiService.sendTextMessage(prompt, Executors.newSingleThreadExecutor(),
-                new GeminiService.ResponseCallback() {
+        // Use MarketRepository for caching
+        MarketRepository repository = new MarketRepository(this);
+        repository.getMarketData(currentCity, currentState, currentSeason, false,
+                new MarketRepository.MarketCallback() {
                     @Override
                     public void onSuccess(String response) {
                         runOnUiThread(() -> {
                             progressBar.setVisibility(View.GONE);
                             parseAndDisplayResponse(response);
+
+                            // Show small toast if loaded from cache (optional debugging, or just silent)
+                            // Toast.makeText(MarketDashboardActivity.this, "Data Loaded",
+                            // Toast.LENGTH_SHORT).show();
                         });
                     }
 
