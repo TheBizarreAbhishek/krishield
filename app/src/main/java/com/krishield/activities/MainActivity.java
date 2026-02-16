@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         com.google.android.material.card.MaterialCardView btnMarketPrice = findViewById(R.id.btn_market_price);
         if (btnMarketPrice != null) {
             btnMarketPrice.setOnClickListener(v -> {
-                Intent intent = new Intent(MainActivity.this, MarketPriceActivity.class);
+                Intent intent = new Intent(MainActivity.this, MarketDashboardActivity.class);
                 startActivity(intent);
             });
         }
@@ -71,8 +71,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             });
         }
-
-
 
         // Setup other features (Weather, Schemes) - To be implemented
         // findViewById(R.id.card_weather).setOnClickListener(...)
