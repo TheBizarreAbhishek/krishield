@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvMoisture, tvPests, tvSunlight;
     private TextView tvSchemeTitle, tvSchemeDesc;
     private View weatherPill, pillMarket, pillWeather, pillCommunity, geminiSearch;
+    private ImageView btnSettings;
 
     private FusedLocationProviderClient fusedLocationClient;
     private OpenMeteoService weatherService;
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         pillWeather = findViewById(R.id.pill_weather);
         pillCommunity = findViewById(R.id.pill_community);
         geminiSearch = findViewById(R.id.gemini_search);
+        btnSettings = findViewById(R.id.btn_settings);
     }
 
     private void initializeServices() {
@@ -105,6 +107,11 @@ public class MainActivity extends AppCompatActivity {
 
         geminiSearch.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+            startActivity(intent);
+        });
+
+        btnSettings.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         });
     }
