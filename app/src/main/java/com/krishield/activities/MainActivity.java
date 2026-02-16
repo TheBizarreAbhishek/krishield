@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tvLocation, tvWeatherDesc, tvTemperature;
     private TextView tvMoisture, tvPests, tvSunlight;
-    private View weatherPill, pillMarket, pillChat, pillSettings, geminiSearch;
+    private TextView tvSchemeTitle, tvSchemeDesc;
+    private View weatherPill, pillMarket, pillWeather, pillCommunity, geminiSearch;
 
     private FusedLocationProviderClient fusedLocationClient;
     private OpenMeteoService weatherService;
@@ -64,11 +65,13 @@ public class MainActivity extends AppCompatActivity {
         tvMoisture = findViewById(R.id.tv_moisture);
         tvPests = findViewById(R.id.tv_pests);
         tvSunlight = findViewById(R.id.tv_sunlight);
+        tvSchemeTitle = findViewById(R.id.tv_scheme_title);
+        tvSchemeDesc = findViewById(R.id.tv_scheme_desc);
 
         weatherPill = findViewById(R.id.weather_pill);
         pillMarket = findViewById(R.id.pill_market);
-        pillChat = findViewById(R.id.pill_chat);
-        pillSettings = findViewById(R.id.pill_settings);
+        pillWeather = findViewById(R.id.pill_weather);
+        pillCommunity = findViewById(R.id.pill_community);
         geminiSearch = findViewById(R.id.gemini_search);
     }
 
@@ -90,14 +93,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        pillChat.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+        pillWeather.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
             startActivity(intent);
         });
 
-        pillSettings.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivity(intent);
+        pillCommunity.setOnClickListener(v -> {
+            // Open community feed / schemes activity (to be implemented)
+            Toast.makeText(this, "Community Feed - Coming Soon!", Toast.LENGTH_SHORT).show();
         });
 
         geminiSearch.setOnClickListener(v -> {
@@ -128,11 +131,13 @@ public class MainActivity extends AppCompatActivity {
                 getLocationName(location.getLatitude(), location.getLongitude());
                 loadWeatherData(location.getLatitude(), location.getLongitude());
                 loadPestData(location.getLatitude(), location.getLongitude());
+                loadGovernmentSchemes();
             } else {
                 // Default to Delhi if location not available
                 tvLocation.setText("📍 Delhi, India");
                 loadWeatherData(28.6139, 77.2090);
                 loadPestData(28.6139, 77.2090);
+                loadGovernmentSchemes();
             }
         });
     }
@@ -246,6 +251,38 @@ public class MainActivity extends AppCompatActivity {
         return "15%"; // Default
     }
 
+    private void loadGovernmentSchemes() {
+        // Use Gemini to fetch latest government schemes for farmers
+        String prompt = "What is the latest government scheme for farmers in India? " +
+                "Provide ONLY the scheme name and a brief one-line description. " +
+                "Format: 'Scheme Name: Description' (max 100 characters total)";
+
+        geminiService.sendTextMessage(prompt, executor, new GeminiService.ResponseCallback() {
+            @Override
+            public void onSuccess(String response) {
+                runOnUiThread(() -> {
+                    // Parse response to extract title and description
+                    String[] parts = response.split(":", 2);
+                    if (parts.length == 2) {
+                        tvSchemeTitle.setText("🌾 " + parts[0].trim());
+                        tvSchemeDesc.setText(parts[1].trim());
+                    } else {
+                        tvSchemeTitle.setText("🌾 " + response.substring(0, Math.min(50, response.length())));
+                        tvSchemeDesc.setText("Tap to learn more...");
+                    }
+                });
+            }
+
+            @Override
+            public void onError(String error) {
+                runOnUiThread(() -> {
+                    tvSchemeTitle.setText("🌾 PM-KISAN Scheme");
+                    tvSchemeDesc.setText("Direct income support for farmers. Check eligibility...");
+                });
+            }
+        });
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
             @NonNull int[] grantResults) {
@@ -259,6 +296,7 @@ public class MainActivity extends AppCompatActivity {
                 tvLocation.setText("📍 Delhi, India");
                 loadWeatherData(28.6139, 77.2090);
                 loadPestData(28.6139, 77.2090);
+                loadGovernmentSchemes();
             }
         }
     }

@@ -218,9 +218,10 @@
                     android:layout_marginTop="8dp" />
             </LinearLayout>
 
-            <!-- AI Chat Pill -->
+
+            <!-- Weather Pill -->
             <LinearLayout
-                android:id="@+id/pill_chat"
+                android:id="@+id/pill_weather"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
@@ -235,13 +236,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="💬"
+                    android:text="🌤️"
                     android:textSize="36sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="AI Chat"
+                    android:text="Weather"
                     android:textColor="@color/kri_text_primary"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -250,36 +251,38 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Large Settings Pill -->
+        <!-- Large Farmers Community Feed Pill -->
         <LinearLayout
-            android:id="@+id/pill_settings"
+            android:id="@+id/pill_community"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_pill_dark"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="20dp"
-            android:gravity="center_vertical"
             android:layout_marginBottom="16dp"
             android:clickable="true"
             android:focusable="true">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="⚙️"
-                android:textSize="36sp"
-                android:layout_marginEnd="16dp" />
-
+            <!-- Header -->
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Settings"
+                    android:text="📰"
+                    android:textSize="28sp"
+                    android:layout_marginEnd="12dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Farmers Community Feed"
                     android:textColor="@color/kri_text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -287,18 +290,47 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Configure app preferences"
+                    android:text="›"
+                    android:textColor="@color/kri_text_secondary"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <!-- Latest Scheme -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_pill_blue"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/tv_scheme_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🌾 PM-KISAN Scheme Update"
+                    android:textColor="@color/kri_text_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_scheme_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Next installment releasing soon. Check eligibility..."
                     android:textColor="@color/kri_text_secondary"
                     android:textSize="12sp"
-                    android:layout_marginTop="4dp" />
+                    android:layout_marginTop="4dp"
+                    android:maxLines="2"
+                    android:ellipsize="end" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="›"
+                android:text="Latest Government Schemes & News"
                 android:textColor="@color/kri_text_secondary"
-                android:textSize="24sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <!-- Gemini Search Bar -->
@@ -325,7 +357,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Ask Gemini"
+                android:text="Ask KriShield"
                 android:textColor="@color/kri_text_secondary"
                 android:textSize="16sp" />
 
