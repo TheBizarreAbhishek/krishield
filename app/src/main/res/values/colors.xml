@@ -8,10 +8,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     
-    <!-- Custom Colors based on Logo/Nature theme -->
-    <color name="kri_primary">#2E7D32</color> <!-- Green -->
+    <!-- KriShield Green Farming Theme -->
+    <color name="kri_primary">#2E7D32</color> <!-- Dark Green -->
+    <color name="kri_primary_dark">#1B5E20</color> <!-- Darker Green -->
+    <color name="kri_primary_light">#4CAF50</color> <!-- Light Green -->
     <color name="kri_secondary">#1565C0</color> <!-- Blue -->
-    <color name="kri_background">#F5F5F5</color>
+    <color name="kri_background">#E8F5E9</color> <!-- Very Light Green -->
     <color name="kri_surface">#FFFFFF</color>
     <color name="kri_on_primary">#FFFFFF</color>
+    <color name="kri_text_primary">#1B5E20</color>
+    <color name="kri_text_secondary">#666666</color>
+    <color name="kri_card_bg">#F1F8E9</color> <!-- Light Green Tint -->
 </resources>
