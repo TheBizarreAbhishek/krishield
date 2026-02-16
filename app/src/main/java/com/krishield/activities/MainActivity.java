@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Settings button
-        ImageButton btnSettings = findViewById(R.id.btn_settings);
+        com.google.android.material.card.MaterialCardView btnSettings = findViewById(R.id.btn_settings);
         if (btnSettings != null) {
             btnSettings.setOnClickListener(v -> {
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
