@@ -71,16 +71,34 @@ public class PriceAdvisorActivity extends AppCompatActivity {
     private void setupCropSpinner() {
         String[] crops = {
                 "Select Crop",
-                "Potato (आलू)",
-                "Onion (प्याज)",
-                "Tomato (टमाटर)",
-                "Wheat (गेहूं)",
-                "Rice (चावल)",
-                "Sugarcane (गन्ना)",
-                "Cotton (कपास)",
-                "Soybean (सोयाबीन)",
-                "Maize (मक्का)",
-                "Groundnut (मूंगफली)"
+                // Vegetables (15)
+                "Potato (आलू)", "Onion (प्याज)", "Tomato (टमाटर)", "Cabbage (पत्तागोभी)",
+                "Cauliflower (फूलगोभी)", "Brinjal (बैंगन)", "Okra (भिंडी)", "Carrot (गाजर)",
+                "Radish (मूली)", "Peas (मटर)", "Beans (बीन्स)", "Capsicum (शिमला मिर्च)",
+                "Cucumber (खीरा)", "Bitter Gourd (करेला)", "Bottle Gourd (लौकी)",
+
+                // Cereals (7)
+                "Wheat (गेहूं)", "Rice (चावल)", "Maize (मक्का)", "Bajra (बाजरा)",
+                "Jowar (ज्वार)", "Ragi (रागी)", "Barley (जौ)",
+
+                // Pulses (7)
+                "Arhar/Tur (अरहर)", "Moong (मूंग)", "Urad (उड़द)", "Masoor (मसूर)",
+                "Chana (चना)", "Rajma (राजमा)", "Lobia (लोबिया)",
+
+                // Oilseeds (6)
+                "Groundnut (मूंगफली)", "Soybean (सोयाबीन)", "Mustard (सरसों)",
+                "Sunflower (सूरजमुखी)", "Sesame (तिल)", "Safflower (कुसुम)",
+
+                // Cash Crops (4)
+                "Cotton (कपास)", "Sugarcane (गन्ना)", "Jute (जूट)", "Tobacco (तंबाकू)",
+
+                // Spices (7)
+                "Turmeric (हल्दी)", "Chilli (मिर्च)", "Coriander (धनिया)", "Cumin (जीरा)",
+                "Ginger (अदरक)", "Garlic (लहसुन)", "Fenugreek (मेथी)",
+
+                // Fruits (8)
+                "Mango (आम)", "Banana (केला)", "Apple (सेब)", "Grapes (अंगूर)",
+                "Orange (संतरा)", "Pomegranate (अनार)", "Papaya (पपीता)", "Guava (अमरूद)"
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -92,17 +110,60 @@ public class PriceAdvisorActivity extends AppCompatActivity {
 
     private void setupMarketSpinner() {
         String[] markets = {
-                "Select Market",
-                "Delhi",
-                "Mumbai",
-                "Bangalore",
-                "Kolkata",
-                "Chennai",
-                "Hyderabad",
-                "Pune",
-                "Ahmedabad",
-                "Jaipur",
-                "Lucknow"
+                "Select Market/State",
+
+                // Major Cities (12)
+                "Delhi", "Mumbai", "Bangalore", "Kolkata", "Chennai", "Hyderabad",
+                "Pune", "Ahmedabad", "Jaipur", "Lucknow", "Kanpur", "Nagpur",
+
+                // Punjab (3)
+                "Punjab - Ludhiana", "Punjab - Amritsar", "Punjab - Jalandhar",
+
+                // Haryana (3)
+                "Haryana - Karnal", "Haryana - Hisar", "Haryana - Rohtak",
+
+                // Uttar Pradesh (3)
+                "Uttar Pradesh - Meerut", "Uttar Pradesh - Agra", "Uttar Pradesh - Varanasi",
+
+                // Rajasthan (3)
+                "Rajasthan - Kota", "Rajasthan - Udaipur", "Rajasthan - Jodhpur",
+
+                // North (3)
+                "Himachal Pradesh - Shimla", "Uttarakhand - Dehradun", "Jammu & Kashmir - Srinagar",
+
+                // Gujarat (3)
+                "Gujarat - Surat", "Gujarat - Rajkot", "Gujarat - Vadodara",
+
+                // Maharashtra (4)
+                "Maharashtra - Nashik", "Maharashtra - Aurangabad", "Maharashtra - Solapur", "Goa - Panaji",
+
+                // Karnataka (3)
+                "Karnataka - Mysore", "Karnataka - Hubli", "Karnataka - Belgaum",
+
+                // Tamil Nadu (3)
+                "Tamil Nadu - Coimbatore", "Tamil Nadu - Madurai", "Tamil Nadu - Salem",
+
+                // Andhra Pradesh & Telangana (4)
+                "Andhra Pradesh - Vijayawada", "Andhra Pradesh - Visakhapatnam",
+                "Telangana - Warangal", "Telangana - Nizamabad",
+
+                // Kerala (2)
+                "Kerala - Kochi", "Kerala - Thiruvananthapuram",
+
+                // East India (6)
+                "West Bengal - Siliguri", "West Bengal - Durgapur",
+                "Bihar - Patna", "Bihar - Muzaffarpur",
+                "Odisha - Bhubaneswar", "Odisha - Cuttack",
+
+                // Jharkhand (2)
+                "Jharkhand - Ranchi", "Jharkhand - Jamshedpur",
+
+                // Central India (5)
+                "Madhya Pradesh - Indore", "Madhya Pradesh - Bhopal", "Madhya Pradesh - Jabalpur",
+                "Chhattisgarh - Raipur", "Chhattisgarh - Bilaspur",
+
+                // Northeast (4)
+                "Assam - Guwahati", "Meghalaya - Shillong", "Manipur - Imphal", "Tripura - Agartala"
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -122,7 +183,7 @@ public class PriceAdvisorActivity extends AppCompatActivity {
             return;
         }
 
-        if (market.equals("Select Market")) {
+        if (market.equals("Select Market/State")) {
             Toast.makeText(this, "Please select a market", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -159,54 +220,66 @@ public class PriceAdvisorActivity extends AppCompatActivity {
     }
 
     private String createAutomaticAnalysisPrompt(String crop, String market) {
+        // Get current date
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMMM yyyy");
+        String currentDate = sdf.format(new java.util.Date());
+
         return String.format(
                 "You are an expert market analyst for Indian agriculture.\n\n" +
-                        "TASK: Analyze current market conditions for %s in %s market and provide a selling recommendation.\n\n"
-                        +
-                        "INSTRUCTIONS:\n" +
-                        "1. Search for CURRENT (today's) %s prices in %s market\n" +
-                        "2. Find price trends for the LAST 30 DAYS if available\n" +
-                        "3. Consider seasonal factors and market demand\n" +
-                        "4. Analyze if prices are rising, falling, or stable\n" +
-                        "5. Provide a clear SELL NOW or WAIT recommendation\n\n" +
-                        "REQUIRED OUTPUT FORMAT (JSON only, no other text):\n" +
+                        "CURRENT DATE: %s (February 2026)\n\n" +
+                        "TASK: Analyze CURRENT market conditions for %s in %s and provide selling recommendation.\n\n" +
+                        "CRITICAL INSTRUCTIONS:\n" +
+                        "1. Search for LATEST FEBRUARY 2026 prices for %s in %s\n" +
+                        "2. DO NOT use outdated 2024 or 2025 Agmarknet data\n" +
+                        "3. Find CURRENT price trends for last 30 days (Jan-Feb 2026)\n" +
+                        "4. Use fresh internet search: news, mandi reports, live prices\n" +
+                        "5. Consider current seasonal factors and market demand\n" +
+                        "6. Analyze if prices are rising, falling, or stable RIGHT NOW\n\n" +
+                        "PREFERRED DATA SOURCES:\n" +
+                        "✅ Recent news articles (Feb 2026)\n" +
+                        "✅ Live mandi price reports\n" +
+                        "✅ Agricultural news websites\n" +
+                        "✅ Current government portals\n" +
+                        "✅ Market intelligence reports\n\n" +
+                        "AVOID:\n" +
+                        "❌ Agmarknet 2024 data\n" +
+                        "❌ Old historical reports\n" +
+                        "❌ Outdated sources\n\n" +
+                        "OUTPUT FORMAT (JSON only):\n" +
                         "{\n" +
-                        "  \"current_price\": \"₹X per quintal (source: Y)\",\n" +
+                        "  \"current_price\": \"₹X per quintal (Feb 2026)\",\n" +
                         "  \"trend\": \"rising\" or \"falling\" or \"stable\",\n" +
                         "  \"trend_percentage\": \"+X%%\" or \"-X%%\",\n" +
                         "  \"recommendation\": \"SELL NOW\" or \"WAIT\",\n" +
                         "  \"confidence\": \"high\" or \"medium\" or \"low\",\n" +
-                        "  \"reasoning\": \"2-3 sentences explaining the trend and factors\",\n" +
-                        "  \"action\": \"Specific advice: when to sell, expected price range, etc.\",\n" +
-                        "  \"data_source\": \"Where you found the price data\"\n" +
+                        "  \"reasoning\": \"2-3 sentences with CURRENT factors\",\n" +
+                        "  \"action\": \"Specific advice with price targets\",\n" +
+                        "  \"data_source\": \"Source with date (must be 2026)\"\n" +
                         "}\n\n" +
                         "IMPORTANT:\n" +
-                        "- Use REAL current market data from your search\n" +
-                        "- If exact data unavailable, use best available recent data and mention it\n" +
-                        "- Consider Indian market conditions and seasonal patterns\n" +
-                        "- Provide actionable, practical advice for farmers\n\n" +
-                        "Respond ONLY with valid JSON, no additional text.",
-                crop, market, crop, market);
+                        "- Use ONLY current 2026 data\n" +
+                        "- If Feb 2026 unavailable, use Jan 2026 and mention it\n" +
+                        "- State data freshness clearly\n" +
+                        "- Provide actionable advice for selling NOW\n\n" +
+                        "Respond ONLY with valid JSON.",
+                currentDate, crop, market, crop, market);
     }
 
     private void parseAndDisplayRecommendation(String response) {
         try {
-            // Extract JSON from response
+            // Extract JSON
             String jsonStr = response.trim();
-            if (jsonStr.startsWith("```json")) {
+            if (jsonStr.startsWith("```json"))
                 jsonStr = jsonStr.substring(7);
-            }
-            if (jsonStr.startsWith("```")) {
+            if (jsonStr.startsWith("```"))
                 jsonStr = jsonStr.substring(3);
-            }
-            if (jsonStr.endsWith("```")) {
+            if (jsonStr.endsWith("```"))
                 jsonStr = jsonStr.substring(0, jsonStr.length() - 3);
-            }
             jsonStr = jsonStr.trim();
 
             JSONObject json = new JSONObject(jsonStr);
 
-            String currentPrice = json.optString("current_price", "Price data unavailable");
+            String currentPrice = json.optString("current_price", "Price unavailable");
             String trend = json.getString("trend");
             String trendPercentage = json.optString("trend_percentage", "");
             String recommendation = json.getString("recommendation");
@@ -225,7 +298,7 @@ public class PriceAdvisorActivity extends AppCompatActivity {
                 tvAction.append("\n\n📌 Source: " + dataSource);
             }
 
-            // Set colors based on recommendation
+            // Set colors
             if (recommendation.contains("SELL")) {
                 tvRecommendation.setTextColor(getColor(android.R.color.holo_green_dark));
             } else {
@@ -235,11 +308,11 @@ public class PriceAdvisorActivity extends AppCompatActivity {
             cardRecommendation.setVisibility(View.VISIBLE);
 
         } catch (Exception e) {
-            // Fallback: display raw response
+            // Fallback
             tvTrend.setText("AI Analysis Result");
             tvRecommendation.setText("Market Recommendation");
             tvReasoning.setText(response);
-            tvAction.setText("Review the detailed analysis above");
+            tvAction.setText("Review analysis above");
             cardRecommendation.setVisibility(View.VISIBLE);
         }
     }
