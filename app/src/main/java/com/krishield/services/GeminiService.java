@@ -153,6 +153,44 @@ public class GeminiService {
     }
 
     /**
+     * Fetch latest government schemes in JSON format
+     */
+    public void getGovernmentSchemes(GeminiCallback callback) {
+        String prompt = "List 10 specific government schemes for Indian farmers in JSON format. " +
+                "Use this exact structure: " +
+                "[{\"title\": \"Scheme Name\", \"description\": \"Short description\", \"benefits\": \"Key benefits\", \"eligibility\": \"Who can apply\", \"url\": \"Official website URL\", \"iconEmoji\": \"Emoji representing the scheme\"}]. "
+                +
+                "Include PM-KISAN, Fasal Bima Yojana, KCC, and soil health card schemes. " +
+                "Do not add any markdown formatting like ```json or ```, just return the raw JSON array.";
+
+        Content content = new Content.Builder()
+                .addText(prompt)
+                .build();
+
+        ListenableFuture<GenerateContentResponse> response = model.generateContent(content);
+
+        Futures.addCallback(response, new FutureCallback<GenerateContentResponse>() {
+            @Override
+            public void onSuccess(GenerateContentResponse result) {
+                String responseText = result.getText();
+                callback.onSuccess(responseText);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.e(TAG, "Error fetching schemes", t);
+                callback.onError(t.getMessage());
+            }
+        }, java.util.concurrent.Executors.newSingleThreadExecutor());
+    }
+
+    public interface GeminiCallback {
+        void onSuccess(String response);
+
+        void onError(String error);
+    }
+
+    /**
      * Callback interface for responses
      */
     public interface ResponseCallback {

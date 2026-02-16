@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         pillCommunity.setOnClickListener(v -> {
-            // Open community feed / schemes activity (to be implemented)
-            Toast.makeText(this, "Community Feed - Coming Soon!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, SchemesActivity.class);
+            startActivity(intent);
         });
 
         geminiSearch.setOnClickListener(v -> {
