@@ -35,7 +35,8 @@ public class GeminiService {
     private GenerativeModelFutures model;
 
     public GeminiService() {
-        GenerativeModel gm = new GenerativeModel("gemini-1.5-flash", API_KEY);
+        // Using latest Gemini 2.5 Flash model (GA June 2025)
+        GenerativeModel gm = new GenerativeModel("gemini-2.5-flash", API_KEY);
         model = GenerativeModelFutures.from(gm);
     }
 
