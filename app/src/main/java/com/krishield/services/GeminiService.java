@@ -52,7 +52,7 @@ public class GeminiService {
         this.apiKey = (customApiKey != null && !customApiKey.isEmpty()) 
             ? customApiKey 
             : API_KEY;
-        GenerativeModel gm = new GenerativeModel("gemini-1.5-flash", this.apiKey);
+        GenerativeModel gm = new GenerativeModel("gemini-3-flash-preview", this.apiKey);
         model = GenerativeModelFutures.from(gm);
     }
 
