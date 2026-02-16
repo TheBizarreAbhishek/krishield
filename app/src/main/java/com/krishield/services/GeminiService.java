@@ -15,7 +15,8 @@ import java.util.concurrent.Executor;
 
 public class GeminiService {
     private static final String TAG = "GeminiService";
-    private static final String API_KEY = "AIzaSyAA5yfujX2KApoA-F2HBTMPEgK4bwu1ygo";
+    // API key is now loaded from BuildConfig (set via local.properties)
+    private static final String API_KEY = com.krishield.BuildConfig.GEMINI_API_KEY;
 
     // Custom system prompt for farming assistance
     private static final String SYSTEM_INSTRUCTION = "You are KriShield AI, an expert agricultural assistant for Indian farmers. "
