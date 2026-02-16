@@ -36,10 +36,25 @@ public class GeminiService {
             "When analyzing prices, search for current market data and provide data-driven recommendations.";
 
     private GenerativeModelFutures model;
+    private String apiKey;
 
+    /**
+     * Constructor with default API key from BuildConfig
+     */
     public GeminiService() {
-        GenerativeModel gm = new GenerativeModel("gemini-2.5-flash", API_KEY);
+        this(API_KEY);
+    }
+    
+    /**
+     * Constructor with custom API key (for user-provided keys)
+     */
+    public GeminiService(String customApiKey) {
+        this.apiKey = (customApiKey != null && !customApiKey.isEmpty()) 
+            ? customApiKey 
+            : API_KEY;
+        GenerativeModel gm = new GenerativeModel("gemini-2.0-flash-exp", this.apiKey);
         model = GenerativeModelFutures.from(gm);
+    }
     }
 
     /**

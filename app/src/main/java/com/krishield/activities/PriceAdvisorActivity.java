@@ -61,7 +61,8 @@ public class PriceAdvisorActivity extends AppCompatActivity {
         setupMarketSpinner();
 
         // Initialize Gemini
-        geminiService = new GeminiService();
+        String customApiKey = SettingsActivity.getSavedApiKey(this);
+        geminiService = new GeminiService(customApiKey);
         executor = Executors.newSingleThreadExecutor();
 
         // Setup analyze button
