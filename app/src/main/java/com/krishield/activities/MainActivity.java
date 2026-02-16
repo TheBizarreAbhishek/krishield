@@ -39,27 +39,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvLocation, tvWeatherDesc, tvTemperature;
     private TextView tvMoisture, tvPests, tvSunlight, tvWind;
     private TextView tvSchemeTitle, tvSchemeDesc;
-    private View weatherPill, pillMarket, pillWeather, pillCommunity, geminiSearch;
+    private View weatherPill, pillMarket, pillIrrigation, pillCommunity, geminiSearch;
     private ImageView btnSettings;
 
-    private FusedLocationProviderClient fusedLocationClient;
-    private OpenMeteoService weatherService;
-    private GeminiService geminiService;
-    private Executor executor;
-
-    private String currentCity = "";
-    private String currentCountry = "";
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        initializeViews();
-        initializeServices();
-        setupClickListeners();
-        requestLocationAndLoadData();
-    }
+    // ... (skipping some lines)
 
     private void initializeViews() {
         tvLocation = findViewById(R.id.tv_location);
@@ -74,18 +57,13 @@ public class MainActivity extends AppCompatActivity {
 
         weatherPill = findViewById(R.id.weather_pill);
         pillMarket = findViewById(R.id.pill_market);
-        pillWeather = findViewById(R.id.pill_weather);
+        pillIrrigation = findViewById(R.id.pill_irrigation);
         pillCommunity = findViewById(R.id.pill_community);
         geminiSearch = findViewById(R.id.gemini_search);
         btnSettings = findViewById(R.id.btn_settings);
     }
 
-    private void initializeServices() {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        weatherService = new OpenMeteoService();
-        geminiService = new GeminiService(null);
-        executor = Executors.newSingleThreadExecutor();
-    }
+    // ... (skipping some lines)
 
     private void setupClickListeners() {
         weatherPill.setOnClickListener(v -> {
@@ -98,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        pillWeather.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
+        pillIrrigation.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SmartIrrigationActivity.class);
             startActivity(intent);
         });
 

@@ -311,9 +311,9 @@
                         android:layout_marginTop="8dp" />
                 </LinearLayout>
 
-                <!-- Weather Pill -->
+                <!-- Smart Irrigation Pill -->
                 <LinearLayout
-                    android:id="@+id/pill_weather"
+                    android:id="@+id/pill_irrigation"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
                     android:layout_weight="1"
@@ -328,13 +328,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🌤️"
+                        android:text="💧"
                         android:textSize="36sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Weather"
+                        android:text="Smart\nIrrigation"
                         android:textColor="@color/kri_text_primary"
                         android:textSize="14sp"
                         android:textStyle="bold"
