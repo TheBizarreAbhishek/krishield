@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int LOCATION_PERMISSION_CODE = 100;
 
     private TextView tvLocation, tvWeatherDesc, tvTemperature;
-    private TextView tvMoisture, tvPests, tvSunlight;
+    private TextView tvMoisture, tvPests, tvSunlight, tvWind;
     private TextView tvSchemeTitle, tvSchemeDesc;
     private View weatherPill, pillMarket, pillWeather, pillCommunity, geminiSearch;
     private ImageView btnSettings;
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         tvMoisture = findViewById(R.id.tv_moisture);
         tvPests = findViewById(R.id.tv_pests);
         tvSunlight = findViewById(R.id.tv_sunlight);
+        tvWind = findViewById(R.id.tv_wind);
         tvSchemeTitle = findViewById(R.id.tv_scheme_title);
         tvSchemeDesc = findViewById(R.id.tv_scheme_desc);
 
@@ -174,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
                     if (data.currentWeather != null) {
                         tvTemperature.setText(String.format("%.0f°C", data.currentWeather.temperature));
                         tvWeatherDesc.setText(getWeatherDescription(data.currentWeather.weathercode));
+                        tvWind.setText(String.format("%.1f km/h", data.currentWeather.windspeed));
                     }
                     tvMoisture.setText("45%"); // Placeholder for current moisture
 
