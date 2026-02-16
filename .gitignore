@@ -1,0 +1,23 @@
+# Gradle files
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+.DS_Store
+captures/
+.externalNativeBuild
+.cxx
+
+# Keystore files
+*.jks
+*.keystore
+release-key.jks
+
+# API Keys (if stored in files)
+secrets.properties
+
+# Android Studio
+*.apk
+*.ap_
+*.aab

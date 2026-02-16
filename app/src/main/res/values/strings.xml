@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">KriShield</string>
+    <string name="title_home">Home</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_profile">Profile</string>
+    <string name="status_active">System Active</string>
+    <string name="status_desc">Your farming assistant is ready</string>
+    <string name="action_chat_text">Chat with AI</string>
+    <string name="action_chat_voice">Voice Chat</string>
+    <string name="feature_weather">Weather Forecast</string>
+    <string name="feature_schemes">Govt Schemes</string>
+    <string name="feature_crop_calendar">Crop Calendar</string>
+    <string name="feature_market">Market Prices</string>
+    <string name="welcome_message">Welcome to KriShield</string>
+    <string name="ask_gemini">Ask Gemini</string>
+</resources>
