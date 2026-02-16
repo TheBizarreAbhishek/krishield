@@ -82,7 +82,28 @@ public class GeminiService {
         try {
             String fullPrompt = SYSTEM_INSTRUCTION + "\n\nUser: " +
                     (question != null && !question.isEmpty() ? question
-                            : "Analyze this crop image and identify any diseases or issues.");
+                            : "Analyze this crop image and identify any diseases or issues.")
+                    +
+                    "\n\nIMPORTANT INSTRUCTIONS:\n" +
+                    "1. FIRST check if the image is clear and suitable for analysis\n" +
+                    "2. If image is blurry, unclear, too dark, or poor quality:\n" +
+                    "   - Set confidence to LOW (<70%)\n" +
+                    "   - Ask farmer to retake a clearer photo\n" +
+                    "   - Provide tips for better image capture\n" +
+                    "3. If image is clear, provide detailed analysis\n" +
+                    "4. Always include confidence level in your response\n\n" +
+                    "Response format:\n" +
+                    "**Image Quality:** [Good/Poor/Blurry/Unclear]\n" +
+                    "**Confidence:** [High (>80%) / Medium (70-80%) / Low (<70%)]\n\n" +
+                    "If quality is poor:\n" +
+                    "⚠️ **Image Not Clear Enough**\n" +
+                    "Please retake the photo with:\n" +
+                    "- Better lighting (natural sunlight preferred)\n" +
+                    "- Focus on affected area\n" +
+                    "- Steady hand (avoid blur)\n" +
+                    "- Close-up of diseased part\n\n" +
+                    "If quality is good:\n" +
+                    "Provide detailed disease analysis with treatment.";
 
             Content content = new Content.Builder()
                     .addText(fullPrompt)
