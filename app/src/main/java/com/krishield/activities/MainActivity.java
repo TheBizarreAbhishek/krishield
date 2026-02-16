@@ -42,7 +42,24 @@ public class MainActivity extends AppCompatActivity {
     private View weatherPill, pillMarket, pillIrrigation, pillCommunity, geminiSearch;
     private ImageView btnSettings;
 
-    // ... (skipping some lines)
+    private FusedLocationProviderClient fusedLocationClient;
+    private OpenMeteoService weatherService;
+    private GeminiService geminiService;
+    private Executor executor;
+
+    private String currentCity = "";
+    private String currentCountry = "";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        initializeViews();
+        initializeServices();
+        setupClickListeners();
+        requestLocationAndLoadData();
+    }
 
     private void initializeViews() {
         tvLocation = findViewById(R.id.tv_location);
