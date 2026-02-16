@@ -87,6 +87,18 @@
                 <!-- Weather Chip -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
+
+                <!-- Settings Icon -->
+                <ImageButton
+                    android:id="@+id/btn_settings"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="end"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@android:drawable/ic_menu_manage"
+                    android:contentDescription="Settings"
+                    android:tint="?attr/colorOnSurface" />
+
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_margin="4dp"

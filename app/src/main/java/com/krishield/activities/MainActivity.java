@@ -63,6 +63,16 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+        // Settings button
+        ImageButton btnSettings = findViewById(R.id.btn_settings);
+        if (btnSettings != null) {
+            btnSettings.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            });
+        }
+
+
 
         // Setup other features (Weather, Schemes) - To be implemented
         // findViewById(R.id.card_weather).setOnClickListener(...)

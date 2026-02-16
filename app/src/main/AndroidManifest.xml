@@ -37,6 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.SettingsActivity" android:screenOrientation="portrait" />
         <activity android:name=".activities.WeatherActivity" android:screenOrientation="portrait" />
         
         <activity android:name=".activities.ChatActivity" android:screenOrientation="portrait" />
