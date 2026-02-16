@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,6 +31,7 @@ import com.krishield.models.ChatMessage;
 import com.krishield.services.GeminiService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -48,9 +50,11 @@ public class ChatActivity extends AppCompatActivity {
     private Bitmap selectedImage;
 
     private static final int CAMERA_PERMISSION_CODE = 100;
-
+    private static final int GALLERY_PERMISSION_CODE = 101;
+    private static final int RECORD_AUDIO_PERMISSION_CODE = 102;
     private ActivityResultLauncher<Intent> cameraLauncher;
     private ActivityResultLauncher<Intent> galleryLauncher;
+    private ActivityResultLauncher<Intent> voiceLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,7 @@ public class ChatActivity extends AppCompatActivity {
         setupGemini();
         setupListeners();
         setupImagePickers();
+        setupVoiceRecognition();
 
         // Check if voice mode was requested
         String mode = getIntent().getStringExtra("mode");
@@ -103,9 +108,7 @@ public class ChatActivity extends AppCompatActivity {
     private void setupListeners() {
         btnSend.setOnClickListener(v -> sendMessage());
         btnAttachImage.setOnClickListener(v -> showImagePickerDialog());
-        btnVoiceInput.setOnClickListener(v -> {
-            Toast.makeText(this, "Voice input - coming soon!", Toast.LENGTH_SHORT).show();
-        });
+        btnVoiceInput.setOnClickListener(v -> startVoiceRecognition());
 
         editTextMessage.setOnEditorActionListener((v, actionId, event) -> {
             sendMessage();
@@ -137,6 +140,53 @@ public class ChatActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void setupVoiceRecognition() {
+        voiceLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        ArrayList<String> matches = result.getData()
+                                .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                        if (matches != null && !matches.isEmpty()) {
+                            String spokenText = matches.get(0);
+                            editTextMessage.setText(spokenText);
+                            editTextMessage.setSelection(spokenText.length());
+                            Toast.makeText(this, "Voice recognized!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private void startVoiceRecognition() {
+        // Check for microphone permission
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[] { Manifest.permission.RECORD_AUDIO }, RECORD_AUDIO_PERMISSION_CODE);
+            return;
+        }
+
+        // Create voice recognition intent
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+
+        // Support multiple languages for Indian farmers
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "hi-IN"); // Hindi
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "hi-IN");
+        intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, false);
+
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak your farming question...");
+        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
+
+        try {
+            voiceLauncher.launch(intent);
+        } catch (Exception e) {
+            Toast.makeText(this, "Voice recognition not supported on this device",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void showImagePickerDialog() {
@@ -264,6 +314,12 @@ public class ChatActivity extends AppCompatActivity {
                 openCamera();
             } else {
                 Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show();
+            }
+        } else if (requestCode == RECORD_AUDIO_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startVoiceRecognition();
+            } else {
+                Toast.makeText(this, "Microphone permission denied", Toast.LENGTH_SHORT).show();
             }
         }
     }
