@@ -9,6 +9,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -165,13 +166,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadWeatherData(double latitude, double longitude) {
-        weatherService.getCurrentWeather(latitude, longitude, new OpenMeteoService.WeatherCallback() {
+        weatherService.getWeather(latitude, longitude, new OpenMeteoService.WeatherCallback() {
             @Override
-            public void onSuccess(OpenMeteoService.WeatherData data) {
+            public void onSuccess(WeatherModels.WeatherResponse data) {
                 runOnUiThread(() -> {
-                    tvTemperature.setText(String.format("%.0f°C", data.temperature));
-                    tvWeatherDesc.setText(getWeatherDescription(data.weatherCode));
-                    tvMoisture.setText(String.format("%.0f%%", data.humidity));
+                    if (data.currentWeather != null) {
+                        tvTemperature.setText(String.format("%.0f°C", data.currentWeather.temperature));
+                        tvWeatherDesc.setText(getWeatherDescription(data.currentWeather.weathercode));
+                    }
+                    tvMoisture.setText("45%"); // Placeholder for current moisture
 
                     // Calculate sunlight hours (simplified)
                     int sunlightHours = calculateSunlightHours(latitude);
