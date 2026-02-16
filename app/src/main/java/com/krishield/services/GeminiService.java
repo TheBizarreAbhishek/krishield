@@ -19,9 +19,6 @@ public class GeminiService {
     private static final String TAG = "GeminiService";
     private static final String API_KEY = BuildConfig.GEMINI_API_KEY;
 
-    private static final String SYSTEM_INSTRUCTION = "You are KriShield AI, an expert agricultural assistant for Indian farmers. "
-            +
-            "Your role is to provide practical, region-specific farming advice including:\n" +
     private static final String SYSTEM_INSTRUCTION = "You are KriShield AI - a specialized farming assistant for Indian farmers.\n\n"
             +
             "STRICT RULES:\n" +
