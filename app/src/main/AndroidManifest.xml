@@ -8,6 +8,10 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <!-- Location permissions for Weather -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <!-- Camera hardware feature (not required for ChromeOS compatibility) -->
     <uses-feature android:name="android.hardware.camera" android:required="false" />
@@ -33,6 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.WeatherActivity" android:screenOrientation="portrait" />
         
         <activity android:name=".activities.ChatActivity" android:screenOrientation="portrait" />
         <activity android:name=".activities.MarketPriceActivity" android:screenOrientation="portrait" />

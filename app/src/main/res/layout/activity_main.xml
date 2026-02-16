@@ -162,6 +162,28 @@
                         android:textAppearance="?attr/textAppearanceLabelLarge"/>
                 </com.google.android.material.card.MaterialCardView>
 
+                 <!-- Weather Chip -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn_weather"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="24dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="?attr/colorOutline">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:text="🌤️ Weather"
+                        android:textAppearance="?attr/textAppearanceLabelLarge"/>
+                </com.google.android.material.card.MaterialCardView>
+
+
             </GridLayout>
 
             <!-- Gemini Chat Section -->

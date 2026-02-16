@@ -54,6 +54,16 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+        // Weather button (MaterialCardView)
+        com.google.android.material.card.MaterialCardView btnWeather = findViewById(R.id.btn_weather);
+        if (btnWeather != null) {
+            btnWeather.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
+                startActivity(intent);
+            });
+        }
+
+
         // Setup other features (Weather, Schemes) - To be implemented
         // findViewById(R.id.card_weather).setOnClickListener(...)
     }
