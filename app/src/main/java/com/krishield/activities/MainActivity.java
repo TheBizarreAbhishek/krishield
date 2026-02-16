@@ -36,6 +36,15 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // Market Prices button
+        MaterialButton btnMarketPrice = findViewById(R.id.btn_market_price);
+        if (btnMarketPrice != null) {
+            btnMarketPrice.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, MarketPriceActivity.class);
+                startActivity(intent);
+            });
+        }
+
         // Setup other features (Weather, Schemes) - To be implemented
         // findViewById(R.id.card_weather).setOnClickListener(...)
     }
