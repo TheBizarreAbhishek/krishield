@@ -206,6 +206,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadPestData(double latitude, double longitude) {
+        android.content.SharedPreferences prefs = getSharedPreferences("KrishieldMainCache", MODE_PRIVATE);
+        String cachedData = prefs.getString("pest_data", null);
+        long lastUpdate = prefs.getLong("pest_time", 0);
+        long currentTime = System.currentTimeMillis();
+
+        if (cachedData != null && (currentTime - lastUpdate < 24 * 60 * 60 * 1000)) {
+            tvPests.setText(extractPercentage(cachedData));
+            return;
+        }
+
         // Use Gemini to get pest information based on location
         String prompt = String.format(
                 "For farming location at coordinates %.2f, %.2f (%s, %s), " +
@@ -220,6 +230,12 @@ public class MainActivity extends AppCompatActivity {
                     // Extract percentage from response
                     String pestRisk = extractPercentage(response);
                     tvPests.setText(pestRisk);
+
+                    // Cache the response
+                    prefs.edit()
+                            .putString("pest_data", response)
+                            .putLong("pest_time", System.currentTimeMillis())
+                            .apply();
                 });
             }
 
@@ -276,6 +292,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadGovernmentSchemes() {
+        android.content.SharedPreferences prefs = getSharedPreferences("KrishieldMainCache", MODE_PRIVATE);
+        String cachedData = prefs.getString("scheme_data", null);
+        long lastUpdate = prefs.getLong("scheme_time", 0);
+        long currentTime = System.currentTimeMillis();
+
+        if (cachedData != null && (currentTime - lastUpdate < 24 * 60 * 60 * 1000)) {
+            updateSchemeUI(cachedData);
+            return;
+        }
+
         // Use Gemini to fetch latest government schemes for farmers
         String prompt = "What is the latest government scheme for farmers in India? " +
                 "Provide ONLY the scheme name and a brief one-line description. " +
@@ -285,15 +311,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String response) {
                 runOnUiThread(() -> {
-                    // Parse response to extract title and description
-                    String[] parts = response.split(":", 2);
-                    if (parts.length == 2) {
-                        tvSchemeTitle.setText("🌾 " + parts[0].trim());
-                        tvSchemeDesc.setText(parts[1].trim());
-                    } else {
-                        tvSchemeTitle.setText("🌾 " + response.substring(0, Math.min(50, response.length())));
-                        tvSchemeDesc.setText("Tap to learn more...");
-                    }
+                    updateSchemeUI(response);
+
+                    // Cache the response
+                    prefs.edit()
+                            .putString("scheme_data", response)
+                            .putLong("scheme_time", System.currentTimeMillis())
+                            .apply();
                 });
             }
 
@@ -305,6 +329,18 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void updateSchemeUI(String response) {
+        // Parse response to extract title and description
+        String[] parts = response.split(":", 2);
+        if (parts.length == 2) {
+            tvSchemeTitle.setText("🌾 " + parts[0].trim());
+            tvSchemeDesc.setText(parts[1].trim());
+        } else {
+            tvSchemeTitle.setText("🌾 " + response.substring(0, Math.min(50, response.length())));
+            tvSchemeDesc.setText("Tap to learn more...");
+        }
     }
 
     @Override
