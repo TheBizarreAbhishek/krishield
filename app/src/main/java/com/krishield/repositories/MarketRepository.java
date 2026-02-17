@@ -50,21 +50,37 @@ public class MarketRepository {
 
     private void fetchFromGemini(String city, String state, String season, String cacheKey, String timeKey,
             MarketCallback callback) {
-        String prompt = String.format(
-                "Act as an agricultural market expert. Estimate current market prices in %s, %s for %s crops based on recent trends. "
-                        +
-                        "Provide:\n" +
-                        "1. Top 5 crops with estimated mandi price (₹/quintal)\n" +
-                        "2. Brief 30-day trend (rising/falling/stable)\n" +
-                        "3. Short selling recommendation\n\n" +
-                        "Format as:\n" +
-                        "CROPS:\n" +
-                        "• Crop name: ₹price/quintal (trend)\n\n" +
-                        "RECOMMENDATION:\n" +
-                        "• Point 1\n" +
-                        "• Point 2\n" +
-                        "• Point 3",
-                city, state, season);
+        String prompt;
+        if ("General".equalsIgnoreCase(season)) {
+            prompt = String.format(
+                    "Act as an agricultural market expert. Estimate current market prices in %s, %s for crops based on recent trends. "
+                            +
+                            "Provide:\n" +
+                            "1. Top 5 crops with estimated mandi price (₹/quintal)\n" +
+                            "2. Brief 30-day trend (rising/falling/stable)\n" +
+                            "3. Short selling recommendation\n\n" +
+                            "Format as JSON array implicitly (just the list):\n" +
+                            "CROPS:\n" +
+                            "• Crop name: ₹price/quintal (trend)\n\n" +
+                            "RECOMMENDATION:\n" +
+                            "• Point 1",
+                    city, state);
+        } else {
+            // Specific search
+            prompt = String.format(
+                    "Act as an agricultural market expert. Estimate current market price for '%s' in %s, %s. "
+                            +
+                            "Provide:\n" +
+                            "1. Estimated mandi price (₹/quintal)\n" +
+                            "2. Brief 30-day trend\n" +
+                            "3. Selling advice\n\n" +
+                            "Format as:\n" +
+                            "CROPS:\n" +
+                            "• %s: ₹price/quintal (trend)\n\n" +
+                            "RECOMMENDATION:\n" +
+                            "• Advice for %s",
+                    season, city, state, season, season);
+        }
 
         geminiService.sendTextMessage(prompt, executor, new GeminiService.ResponseCallback() {
             @Override

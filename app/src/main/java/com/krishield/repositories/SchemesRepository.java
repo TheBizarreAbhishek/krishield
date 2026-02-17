@@ -30,7 +30,8 @@ public class SchemesRepository {
 
     public SchemesRepository(Context context) {
         this.prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        this.geminiService = new GeminiService(null); // Use default API key
+        String customApiKey = com.krishield.activities.SettingsActivity.getSavedApiKey(context);
+        this.geminiService = new GeminiService(customApiKey);
         this.gson = new Gson();
     }
 
