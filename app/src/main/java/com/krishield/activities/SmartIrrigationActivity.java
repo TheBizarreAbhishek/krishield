@@ -3,8 +3,8 @@ package com.krishield.activities;
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -31,164 +31,135 @@ import java.util.Locale;
 import java.util.concurrent.Executors;
 
 public class SmartIrrigationActivity extends AppCompatActivity {
-
+    private static final String TAG = "SmartIrrigation";
     private static final int LOCATION_PERMISSION_CODE = 101;
 
-    private EditText etCropName;
-    private Spinner spinnerSoilMoisture;
-    private TextView tvLastWateredDate;
+    // UI Components
+    private EditText etCrop;
+    private Spinner spSoil;
+    private TextView tvDate, tvResult;
     private Button btnAnalyze;
     private ProgressBar progressBar;
     private View layoutResult;
-    private TextView tvRecommendation;
-    private View btnBack;
 
-    private Calendar lastWateredCalendar = Calendar.getInstance();
-    private FusedLocationProviderClient fusedLocationClient;
+    // Data
+    private Calendar lastWateredDate = Calendar.getInstance();
+    private double currentLat = 28.61, currentLon = 77.20; // Default Delhi
+    private String weatherInfo = "Weather data unavailable";
+
+    // Services
+    private FusedLocationProviderClient locationClient;
     private OpenMeteoService weatherService;
     private GeminiService geminiService;
-
-    private WeatherModels.CurrentWeather currentWeather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_smart_irrigation);
 
-        // Initialize Views
-        etCropName = findViewById(R.id.et_crop_name);
-        spinnerSoilMoisture = findViewById(R.id.spinner_soil_moisture);
-        tvLastWateredDate = findViewById(R.id.tv_last_watered_date);
+        // 1. Init UI
+        initViews();
+
+        // 2. Init Services
+        locationClient = LocationServices.getFusedLocationProviderClient(this);
+        weatherService = new OpenMeteoService();
+        geminiService = new GeminiService(null);
+
+        // 3. Start Location & Weather Fetch
+        fetchLocationAndWeather();
+    }
+
+    private void initViews() {
+        etCrop = findViewById(R.id.et_crop_name);
+        spSoil = findViewById(R.id.spinner_soil_moisture);
+        tvDate = findViewById(R.id.tv_last_watered_date);
+        tvResult = findViewById(R.id.tv_recommendation);
         btnAnalyze = findViewById(R.id.btn_analyze);
         progressBar = findViewById(R.id.progress_bar);
         layoutResult = findViewById(R.id.layout_result);
-        tvRecommendation = findViewById(R.id.tv_recommendation);
-        btnBack = findViewById(R.id.btn_back);
+        View btnBack = findViewById(R.id.btn_back);
 
-        // Setup Spinner
+        // Spinner Setup
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item,
                 new String[] { "Normal (सामान्य)", "Dry (सूखी)", "Wet (गीली)" });
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerSoilMoisture.setAdapter(adapter);
+        spSoil.setAdapter(adapter);
 
-        // Setup Date Picker
-        tvLastWateredDate.setOnClickListener(v -> showDatePicker());
+        // Listeners
+        if (btnBack != null)
+            btnBack.setOnClickListener(v -> finish());
 
-        // Setup Back Button
-        btnBack.setOnClickListener(v -> finish());
+        tvDate.setOnClickListener(v -> {
+            new DatePickerDialog(this, (view, year, month, day) -> {
+                lastWateredDate.set(year, month, day);
+                SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy", Locale.US);
+                tvDate.setText(sdf.format(lastWateredDate.getTime()));
+            }, lastWateredDate.get(Calendar.YEAR), lastWateredDate.get(Calendar.MONTH),
+                    lastWateredDate.get(Calendar.DAY_OF_MONTH)).show();
+        });
 
-        // Initialize Services
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        weatherService = new OpenMeteoService();
-        geminiService = new GeminiService(null);
-
-        // Fetch Location & Weather automatically on start
-        fetchLocationAndWeather();
-
-        // Analyze Button Click
-        btnAnalyze.setOnClickListener(v -> analyzeIrrigationNeeds());
-    }
-
-    private void showDatePicker() {
-        new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
-            lastWateredCalendar.set(Calendar.YEAR, year);
-            lastWateredCalendar.set(Calendar.MONTH, month);
-            lastWateredCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateDateLabel();
-        },
-                lastWateredCalendar.get(Calendar.YEAR),
-                lastWateredCalendar.get(Calendar.MONTH),
-                lastWateredCalendar.get(Calendar.DAY_OF_MONTH)).show();
-    }
-
-    private void updateDateLabel() {
-        String myFormat = "dd MMM yyyy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-        tvLastWateredDate.setText(sdf.format(lastWateredCalendar.getTime()));
+        btnAnalyze.setOnClickListener(v -> analyze());
     }
 
     private void fetchLocationAndWeather() {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[] { Manifest.permission.ACCESS_FINE_LOCATION },
+            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION },
                     LOCATION_PERMISSION_CODE);
             return;
         }
 
-        fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
+        locationClient.getLastLocation().addOnSuccessListener(this, location -> {
             if (location != null) {
-                fetchWeather(location.getLatitude(), location.getLongitude());
-            } else {
-                Toast.makeText(this, "Could not get location. Using default weather data.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+                currentLat = location.getLatitude();
+                currentLon = location.getLongitude();
 
-    private void fetchWeather(double lat, double lon) {
-        weatherService.getWeather(lat, lon, new OpenMeteoService.WeatherCallback() {
-            @Override
-            public void onSuccess(WeatherModels.WeatherResponse data) {
-                if (data != null) {
-                    currentWeather = data.currentWeather;
-                }
-            }
+                // Fetch Weather
+                weatherService.getWeather(currentLat, currentLon, new OpenMeteoService.WeatherCallback() {
+                    @Override
+                    public void onSuccess(WeatherModels.WeatherResponse data) {
+                        if (data != null && data.currentWeather != null) {
+                            weatherInfo = String.format("Temp: %.1f°C, Wind: %.1f km/h",
+                                    data.currentWeather.temperature, data.currentWeather.windspeed);
+                        }
+                    }
 
-            @Override
-            public void onError(String error) {
-                // Determine if it's a critical error or just data missing
-                runOnUiThread(() -> {
-                    Toast.makeText(SmartIrrigationActivity.this, "Weather Update Failed: " + error, Toast.LENGTH_SHORT)
-                            .show();
+                    @Override
+                    public void onError(String error) {
+                        weatherInfo = "Weather API Error: " + error;
+                    }
                 });
             }
         });
     }
 
-    private void analyzeIrrigationNeeds() {
-        String crop = etCropName.getText().toString().trim();
-        String soil = spinnerSoilMoisture.getSelectedItem().toString();
-        String lastWatered = tvLastWateredDate.getText().toString();
+    private void analyze() {
+        String crop = etCrop.getText().toString().trim();
+        String date = tvDate.getText().toString();
+        String soil = spSoil.getSelectedItem().toString();
 
-        if (crop.isEmpty()) {
-            etCropName.setError("Please enter crop name");
-            return;
-        }
-        if (lastWatered.equals("Select Date")) {
-            Toast.makeText(this, "Please select last watered date", Toast.LENGTH_SHORT).show();
+        if (crop.isEmpty() || date.equals("Select Date")) {
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Prepare Prompt
-        StringBuilder prompt = new StringBuilder();
-        prompt.append("Act as an expert agronomist advisor for Indian farmers. ");
-        prompt.append("Help me decide if I need to water my crops today.\n\n");
-        prompt.append("Data Provided:\n");
-        prompt.append("- Crop: ").append(crop).append("\n");
-        prompt.append("- Soil Moisture: ").append(soil).append("\n");
-        prompt.append("- Last Watered: ").append(lastWatered).append("\n");
-
-        if (currentWeather != null) {
-            prompt.append("- Current Temp: ").append(currentWeather.temperature).append("°C\n");
-            prompt.append("- Wind Speed: ").append(currentWeather.windspeed).append(" km/h\n");
-        } else {
-            prompt.append("- Current Temp: Unknown (Assume typical Indian season temp)\n");
-        }
-
-        prompt.append("\nTask:\n");
-        prompt.append("1. Analyze the crop's water needs based on soil and weather.\n");
-        prompt.append("2. Give a DIRECT recommendation: 'Water Today', 'Wait X days', or 'Do not water'.\n");
-        prompt.append("3. Provide a short reason (2-3 bullet points).\n");
-        prompt.append("4. Mention any precautions.\n");
-
-        // UI Update
         progressBar.setVisibility(View.VISIBLE);
         layoutResult.setVisibility(View.GONE);
         btnAnalyze.setEnabled(false);
 
-        // Call Gemini
-        geminiService.sendTextMessage(prompt.toString(), Executors.newSingleThreadExecutor(),
+        String prompt = String.format(
+                "You are an expert agronomist. User Input:\n" +
+                        "- Crop: %s\n" +
+                        "- Soil: %s\n" +
+                        "- Last Watered: %s\n" +
+                        "- Current Location Weather: %s\n\n" +
+                        "Task: Provide a recommendation (Water Today / Do Not Water / Wait) with a very short reason (2 lines max). "
+                        +
+                        "Keep it simple and direct for a farmer.",
+                crop, soil, date, weatherInfo);
+
+        geminiService.sendTextMessage(prompt, Executors.newSingleThreadExecutor(),
                 new GeminiService.ResponseCallback() {
                     @Override
                     public void onSuccess(String response) {
@@ -196,7 +167,7 @@ public class SmartIrrigationActivity extends AppCompatActivity {
                             progressBar.setVisibility(View.GONE);
                             btnAnalyze.setEnabled(true);
                             layoutResult.setVisibility(View.VISIBLE);
-                            tvRecommendation.setText(response);
+                            tvResult.setText(response);
                         });
                     }
 
@@ -205,13 +176,19 @@ public class SmartIrrigationActivity extends AppCompatActivity {
                         runOnUiThread(() -> {
                             progressBar.setVisibility(View.GONE);
                             btnAnalyze.setEnabled(true);
-                            String errorMsg = error.contains("quota") ? "Quota Limit Reached. Try again later."
-                                    : "Analysis Failed: " + error;
-                            tvRecommendation.setText(errorMsg);
-                            layoutResult.setVisibility(View.VISIBLE);
-                            Toast.makeText(SmartIrrigationActivity.this, errorMsg, Toast.LENGTH_LONG).show();
+                            Toast.makeText(SmartIrrigationActivity.this, "Error: " + error, Toast.LENGTH_SHORT).show();
                         });
                     }
                 });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == LOCATION_PERMISSION_CODE && grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            fetchLocationAndWeather();
+        }
+
     }
 }
