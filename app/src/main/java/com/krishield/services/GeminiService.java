@@ -105,25 +105,18 @@ public class GeminiService {
                             : "Analyze this crop image and identify any diseases or issues.")
                     +
                     "\n\nIMPORTANT INSTRUCTIONS:\n" +
-                    "1. FIRST check if the image is clear and suitable for analysis\n" +
-                    "2. If image is blurry, unclear, too dark, or poor quality:\n" +
-                    "   - Set confidence to LOW (<70%)\n" +
-                    "   - Ask farmer to retake a clearer photo\n" +
-                    "   - Provide tips for better image capture\n" +
-                    "3. If image is clear, provide detailed analysis\n" +
-                    "4. Always include confidence level in your response\n\n" +
+                    "\n\nIMPORTANT INSTRUCTIONS:\n" +
+                    "1. ANALYZE the image to the best of your ability, even if it is slightly blurry or dark.\n" +
+                    "2. IDENTIFY any visible crops, diseases, pests, or nutrient deficiencies.\n" +
+                    "3. PROVIDE practical remedies and solutions.\n" +
+                    "4. ONLY if the image is completely black or unrecognizable, then ask to retake.\n\n" +
                     "Response format:\n" +
-                    "**Image Quality:** [Good/Poor/Blurry/Unclear]\n" +
-                    "**Confidence:** [High (>80%) / Medium (70-80%) / Low (<70%)]\n\n" +
-                    "If quality is poor:\n" +
-                    "⚠️ **Image Not Clear Enough**\n" +
-                    "Please retake the photo with:\n" +
-                    "- Better lighting (natural sunlight preferred)\n" +
-                    "- Focus on affected area\n" +
-                    "- Steady hand (avoid blur)\n" +
-                    "- Close-up of diseased part\n\n" +
-                    "If quality is good:\n" +
-                    "Provide detailed disease analysis with treatment.";
+                    "**Analysis:** [Disease Name / Issue Identified / Healthy]\n" +
+                    "**Confidence:** [High / Medium / Low]\n\n" +
+                    "**Remedies:**\n" +
+                    "• Step 1\n" +
+                    "• Step 2\n" +
+                    "• Preventative Tip";
 
             Content content = new Content.Builder()
                     .addText(fullPrompt)
