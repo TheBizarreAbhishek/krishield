@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Executors;
 
-public class MarketDashboardActivity extends AppCompatActivity {
+public class MarketDashboardActivity extends BaseActivity {
     private static final String TAG = "MarketDashboard";
     private static final int LOCATION_PERMISSION_CODE = 100;
 

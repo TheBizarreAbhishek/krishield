@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">कृषि कवच</string>
+    <string name="title_home">होम</string>
+    <string name="title_chat">चैट</string>
+    <string name="title_profile">प्रोफाइल</string>
+    <string name="status_active">सिस्टम सक्रिय</string>
+    <string name="status_desc">आपका कृषि सहायक तैयार है</string>
+    <string name="action_chat_text">AI से चैट करें</string>
+    <string name="action_chat_voice">वॉयस चैट</string>
+    <string name="feature_weather">मौसम पूर्वानुमान</string>
+    <string name="feature_schemes">सरकारी योजनाएं</string>
+    <string name="feature_crop_calendar">फसल कैलेंडर</string>
+    <string name="feature_market">मंडी भाव</string>
+    <string name="welcome_message">कृषि कवच में आपका स्वागत है</string>
+    <string name="ask_gemini">जेमिनी से पूछें</string>
+
+    <string name="title_settings">सेटिंग्स</string>
+    <string name="title_language">ऐप की भाषा</string>
+    <string name="language_en">English</string>
+    <string name="language_hi">Hindi (हिंदी)</string>
+    <string name="save_api_key">API Key सेव करें</string>
+    <string name="test_api_key">API Key टेस्ट करें</string>
+    <string name="api_status_none">स्थिति: कोई API Key सेट नहीं है</string>
+    <string name="api_key_hint">API Key</string>
+    <string name="desc_api_key">रेट लिमिट से बचने के लिए अपनी जेमिनी API Key दर्ज करें।</string>
+
+    <string name="farmers_union">किसान यूनियन</string>
+    <string name="join_local_unions">स्थानीय यूनियनों से जुड़ें</string>
+    <string name="create_community">समुदाय बनाएं</string>
+    <string name="community_name">समुदाय का नाम</string>
+    <string name="community_desc">विवरण</string>
+    <string name="join">जुड़ें</string>
+    <string name="open_chat">चैट खोलें</string>
+    <string name="members">सदस्य</string>
+    <string name="type_message">संदेश टाइप करें...</string>
+    <string name="send">भेजें</string>
+    <string name="save">सहेजें</string>
+</resources>

@@ -25,7 +25,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommunityChatActivity extends AppCompatActivity {
+public class CommunityChatActivity extends BaseActivity {
 
     private String communityId;
     private RecyclerView recyclerView;

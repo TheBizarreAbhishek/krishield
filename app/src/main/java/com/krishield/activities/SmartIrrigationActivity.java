@@ -30,7 +30,7 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.concurrent.Executors;
 
-public class SmartIrrigationActivity extends AppCompatActivity {
+public class SmartIrrigationActivity extends BaseActivity {
     private static final String TAG = "SmartIrrigation";
     private static final int LOCATION_PERMISSION_CODE = 101;
 

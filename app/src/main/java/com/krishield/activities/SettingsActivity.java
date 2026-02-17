@@ -17,7 +17,7 @@ import com.krishield.services.GeminiService;
 
 import java.util.concurrent.Executors;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseActivity {
 
     private static final String PREFS_NAME = "KriShieldPrefs";
     private static final String KEY_GEMINI_API = "gemini_api_key";
@@ -25,6 +25,8 @@ public class SettingsActivity extends AppCompatActivity {
     private TextInputEditText etApiKey;
     private MaterialButton btnSaveApiKey, btnTestApiKey, btnOpenApiSite;
     private TextView tvApiStatus;
+    private android.widget.RadioGroup radioGroupLanguage;
+    private android.widget.RadioButton radioEnglish, radioHindi;
 
     private SharedPreferences prefs;
 
@@ -46,16 +48,52 @@ public class SettingsActivity extends AppCompatActivity {
         btnOpenApiSite = findViewById(R.id.btn_open_api_site);
         tvApiStatus = findViewById(R.id.tv_api_status);
 
+        radioGroupLanguage = findViewById(R.id.radio_group_language);
+        radioEnglish = findViewById(R.id.radio_english);
+        radioHindi = findViewById(R.id.radio_hindi);
+
         // Initialize SharedPreferences
         prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         // Load saved API key
         loadApiKey();
 
+        // Load saved Language
+        loadLanguage();
+
         // Setup button listeners
         btnSaveApiKey.setOnClickListener(v -> saveApiKey());
         btnTestApiKey.setOnClickListener(v -> testApiKey());
         btnOpenApiSite.setOnClickListener(v -> openApiWebsite());
+
+        radioGroupLanguage.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.radio_english) {
+                setNewLocale("en");
+            } else if (checkedId == R.id.radio_hindi) {
+                setNewLocale("hi");
+            }
+        });
+    }
+
+    private void loadLanguage() {
+        String currentLang = com.krishield.utils.LocaleHelper.getLanguage(this);
+        if (currentLang.equals("hi")) {
+            radioHindi.setChecked(true);
+        } else {
+            radioEnglish.setChecked(true);
+        }
+    }
+
+    private void setNewLocale(String lang) {
+        String currentLang = com.krishield.utils.LocaleHelper.getLanguage(this);
+        if (!currentLang.equals(lang)) {
+            com.krishield.utils.LocaleHelper.setLocale(this, lang);
+
+            // Restart App to apply changes
+            Intent i = new Intent(this, MainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+        }
     }
 
     private void loadApiKey() {

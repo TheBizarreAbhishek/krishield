@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class FarmersUnionActivity extends AppCompatActivity {
+public class FarmersUnionActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
     private CommunityAdapter adapter;

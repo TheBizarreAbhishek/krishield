@@ -17,7 +17,7 @@ import com.krishield.repositories.SchemesRepository;
 
 import java.util.List;
 
-public class SchemesActivity extends AppCompatActivity {
+public class SchemesActivity extends BaseActivity {
 
     private RecyclerView rvSchemes;
     private SwipeRefreshLayout swipeRefresh;
