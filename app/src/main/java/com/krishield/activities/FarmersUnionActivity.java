@@ -1,3 +1,5 @@
+package com.krishield.activities;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
