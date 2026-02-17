@@ -33,14 +33,7 @@ public class MarketDashboardActivity extends AppCompatActivity {
     private static final int LOCATION_PERMISSION_CODE = 100;
 
     private FusedLocationProviderClient fusedLocationClient;
-    private GeminiService geminiService;
-
-    private EditText etSearch;
-    private TextView tvLocation, tvMarketData, tvAiRecommendation;
-    private ProgressBar progressBar;
-
-    private String currentCity = "Delhi"; // Default
-    private String currentState = "Delhi";
+    private com.krishield.repositories.MarketRepository marketRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +54,7 @@ public class MarketDashboardActivity extends AppCompatActivity {
 
         // Initialize Services
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        geminiService = new GeminiService(null);
+        marketRepository = new com.krishield.repositories.MarketRepository(this);
 
         // Setup Listeners
         findViewById(R.id.btn_search).setOnClickListener(v -> performSearch());
@@ -73,6 +66,8 @@ public class MarketDashboardActivity extends AppCompatActivity {
         // Start Flow
         checkLocationAndLoad();
     }
+
+    // ... (location permission code unchanged) ...
 
     private void checkLocationAndLoad() {
         if (ContextCompat.checkSelfPermission(this,
@@ -139,27 +134,19 @@ public class MarketDashboardActivity extends AppCompatActivity {
         tvMarketData.setText("Loading...");
         tvAiRecommendation.setText("");
 
-        String prompt;
-        if (searchQuery == null) {
-            // Default Dashboard View - JSON Request
-            prompt = String.format(
-                    "Act as an agriculture market expert. Return current market prices for top 5 crops in %s, %s. " +
-                            "Return ONLY a JSON array. " +
-                            "Format: [{\"crop\": \"Wheat\", \"price\": \"2200\", \"unit\": \"₹/quintal\", \"trend\": \"Up\"}]. "
-                            +
-                            "Also provide a 'recommendation' field in the JSON with a selling advice string.",
-                    currentCity, currentState);
-        } else {
-            // Search View - JSON Request
-            prompt = String.format(
-                    "Act as an agriculture market expert. Return current market price for '%s' in %s, %s. " +
-                            "Return ONLY a JSON array with one object. " +
-                            "Format: [{\"crop\": \"%s\", \"price\": \"...\", \"unit\": \"...\", \"trend\": \"...\", \"recommendation\": \"...\"}]",
-                    searchQuery, currentCity, currentState, searchQuery);
-        }
+        // Use MarketRepository which handles caching
+        // If searchQuery is present, we might want to bypass cache or use a different
+        // key
+        // For now, let's treat search as a fresh request or unique cache key
 
-        geminiService.sendTextMessage(prompt, Executors.newSingleThreadExecutor(),
-                new GeminiService.ResponseCallback() {
+        // Pass to repository
+        // Note: The repository expects city, state, season. We use "General" for season
+        // if not searching.
+        String seasonOrQuery = (searchQuery == null) ? "General" : searchQuery;
+        boolean forceRefresh = (searchQuery != null); // Always refresh on search for now
+
+        marketRepository.getMarketData(currentCity, currentState, seasonOrQuery, forceRefresh,
+                new com.krishield.repositories.MarketRepository.MarketCallback() {
                     @Override
                     public void onSuccess(String response) {
                         runOnUiThread(() -> {
