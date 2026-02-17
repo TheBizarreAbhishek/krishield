@@ -50,9 +50,10 @@ public class MarketRepository {
     private void fetchFromGemini(String city, String state, String season, String cacheKey, String timeKey,
             MarketCallback callback) {
         String prompt = String.format(
-                "Search Google for current market prices in %s, %s for %s crops. " +
+                "Act as an agricultural market expert. Estimate current market prices in %s, %s for %s crops based on recent trends. "
+                        +
                         "Provide:\n" +
-                        "1. Top 5 crops with current mandi price (₹/quintal)\n" +
+                        "1. Top 5 crops with estimated mandi price (₹/quintal)\n" +
                         "2. Brief 30-day trend (rising/falling/stable)\n" +
                         "3. Short selling recommendation\n\n" +
                         "Format as:\n" +

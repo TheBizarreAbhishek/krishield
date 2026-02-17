@@ -137,7 +137,11 @@ public class SmartIrrigationActivity extends AppCompatActivity {
 
             @Override
             public void onError(String error) {
-                // Fail silently, Gemini will handle missing weather
+                // Determine if it's a critical error or just data missing
+                runOnUiThread(() -> {
+                    Toast.makeText(SmartIrrigationActivity.this, "Weather Update Failed: " + error, Toast.LENGTH_SHORT)
+                            .show();
+                });
             }
         });
     }
@@ -168,8 +172,8 @@ public class SmartIrrigationActivity extends AppCompatActivity {
         if (currentWeather != null) {
             prompt.append("- Current Temp: ").append(currentWeather.temperature).append("°C\n");
             prompt.append("- Wind Speed: ").append(currentWeather.windspeed).append(" km/h\n");
-            // Note: Precipitation logic ideally needs daily forecast, but we pass current
-            // state for now
+        } else {
+            prompt.append("- Current Temp: Unknown (Assume typical Indian season temp)\n");
         }
 
         prompt.append("\nTask:\n");
@@ -201,7 +205,11 @@ public class SmartIrrigationActivity extends AppCompatActivity {
                         runOnUiThread(() -> {
                             progressBar.setVisibility(View.GONE);
                             btnAnalyze.setEnabled(true);
-                            Toast.makeText(SmartIrrigationActivity.this, "Error: " + error, Toast.LENGTH_SHORT).show();
+                            String errorMsg = error.contains("quota") ? "Quota Limit Reached. Try again later."
+                                    : "Analysis Failed: " + error;
+                            tvRecommendation.setText(errorMsg);
+                            layoutResult.setVisibility(View.VISIBLE);
+                            Toast.makeText(SmartIrrigationActivity.this, errorMsg, Toast.LENGTH_LONG).show();
                         });
                     }
                 });

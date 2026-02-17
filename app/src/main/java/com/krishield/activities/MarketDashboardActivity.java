@@ -238,9 +238,10 @@ public class MarketDashboardActivity extends AppCompatActivity {
         String location = currentCity.isEmpty() ? "India" : currentCity + ", " + currentState;
 
         String prompt = String.format(
-                "Search Google for current market price of %s in %s. " +
+                "Act as an agricultural market expert. Estimate the current market price of %s in %s based on recent trends. "
+                        +
                         "Provide:\n" +
-                        "1. Current mandi price (₹/quintal or ₹/kg)\n" +
+                        "1. Estimated mandi price (₹/quintal or ₹/kg)\n" +
                         "2. Price trend (last 30 days)\n" +
                         "3. Best selling time\n" +
                         "4. Demand status\n\n" +
@@ -269,8 +270,9 @@ public class MarketDashboardActivity extends AppCompatActivity {
                     public void onError(String error) {
                         runOnUiThread(() -> {
                             progressBar.setVisibility(View.GONE);
-                            tvMarketData.setText("Error: " + error);
-                            tvAiRecommendation.setText("Unable to fetch price data");
+                            tvMarketData.setText("Service Unavailable");
+                            tvAiRecommendation
+                                    .setText("Error: " + error + "\nTry checking your internet or try again later.");
                         });
                     }
                 });
