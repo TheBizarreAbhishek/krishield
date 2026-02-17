@@ -215,3 +215,4 @@ public class MarketDashboardActivity extends AppCompatActivity {
             tvMarketData.setText(jsonResponse);
         }
     }
+}
