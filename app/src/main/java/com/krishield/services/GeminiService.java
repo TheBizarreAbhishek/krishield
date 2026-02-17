@@ -106,17 +106,27 @@ public class GeminiService {
                     +
                     "\n\nIMPORTANT INSTRUCTIONS:\n" +
                     "\n\nIMPORTANT INSTRUCTIONS:\n" +
-                    "1. ANALYZE the image to the best of your ability, even if it is slightly blurry or dark.\n" +
-                    "2. IDENTIFY any visible crops, diseases, pests, or nutrient deficiencies.\n" +
-                    "3. PROVIDE practical remedies and solutions.\n" +
-                    "4. ONLY if the image is completely black or unrecognizable, then ask to retake.\n\n" +
-                    "Response format:\n" +
-                    "**Analysis:** [Disease Name / Issue Identified / Healthy]\n" +
-                    "**Confidence:** [High / Medium / Low]\n\n" +
+                    "1. ANALYZE the image to the best of your ability.\n" +
+                    "2. IF the disease is OBVIOUS:\n" +
+                    "   - Provide the Diagnosis, Confidence, and Remedies immediately.\n" +
+                    "3. IF the image is AMBIGUOUS or lacks context (e.g., just a yellow leaf):\n" +
+                    "   - DO NOT GUESS.\n" +
+                    "   - Ask 3 specific follow-up questions to the farmer to understand the problem better (e.g., about soil, water, duration).\n"
+                    +
+                    "   - Start your response with 'To give you an accurate diagnosis, I need a little more information:'\n"
+                    +
+                    "4. Speak like an expert Indian Agronomist (friendly and professional).\n\n" +
+                    "Response Format (If Obvious):\n" +
+                    "**Analysis:** [Disease Name]\n" +
+                    "**Confidence:** [High/Medium]\n" +
                     "**Remedies:**\n" +
-                    "• Step 1\n" +
-                    "• Step 2\n" +
-                    "• Preventative Tip";
+                    "• [Remedy 1]\n" +
+                    "• [Remedy 2]\n\n" +
+                    "Response Format (If Ambiguous):\n" +
+                    "To help you better, please tell me:\n" +
+                    "1. [Question 1]\n" +
+                    "2. [Question 2]\n" +
+                    "3. [Question 3]";
 
             Content content = new Content.Builder()
                     .addText(fullPrompt)
