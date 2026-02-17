@@ -35,6 +35,13 @@ public class MarketDashboardActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private com.krishield.repositories.MarketRepository marketRepository;
 
+    private EditText etSearch;
+    private TextView tvLocation, tvMarketData, tvAiRecommendation;
+    private ProgressBar progressBar;
+
+    private String currentCity = "Delhi"; // Default
+    private String currentState = "Delhi";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
