@@ -425,6 +425,43 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
+            <!-- Farmers Union Chip -->
+            <LinearLayout
+                android:id="@+id/chip_farmers_union"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_pill_blue"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:layout_marginBottom="80dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🤝"
+                    android:textSize="24sp"
+                    android:layout_marginEnd="12dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Farmers Union"
+                    android:textColor="@color/kri_text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textColor="@color/kri_text_secondary"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

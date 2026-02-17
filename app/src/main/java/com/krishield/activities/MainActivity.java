@@ -119,6 +119,15 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         });
+
+        // Farmers Union Chip Listener
+        View chipFarmersUnion = findViewById(R.id.chip_farmers_union);
+        if (chipFarmersUnion != null) {
+            chipFarmersUnion.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, FarmersUnionActivity.class);
+                startActivity(intent);
+            });
+        }
     }
 
     private void requestLocationAndLoadData() {
