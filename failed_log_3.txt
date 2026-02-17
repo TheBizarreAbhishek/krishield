@@ -1,0 +1,380 @@
+build	Build with Gradle	﻿2026-02-17T05:46:57.8854322Z ##[group]Run ./gradlew build --stacktrace
+build	Build with Gradle	2026-02-17T05:46:57.8854705Z [36;1m./gradlew build --stacktrace[0m
+build	Build with Gradle	2026-02-17T05:46:57.8901142Z shell: /usr/bin/bash -e {0}
+build	Build with Gradle	2026-02-17T05:46:57.8901504Z env:
+build	Build with Gradle	2026-02-17T05:46:57.8901873Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Build with Gradle	2026-02-17T05:46:57.8902364Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Build with Gradle	2026-02-17T05:46:57.8903103Z ##[endgroup]
+build	Build with Gradle	2026-02-17T05:47:00.1567573Z 
+build	Build with Gradle	2026-02-17T05:47:00.1577380Z Welcome to Gradle 8.2!
+build	Build with Gradle	2026-02-17T05:47:00.1578463Z 
+build	Build with Gradle	2026-02-17T05:47:00.1578703Z Here are the highlights of this release:
+build	Build with Gradle	2026-02-17T05:47:00.1579662Z  - Kotlin DSL: new reference documentation, assignment syntax by default
+build	Build with Gradle	2026-02-17T05:47:00.1580431Z  - Kotlin DSL is now the default with Gradle init
+build	Build with Gradle	2026-02-17T05:47:00.1581173Z  - Improved suggestions to resolve errors in console output
+build	Build with Gradle	2026-02-17T05:47:00.1581455Z 
+build	Build with Gradle	2026-02-17T05:47:00.1581826Z For more details see https://docs.gradle.org/8.2/release-notes.html
+build	Build with Gradle	2026-02-17T05:47:00.1582168Z 
+build	Build with Gradle	2026-02-17T05:47:00.4553695Z Starting a Gradle Daemon (subsequent builds will be faster)
+build	Build with Gradle	2026-02-17T05:47:09.7590241Z > Task :app:preBuild UP-TO-DATE
+build	Build with Gradle	2026-02-17T05:47:09.7591546Z > Task :app:preDebugBuild UP-TO-DATE
+build	Build with Gradle	2026-02-17T05:47:09.8560415Z > Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+build	Build with Gradle	2026-02-17T05:47:10.5566958Z > Task :app:generateDebugResValues
+build	Build with Gradle	2026-02-17T05:47:10.5567544Z > Task :app:generateDebugResources
+build	Build with Gradle	2026-02-17T05:47:10.5568113Z > Task :app:dataBindingMergeDependencyArtifactsDebug
+build	Build with Gradle	2026-02-17T05:47:13.4553686Z > Task :app:packageDebugResources
+build	Build with Gradle	2026-02-17T05:47:14.1558636Z > Task :app:generateDebugBuildConfig
+build	Build with Gradle	2026-02-17T05:47:14.1560253Z > Task :app:javaPreCompileDebug
+build	Build with Gradle	2026-02-17T05:47:14.2563397Z > Task :app:parseDebugLocalResources
+build	Build with Gradle	2026-02-17T05:47:14.2564693Z > Task :app:mergeDebugResources
+build	Build with Gradle	2026-02-17T05:47:14.3575104Z > Task :app:checkDebugAarMetadata
+build	Build with Gradle	2026-02-17T05:47:14.6572309Z > Task :app:dataBindingGenBaseClassesDebug
+build	Build with Gradle	2026-02-17T05:47:14.6578064Z > Task :app:mapDebugSourceSetPaths
+build	Build with Gradle	2026-02-17T05:47:14.6585202Z > Task :app:createDebugCompatibleScreenManifests
+build	Build with Gradle	2026-02-17T05:47:14.7554815Z > Task :app:extractDeepLinksDebug
+build	Build with Gradle	2026-02-17T05:47:14.9574338Z > Task :app:processDebugMainManifest
+build	Build with Gradle	2026-02-17T05:47:15.2554807Z > Task :app:processDebugManifest
+build	Build with Gradle	2026-02-17T05:47:15.2555436Z > Task :app:mergeDebugShaders
+build	Build with Gradle	2026-02-17T05:47:15.2555932Z > Task :app:compileDebugShaders NO-SOURCE
+build	Build with Gradle	2026-02-17T05:47:15.3565304Z > Task :app:processDebugManifestForPackage
+build	Build with Gradle	2026-02-17T05:47:15.4553389Z > Task :app:generateDebugAssets UP-TO-DATE
+build	Build with Gradle	2026-02-17T05:47:15.4557314Z > Task :app:mergeDebugAssets
+build	Build with Gradle	2026-02-17T05:47:15.4581776Z > Task :app:compressDebugAssets
+build	Build with Gradle	2026-02-17T05:47:15.4582361Z > Task :app:processDebugJavaRes NO-SOURCE
+build	Build with Gradle	2026-02-17T05:47:15.8554820Z > Task :app:desugarDebugFileDependencies
+build	Build with Gradle	2026-02-17T05:47:15.8559766Z > Task :app:mergeDebugJniLibFolders
+build	Build with Gradle	2026-02-17T05:47:15.9591884Z > Task :app:checkDebugDuplicateClasses
+build	Build with Gradle	2026-02-17T05:47:15.9606500Z > Task :app:mergeDebugNativeLibs NO-SOURCE
+build	Build with Gradle	2026-02-17T05:47:16.1554356Z > Task :app:mergeLibDexDebug
+build	Build with Gradle	2026-02-17T05:47:16.2561950Z > Task :app:stripDebugDebugSymbols NO-SOURCE
+build	Build with Gradle	2026-02-17T05:47:16.7572010Z > Task :app:processDebugResources
+build	Build with Gradle	2026-02-17T05:47:17.1553156Z > Task :app:mergeDebugJavaResource
+build	Build with Gradle	2026-02-17T05:47:17.4622035Z > Task :app:validateSigningDebug
+build	Build with Gradle	2026-02-17T05:47:21.0558737Z 
+build	Build with Gradle	2026-02-17T05:47:21.0591491Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:44: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.0592900Z         etSearch = findViewById(R.id.et_search);
+build	Build with Gradle	2026-02-17T05:47:21.0593469Z > Task :app:compileDebugJavaWithJavac
+build	Build with Gradle	2026-02-17T05:47:21.0594023Z         ^
+build	Build with Gradle	2026-02-17T05:47:21.0602593Z   symbol:   variable etSearch
+build	Build with Gradle	2026-02-17T05:47:21.0603807Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.0605204Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:45: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.0606504Z         tvLocation = findViewById(R.id.tv_location);
+build	Build with Gradle	2026-02-17T05:47:21.0607606Z         ^
+build	Build with Gradle	2026-02-17T05:47:21.0608314Z   symbol:   variable tvLocation
+build	Build with Gradle	2026-02-17T05:47:21.0608788Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.0610060Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:46: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.0611320Z         tvMarketData = findViewById(R.id.tv_market_data);
+build	Build with Gradle	2026-02-17T05:47:21.0611823Z         ^
+build	Build with Gradle	2026-02-17T05:47:21.0612171Z   symbol:   variable tvMarketData
+build	Build with Gradle	2026-02-17T05:47:21.0612668Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.0613919Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:47: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.0615071Z         tvAiRecommendation = findViewById(R.id.tv_ai_recommendation);
+build	Build with Gradle	2026-02-17T05:47:21.0615704Z         ^
+build	Build with Gradle	2026-02-17T05:47:21.0616058Z   symbol:   variable tvAiRecommendation
+build	Build with Gradle	2026-02-17T05:47:21.0616566Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.0617776Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:48: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.0618811Z         progressBar = findViewById(R.id.progress_bar);
+build	Build with Gradle	2026-02-17T05:47:21.0619590Z         ^
+build	Build with Gradle	2026-02-17T05:47:21.0619960Z   symbol:   variable progressBar
+build	Build with Gradle	2026-02-17T05:47:21.0620595Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.0622192Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:61: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.0624274Z         etSearch.setOnEditorActionListener((v, actionId, event) -> {
+build	Build with Gradle	2026-02-17T05:47:21.0624871Z         ^
+build	Build with Gradle	2026-02-17T05:47:21.0625186Z   symbol:   variable etSearch
+build	Build with Gradle	2026-02-17T05:47:21.0625613Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1571314Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:97: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1572851Z                         currentCity = addresses.get(0).getLocality();
+build	Build with Gradle	2026-02-17T05:47:21.1573568Z                         ^
+build	Build with Gradle	2026-02-17T05:47:21.1641553Z   symbol:   variable currentCity
+build	Build with Gradle	2026-02-17T05:47:21.1642023Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1643198Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:98: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1644241Z                         currentState = addresses.get(0).getAdminArea();
+build	Build with Gradle	2026-02-17T05:47:21.1644782Z                         ^
+build	Build with Gradle	2026-02-17T05:47:21.1645184Z   symbol:   variable currentState
+build	Build with Gradle	2026-02-17T05:47:21.1645638Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1646855Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:99: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1647898Z                         if (currentCity == null)
+build	Build with Gradle	2026-02-17T05:47:21.1648383Z                             ^
+build	Build with Gradle	2026-02-17T05:47:21.1649250Z   symbol:   variable currentCity
+build	Build with Gradle	2026-02-17T05:47:21.1649862Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1651413Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:100: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1652574Z                             currentCity = "Unknown";
+build	Build with Gradle	2026-02-17T05:47:21.1653183Z                             ^
+build	Build with Gradle	2026-02-17T05:47:21.1653710Z   symbol:   variable currentCity
+build	Build with Gradle	2026-02-17T05:47:21.1654280Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1655621Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:106: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1657235Z             tvLocation.setText("📍 " + currentCity + ", " + currentState);
+build	Build with Gradle	2026-02-17T05:47:21.1658490Z                                        ^
+build	Build with Gradle	2026-02-17T05:47:21.1659074Z   symbol:   variable currentCity
+build	Build with Gradle	2026-02-17T05:47:21.1659704Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1661601Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:106: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1663099Z             tvLocation.setText("📍 " + currentCity + ", " + currentState);
+build	Build with Gradle	2026-02-17T05:47:21.1663919Z                                                             ^
+build	Build with Gradle	2026-02-17T05:47:21.1664585Z   symbol:   variable currentState
+build	Build with Gradle	2026-02-17T05:47:21.1665185Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1666523Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:106: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1669728Z             tvLocation.setText("📍 " + currentCity + ", " + currentState);
+build	Build with Gradle	2026-02-17T05:47:21.1670351Z             ^
+build	Build with Gradle	2026-02-17T05:47:21.1670697Z   symbol:   variable tvLocation
+build	Build with Gradle	2026-02-17T05:47:21.1671382Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1672576Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:120: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1673637Z         String query = etSearch.getText().toString().trim();
+build	Build with Gradle	2026-02-17T05:47:21.1674156Z                        ^
+build	Build with Gradle	2026-02-17T05:47:21.1674533Z   symbol:   variable etSearch
+build	Build with Gradle	2026-02-17T05:47:21.1674977Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1676177Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:133: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1677232Z         progressBar.setVisibility(View.VISIBLE);
+build	Build with Gradle	2026-02-17T05:47:21.1677736Z         ^
+build	Build with Gradle	2026-02-17T05:47:21.1678086Z   symbol:   variable progressBar
+build	Build with Gradle	2026-02-17T05:47:21.1678569Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1679799Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:134: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1681015Z         tvMarketData.setText("Loading...");
+build	Build with Gradle	2026-02-17T05:47:21.1681481Z         ^
+build	Build with Gradle	2026-02-17T05:47:21.1681819Z   symbol:   variable tvMarketData
+build	Build with Gradle	2026-02-17T05:47:21.1682305Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1683496Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:135: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1684486Z         tvAiRecommendation.setText("");
+build	Build with Gradle	2026-02-17T05:47:21.1684925Z         ^
+build	Build with Gradle	2026-02-17T05:47:21.1685271Z   symbol:   variable tvAiRecommendation
+build	Build with Gradle	2026-02-17T05:47:21.1685784Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1687118Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:148: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1688459Z         marketRepository.getMarketData(currentCity, currentState, seasonOrQuery, forceRefresh,
+build	Build with Gradle	2026-02-17T05:47:21.1689272Z                                        ^
+build	Build with Gradle	2026-02-17T05:47:21.1689750Z   symbol:   variable currentCity
+build	Build with Gradle	2026-02-17T05:47:21.1690232Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1691661Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:148: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1692991Z         marketRepository.getMarketData(currentCity, currentState, seasonOrQuery, forceRefresh,
+build	Build with Gradle	2026-02-17T05:47:21.1693823Z                                                     ^
+build	Build with Gradle	2026-02-17T05:47:21.1694314Z   symbol:   variable currentState
+build	Build with Gradle	2026-02-17T05:47:21.1694787Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1696056Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:153: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1697139Z                             progressBar.setVisibility(View.GONE);
+build	Build with Gradle	2026-02-17T05:47:21.1697668Z                             ^
+build	Build with Gradle	2026-02-17T05:47:21.1698065Z   symbol: variable progressBar
+build	Build with Gradle	2026-02-17T05:47:21.1699511Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:161: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1700567Z                             progressBar.setVisibility(View.GONE);
+build	Build with Gradle	2026-02-17T05:47:21.1701491Z                             ^
+build	Build with Gradle	2026-02-17T05:47:21.1701913Z   symbol: variable progressBar
+build	Build with Gradle	2026-02-17T05:47:21.1703083Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:163: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1704104Z                             tvMarketData.setText(msg);
+build	Build with Gradle	2026-02-17T05:47:21.1704606Z                             ^
+build	Build with Gradle	2026-02-17T05:47:21.1705022Z   symbol: variable tvMarketData
+build	Build with Gradle	2026-02-17T05:47:21.1706173Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:196: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1707247Z             tvMarketData.setText(cropsDisplay.toString());
+build	Build with Gradle	2026-02-17T05:47:21.1707771Z             ^
+build	Build with Gradle	2026-02-17T05:47:21.1708142Z   symbol:   variable tvMarketData
+build	Build with Gradle	2026-02-17T05:47:21.1708641Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1730132Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:197: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1732779Z             tvAiRecommendation.setText("💡 Advice: " + aiRec);
+build	Build with Gradle	2026-02-17T05:47:21.1734328Z             ^
+build	Build with Gradle	2026-02-17T05:47:21.1735655Z   symbol:   variable tvAiRecommendation
+build	Build with Gradle	2026-02-17T05:47:21.1737236Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.1739496Z /home/runner/work/***/***/app/src/main/java/com/***/activities/MarketDashboardActivity.java:202: error: cannot find symbol
+build	Build with Gradle	2026-02-17T05:47:21.1741654Z             tvMarketData.setText(jsonResponse);
+build	Build with Gradle	2026-02-17T05:47:21.1743016Z             ^
+build	Build with Gradle	2026-02-17T05:47:21.1744281Z   symbol:   variable tvMarketData
+build	Build with Gradle	2026-02-17T05:47:21.1745618Z   location: class MarketDashboardActivity
+build	Build with Gradle	2026-02-17T05:47:21.8554526Z 
+build	Build with Gradle	2026-02-17T05:47:21.8555689Z > Task :app:compileDebugJavaWithJavac FAILED
+build	Build with Gradle	2026-02-17T05:47:21.8556457Z Note: Some input files use or override a deprecated API.
+build	Build with Gradle	2026-02-17T05:47:21.8557113Z Note: Recompile with -Xlint:deprecation for details.
+build	Build with Gradle	2026-02-17T05:47:21.8557604Z 25 errors
+build	Build with Gradle	2026-02-17T05:47:23.1586847Z > Task :app:mergeExtDexDebug
+build	Build with Gradle	2026-02-17T05:47:23.2553199Z 
+build	Build with Gradle	2026-02-17T05:47:23.2567146Z FAILURE: Build failed with an exception.
+build	Build with Gradle	2026-02-17T05:47:23.2572540Z 
+build	Build with Gradle	2026-02-17T05:47:23.2577762Z * What went wrong:
+build	Build with Gradle	2026-02-17T05:47:23.2583760Z Execution failed for task ':app:compileDebugJavaWithJavac'.
+build	Build with Gradle	2026-02-17T05:47:23.2589671Z > Compilation failed; see the compiler error output for details.
+build	Build with Gradle	2026-02-17T05:47:23.2603219Z 
+build	Build with Gradle	2026-02-17T05:47:23.2604258Z * Try:
+build	Build with Gradle	2026-02-17T05:47:23.2605074Z > Run with --info option to get more log output.
+build	Build with Gradle	2026-02-17T05:47:23.2605733Z > Run with --scan to get full insights.
+build	Build with Gradle	2026-02-17T05:47:23.2606164Z 
+build	Build with Gradle	2026-02-17T05:47:23.2606413Z * Exception is:
+build	Build with Gradle	2026-02-17T05:47:23.2607320Z org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugJavaWithJavac'.
+build	Build with Gradle	2026-02-17T05:47:23.2609132Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.lambda$executeIfValid$1(ExecuteActionsTaskExecuter.java:149)
+build	Build with Gradle	2026-02-17T05:47:23.2610610Z 	at org.gradle.internal.Try$Failure.ifSuccessfulOrElse(Try.java:282)
+build	Build with Gradle	2026-02-17T05:47:23.2612339Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:147)
+build	Build with Gradle	2026-02-17T05:47:23.2614177Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:135)
+build	Build with Gradle	2026-02-17T05:47:23.2616011Z 	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
+build	Build with Gradle	2026-02-17T05:47:23.2617946Z 	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
+build	Build with Gradle	2026-02-17T05:47:23.2619854Z 	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
+build	Build with Gradle	2026-02-17T05:47:23.2622136Z 	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
+build	Build with Gradle	2026-02-17T05:47:23.2623810Z 	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+build	Build with Gradle	2026-02-17T05:47:23.2625776Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
+build	Build with Gradle	2026-02-17T05:47:23.2627390Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
+build	Build with Gradle	2026-02-17T05:47:23.2629040Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+build	Build with Gradle	2026-02-17T05:47:23.2631132Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+build	Build with Gradle	2026-02-17T05:47:23.2633225Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:199)
+build	Build with Gradle	2026-02-17T05:47:23.2635118Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+build	Build with Gradle	2026-02-17T05:47:23.2636747Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-02-17T05:47:23.2638423Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:157)
+build	Build with Gradle	2026-02-17T05:47:23.2640047Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-02-17T05:47:23.2641778Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+build	Build with Gradle	2026-02-17T05:47:23.2644623Z 	at org.gradle.internal.operations.DefaultBuildOperationExecutor.call(DefaultBuildOperationExecutor.java:73)
+build	Build with Gradle	2026-02-17T05:47:23.2646116Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+build	Build with Gradle	2026-02-17T05:47:23.2647477Z 	at org.gradle.execution.plan.LocalTaskNodeExecutor.execute(LocalTaskNodeExecutor.java:42)
+build	Build with Gradle	2026-02-17T05:47:23.2648952Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:337)
+build	Build with Gradle	2026-02-17T05:47:23.2661035Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:324)
+build	Build with Gradle	2026-02-17T05:47:23.2663722Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:317)
+build	Build with Gradle	2026-02-17T05:47:23.2665788Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
+build	Build with Gradle	2026-02-17T05:47:23.2667491Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:463)
+build	Build with Gradle	2026-02-17T05:47:23.2668832Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:380)
+build	Build with Gradle	2026-02-17T05:47:23.2670210Z 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+build	Build with Gradle	2026-02-17T05:47:23.2671791Z 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+build	Build with Gradle	2026-02-17T05:47:23.2673404Z Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Compilation failed; see the compiler error output for details.
+build	Build with Gradle	2026-02-17T05:47:23.2674918Z 	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:57)
+build	Build with Gradle	2026-02-17T05:47:23.2711901Z 	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:39)
+build	Build with Gradle	2026-02-17T05:47:23.2713970Z 	at org.gradle.api.internal.tasks.compile.NormalizingJavaCompiler.delegateAndHandleErrors(NormalizingJavaCompiler.java:98)
+build	Build with Gradle	2026-02-17T05:47:23.2715828Z 	at org.gradle.api.internal.tasks.compile.NormalizingJavaCompiler.execute(NormalizingJavaCompiler.java:52)
+build	Build with Gradle	2026-02-17T05:47:23.2717517Z 	at org.gradle.api.internal.tasks.compile.NormalizingJavaCompiler.execute(NormalizingJavaCompiler.java:38)
+build	Build with Gradle	2026-02-17T05:47:23.2719749Z 	at org.gradle.api.internal.tasks.compile.AnnotationProcessorDiscoveringCompiler.execute(AnnotationProcessorDiscoveringCompiler.java:51)
+build	Build with Gradle	2026-02-17T05:47:23.2722386Z 	at org.gradle.api.internal.tasks.compile.AnnotationProcessorDiscoveringCompiler.execute(AnnotationProcessorDiscoveringCompiler.java:37)
+build	Build with Gradle	2026-02-17T05:47:23.2724569Z 	at org.gradle.api.internal.tasks.compile.ModuleApplicationNameWritingCompiler.execute(ModuleApplicationNameWritingCompiler.java:46)
+build	Build with Gradle	2026-02-17T05:47:23.2726750Z 	at org.gradle.api.internal.tasks.compile.ModuleApplicationNameWritingCompiler.execute(ModuleApplicationNameWritingCompiler.java:36)
+build	Build with Gradle	2026-02-17T05:47:23.2728694Z 	at org.gradle.jvm.toolchain.internal.DefaultToolchainJavaCompiler.execute(DefaultToolchainJavaCompiler.java:57)
+build	Build with Gradle	2026-02-17T05:47:23.2730285Z 	at org.gradle.api.tasks.compile.JavaCompile.lambda$createToolchainCompiler$3(JavaCompile.java:202)
+build	Build with Gradle	2026-02-17T05:47:23.2731925Z 	at org.gradle.api.internal.tasks.compile.CleaningJavaCompiler.execute(CleaningJavaCompiler.java:53)
+build	Build with Gradle	2026-02-17T05:47:23.2733869Z 	at org.gradle.api.internal.tasks.compile.incremental.IncrementalCompilerFactory.lambda$createRebuildAllCompiler$0(IncrementalCompilerFactory.java:52)
+build	Build with Gradle	2026-02-17T05:47:23.2735891Z 	at org.gradle.api.internal.tasks.compile.incremental.SelectiveCompiler.execute(SelectiveCompiler.java:70)
+build	Build with Gradle	2026-02-17T05:47:23.2737525Z 	at org.gradle.api.internal.tasks.compile.incremental.SelectiveCompiler.execute(SelectiveCompiler.java:44)
+build	Build with Gradle	2026-02-17T05:47:23.2739398Z 	at org.gradle.api.internal.tasks.compile.incremental.IncrementalResultStoringCompiler.execute(IncrementalResultStoringCompiler.java:66)
+build	Build with Gradle	2026-02-17T05:47:23.2741776Z 	at org.gradle.api.internal.tasks.compile.incremental.IncrementalResultStoringCompiler.execute(IncrementalResultStoringCompiler.java:52)
+build	Build with Gradle	2026-02-17T05:47:23.2744006Z 	at org.gradle.api.internal.tasks.compile.CompileJavaBuildOperationReportingCompiler$1.call(CompileJavaBuildOperationReportingCompiler.java:64)
+build	Build with Gradle	2026-02-17T05:47:23.2746832Z 	at org.gradle.api.internal.tasks.compile.CompileJavaBuildOperationReportingCompiler$1.call(CompileJavaBuildOperationReportingCompiler.java:48)
+build	Build with Gradle	2026-02-17T05:47:23.2749197Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+build	Build with Gradle	2026-02-17T05:47:23.2751636Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:199)
+build	Build with Gradle	2026-02-17T05:47:23.2753339Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+build	Build with Gradle	2026-02-17T05:47:23.2754792Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-02-17T05:47:23.2756239Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:157)
+build	Build with Gradle	2026-02-17T05:47:23.2757741Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-02-17T05:47:23.2759294Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+build	Build with Gradle	2026-02-17T05:47:23.2760743Z 	at org.gradle.internal.operations.DefaultBuildOperationExecutor.call(DefaultBuildOperationExecutor.java:73)
+build	Build with Gradle	2026-02-17T05:47:23.2762732Z 	at org.gradle.api.internal.tasks.compile.CompileJavaBuildOperationReportingCompiler.execute(CompileJavaBuildOperationReportingCompiler.java:48)
+build	Build with Gradle	2026-02-17T05:47:23.2764352Z 	at org.gradle.api.tasks.compile.JavaCompile.performCompilation(JavaCompile.java:220)
+build	Build with Gradle	2026-02-17T05:47:23.2765525Z 	at org.gradle.api.tasks.compile.JavaCompile.performIncrementalCompilation(JavaCompile.java:161)
+build	Build with Gradle	2026-02-17T05:47:23.2766626Z 	at org.gradle.api.tasks.compile.JavaCompile.compile(JavaCompile.java:146)
+build	Build with Gradle	2026-02-17T05:47:23.2767607Z 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+build	Build with Gradle	2026-02-17T05:47:23.2768785Z 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+build	Build with Gradle	2026-02-17T05:47:23.2770486Z 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+build	Build with Gradle	2026-02-17T05:47:23.2772046Z 	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)
+build	Build with Gradle	2026-02-17T05:47:23.2773288Z 	at org.gradle.api.internal.project.taskfactory.IncrementalTaskAction.doExecute(IncrementalTaskAction.java:45)
+build	Build with Gradle	2026-02-17T05:47:23.2774776Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:51)
+build	Build with Gradle	2026-02-17T05:47:23.2776227Z 	at org.gradle.api.internal.project.taskfactory.IncrementalTaskAction.execute(IncrementalTaskAction.java:26)
+build	Build with Gradle	2026-02-17T05:47:23.2777675Z 	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:29)
+build	Build with Gradle	2026-02-17T05:47:23.2778896Z 	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:248)
+build	Build with Gradle	2026-02-17T05:47:23.2780163Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:29)
+build	Build with Gradle	2026-02-17T05:47:23.2781661Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:26)
+build	Build with Gradle	2026-02-17T05:47:23.2782506Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+build	Build with Gradle	2026-02-17T05:47:23.2783347Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-02-17T05:47:23.2784145Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:157)
+build	Build with Gradle	2026-02-17T05:47:23.2784942Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-02-17T05:47:23.2785722Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:47)
+build	Build with Gradle	2026-02-17T05:47:23.2786496Z 	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:68)
+build	Build with Gradle	2026-02-17T05:47:23.2787238Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:233)
+build	Build with Gradle	2026-02-17T05:47:23.2787925Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:216)
+build	Build with Gradle	2026-02-17T05:47:23.2788701Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:199)
+build	Build with Gradle	2026-02-17T05:47:23.2789441Z 	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:166)
+build	Build with Gradle	2026-02-17T05:47:23.2790074Z 	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:105)
+build	Build with Gradle	2026-02-17T05:47:23.2790682Z 	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:44)
+build	Build with Gradle	2026-02-17T05:47:23.2791356Z 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:59)
+build	Build with Gradle	2026-02-17T05:47:23.2791898Z 	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:56)
+build	Build with Gradle	2026-02-17T05:47:23.2792677Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+build	Build with Gradle	2026-02-17T05:47:23.2793705Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:199)
+build	Build with Gradle	2026-02-17T05:47:23.2794615Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+build	Build with Gradle	2026-02-17T05:47:23.2795399Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-02-17T05:47:23.2796194Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:157)
+build	Build with Gradle	2026-02-17T05:47:23.2796983Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-02-17T05:47:23.2797768Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+build	Build with Gradle	2026-02-17T05:47:23.2798544Z 	at org.gradle.internal.operations.DefaultBuildOperationExecutor.call(DefaultBuildOperationExecutor.java:73)
+build	Build with Gradle	2026-02-17T05:47:23.2799469Z 	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:56)
+build	Build with Gradle	2026-02-17T05:47:23.2800759Z 	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:44)
+build	Build with Gradle	2026-02-17T05:47:23.2802082Z 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.execute(RemovePreviousOutputsStep.java:67)
+build	Build with Gradle	2026-02-17T05:47:23.2803385Z 	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.execute(RemovePreviousOutputsStep.java:37)
+build	Build with Gradle	2026-02-17T05:47:23.2804149Z 	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:41)
+build	Build with Gradle	2026-02-17T05:47:23.2804837Z 	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:74)
+build	Build with Gradle	2026-02-17T05:47:23.2805458Z 	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
+build	Build with Gradle	2026-02-17T05:47:23.2806057Z 	at org.gradle.internal.execution.steps.CreateOutputsStep.execute(CreateOutputsStep.java:50)
+build	Build with Gradle	2026-02-17T05:47:23.2806713Z 	at org.gradle.internal.execution.steps.CreateOutputsStep.execute(CreateOutputsStep.java:28)
+build	Build with Gradle	2026-02-17T05:47:23.2807638Z 	at org.gradle.internal.execution.steps.CaptureStateAfterExecutionStep.executeDelegateBroadcastingChanges(CaptureStateAfterExecutionStep.java:100)
+build	Build with Gradle	2026-02-17T05:47:23.2808713Z 	at org.gradle.internal.execution.steps.CaptureStateAfterExecutionStep.execute(CaptureStateAfterExecutionStep.java:72)
+build	Build with Gradle	2026-02-17T05:47:23.2809611Z 	at org.gradle.internal.execution.steps.CaptureStateAfterExecutionStep.execute(CaptureStateAfterExecutionStep.java:50)
+build	Build with Gradle	2026-02-17T05:47:23.2810442Z 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.execute(ResolveInputChangesStep.java:40)
+build	Build with Gradle	2026-02-17T05:47:23.2811495Z 	at org.gradle.internal.execution.steps.ResolveInputChangesStep.execute(ResolveInputChangesStep.java:29)
+build	Build with Gradle	2026-02-17T05:47:23.2812242Z 	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:179)
+build	Build with Gradle	2026-02-17T05:47:23.2812944Z 	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.java:70)
+build	Build with Gradle	2026-02-17T05:47:23.2813472Z 	at org.gradle.internal.Either$Right.fold(Either.java:175)
+build	Build with Gradle	2026-02-17T05:47:23.2813946Z 	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:59)
+build	Build with Gradle	2026-02-17T05:47:23.2814536Z 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:68)
+build	Build with Gradle	2026-02-17T05:47:23.2815135Z 	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:46)
+build	Build with Gradle	2026-02-17T05:47:23.2815816Z 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:36)
+build	Build with Gradle	2026-02-17T05:47:23.2816573Z 	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:25)
+build	Build with Gradle	2026-02-17T05:47:23.2817272Z 	at org.gradle.internal.execution.steps.RecordOutputsStep.execute(RecordOutputsStep.java:36)
+build	Build with Gradle	2026-02-17T05:47:23.2817921Z 	at org.gradle.internal.execution.steps.RecordOutputsStep.execute(RecordOutputsStep.java:22)
+build	Build with Gradle	2026-02-17T05:47:23.2818627Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:91)
+build	Build with Gradle	2026-02-17T05:47:23.2819327Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:55)
+build	Build with Gradle	2026-02-17T05:47:23.2820014Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:55)
+build	Build with Gradle	2026-02-17T05:47:23.2820646Z 	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:37)
+build	Build with Gradle	2026-02-17T05:47:23.2821508Z 	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:65)
+build	Build with Gradle	2026-02-17T05:47:23.2822174Z 	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:36)
+build	Build with Gradle	2026-02-17T05:47:23.2823022Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+build	Build with Gradle	2026-02-17T05:47:23.2824051Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+build	Build with Gradle	2026-02-17T05:47:23.2826263Z 	at org.gradle.internal.execution.steps.ResolveCachingStateStep.execute(ResolveCachingStateStep.java:77)
+build	Build with Gradle	2026-02-17T05:47:23.2827982Z 	at org.gradle.internal.execution.steps.ResolveCachingStateStep.execute(ResolveCachingStateStep.java:38)
+build	Build with Gradle	2026-02-17T05:47:23.2829297Z 	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:94)
+build	Build with Gradle	2026-02-17T05:47:23.2830417Z 	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:49)
+build	Build with Gradle	2026-02-17T05:47:23.2832092Z 	at org.gradle.internal.execution.steps.CaptureStateBeforeExecutionStep.execute(CaptureStateBeforeExecutionStep.java:71)
+build	Build with Gradle	2026-02-17T05:47:23.2833904Z 	at org.gradle.internal.execution.steps.CaptureStateBeforeExecutionStep.execute(CaptureStateBeforeExecutionStep.java:45)
+build	Build with Gradle	2026-02-17T05:47:23.2835649Z 	at org.gradle.internal.execution.steps.SkipEmptyWorkStep.executeWithNonEmptySources(SkipEmptyWorkStep.java:177)
+build	Build with Gradle	2026-02-17T05:47:23.2837148Z 	at org.gradle.internal.execution.steps.SkipEmptyWorkStep.execute(SkipEmptyWorkStep.java:86)
+build	Build with Gradle	2026-02-17T05:47:23.2838447Z 	at org.gradle.internal.execution.steps.SkipEmptyWorkStep.execute(SkipEmptyWorkStep.java:53)
+build	Build with Gradle	2026-02-17T05:47:23.2840029Z 	at org.gradle.internal.execution.steps.RemoveUntrackedExecutionStateStep.execute(RemoveUntrackedExecutionStateStep.java:32)
+build	Build with Gradle	2026-02-17T05:47:23.2842102Z 	at org.gradle.internal.execution.steps.RemoveUntrackedExecutionStateStep.execute(RemoveUntrackedExecutionStateStep.java:21)
+build	Build with Gradle	2026-02-17T05:47:23.2844024Z 	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
+build	Build with Gradle	2026-02-17T05:47:23.2845889Z 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:36)
+build	Build with Gradle	2026-02-17T05:47:23.2847696Z 	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
+build	Build with Gradle	2026-02-17T05:47:23.2849302Z 	at org.gradle.internal.execution.steps.CleanupStaleOutputsStep.execute(CleanupStaleOutputsStep.java:75)
+build	Build with Gradle	2026-02-17T05:47:23.2850751Z 	at org.gradle.internal.execution.steps.CleanupStaleOutputsStep.execute(CleanupStaleOutputsStep.java:41)
+build	Build with Gradle	2026-02-17T05:47:23.2852488Z 	at org.gradle.internal.execution.steps.AssignWorkspaceStep.lambda$execute$0(AssignWorkspaceStep.java:32)
+build	Build with Gradle	2026-02-17T05:47:23.2853891Z 	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:293)
+build	Build with Gradle	2026-02-17T05:47:23.2855224Z 	at org.gradle.internal.execution.steps.AssignWorkspaceStep.execute(AssignWorkspaceStep.java:30)
+build	Build with Gradle	2026-02-17T05:47:23.2856574Z 	at org.gradle.internal.execution.steps.AssignWorkspaceStep.execute(AssignWorkspaceStep.java:21)
+build	Build with Gradle	2026-02-17T05:47:23.2857900Z 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:37)
+build	Build with Gradle	2026-02-17T05:47:23.2859230Z 	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:27)
+build	Build with Gradle	2026-02-17T05:47:23.2860414Z 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:47)
+build	Build with Gradle	2026-02-17T05:47:23.2861722Z 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:34)
+build	Build with Gradle	2026-02-17T05:47:23.2862997Z 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:64)
+build	Build with Gradle	2026-02-17T05:47:23.2864584Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:146)
+build	Build with Gradle	2026-02-17T05:47:23.2866282Z 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:135)
+build	Build with Gradle	2026-02-17T05:47:23.2867994Z 	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
+build	Build with Gradle	2026-02-17T05:47:23.2869826Z 	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
+build	Build with Gradle	2026-02-17T05:47:23.2871902Z 	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
+build	Build with Gradle	2026-02-17T05:47:23.2873767Z 	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
+build	Build with Gradle	2026-02-17T05:47:23.2875495Z 	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+build	Build with Gradle	2026-02-17T05:47:23.2877113Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
+build	Build with Gradle	2026-02-17T05:47:23.2878629Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
+build	Build with Gradle	2026-02-17T05:47:23.2880080Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+build	Build with Gradle	2026-02-17T05:47:23.2882044Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+build	Build with Gradle	2026-02-17T05:47:23.2884018Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:199)
+build	Build with Gradle	2026-02-17T05:47:23.2885776Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+build	Build with Gradle	2026-02-17T05:47:23.2887302Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-02-17T05:47:23.2888794Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:157)
+build	Build with Gradle	2026-02-17T05:47:23.2890327Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+build	Build with Gradle	2026-02-17T05:47:23.2892008Z 	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+build	Build with Gradle	2026-02-17T05:47:23.2893542Z 	at org.gradle.internal.operations.DefaultBuildOperationExecutor.call(DefaultBuildOperationExecutor.java:73)
+build	Build with Gradle	2026-02-17T05:47:23.2895009Z 	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+build	Build with Gradle	2026-02-17T05:47:23.2896344Z 	at org.gradle.execution.plan.LocalTaskNodeExecutor.execute(LocalTaskNodeExecutor.java:42)
+build	Build with Gradle	2026-02-17T05:47:23.2897838Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:337)
+build	Build with Gradle	2026-02-17T05:47:23.2899676Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:324)
+build	Build with Gradle	2026-02-17T05:47:23.2901704Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:317)
+build	Build with Gradle	2026-02-17T05:47:23.2903733Z 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
+build	Build with Gradle	2026-02-17T05:47:23.2905441Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:463)
+build	Build with Gradle	2026-02-17T05:47:23.2906786Z 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:380)
+build	Build with Gradle	2026-02-17T05:47:23.2908192Z 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+build	Build with Gradle	2026-02-17T05:47:23.2909591Z 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+build	Build with Gradle	2026-02-17T05:47:23.2910392Z 
+build	Build with Gradle	2026-02-17T05:47:23.2910406Z 
+build	Build with Gradle	2026-02-17T05:47:23.2910557Z BUILD FAILED in 24s
+build	Build with Gradle	2026-02-17T05:47:23.2911144Z 27 actionable tasks: 27 executed
+build	Build with Gradle	2026-02-17T05:47:23.6236527Z ##[error]Process completed with exit code 1.

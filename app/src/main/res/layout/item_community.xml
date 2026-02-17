@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_pill_dark"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp">
+
+    <TextView
+        android:id="@+id/tv_community_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Community Name"
+        android:textColor="@color/kri_text_primary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_community_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Community Description"
+        android:textColor="@color/kri_text_secondary"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/tv_member_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="120 Members"
+        android:textColor="@color/kri_primary"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/btn_join"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Join"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/kri_primary"
+        android:layout_marginTop="8dp"
+        android:textAllCaps="false"/>
+
+</LinearLayout>

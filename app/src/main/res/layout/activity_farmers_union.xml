@@ -37,93 +37,24 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_communities"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/header"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:clipToPadding="false" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_create_community"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="24dp"
+        android:src="@android:drawable/ic_input_add"
+        app:tint="@android:color/white"
+        app:backgroundTint="@color/kri_primary"
+        android:contentDescription="Create Community" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Join Local Unions"
-                android:textColor="@color/kri_text_primary"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="16dp" />
-
-            <!-- Example Union Item -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_pill_dark"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:layout_marginBottom="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Punjab Kisam Union"
-                    android:textColor="@color/kri_text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Active members: 1200+"
-                    android:textColor="@color/kri_text_secondary"
-                    android:textSize="14sp"
-                    android:layout_marginTop="4dp" />
-                
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Join"
-                    android:textColor="@android:color/white"
-                    android:backgroundTint="@color/kri_primary"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-
-             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_pill_dark"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:layout_marginBottom="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="All India Kisan Sabha"
-                    android:textColor="@color/kri_text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Active members: 5000+"
-                    android:textColor="@color/kri_text_secondary"
-                    android:textSize="14sp"
-                    android:layout_marginTop="4dp" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Join"
-                    android:textColor="@android:color/white"
-                    android:backgroundTint="@color/kri_primary"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
 </RelativeLayout>

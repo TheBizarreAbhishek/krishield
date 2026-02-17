@@ -1,0 +1,552 @@
+build	Set up job	﻿2026-02-17T05:37:06.4175704Z Current runner version: '2.331.0'
+build	Set up job	2026-02-17T05:37:06.4202811Z ##[group]Runner Image Provisioner
+build	Set up job	2026-02-17T05:37:06.4204170Z Hosted Compute Agent
+build	Set up job	2026-02-17T05:37:06.4204799Z Version: 20260123.484
+build	Set up job	2026-02-17T05:37:06.4205466Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+build	Set up job	2026-02-17T05:37:06.4206232Z Build Date: 2026-01-23T19:41:17Z
+build	Set up job	2026-02-17T05:37:06.4206933Z Worker ID: {992ef7b8-3452-428a-989b-6b03503c92a7}
+build	Set up job	2026-02-17T05:37:06.4208122Z Azure Region: northcentralus
+build	Set up job	2026-02-17T05:37:06.4208758Z ##[endgroup]
+build	Set up job	2026-02-17T05:37:06.4210274Z ##[group]Operating System
+build	Set up job	2026-02-17T05:37:06.4211083Z Ubuntu
+build	Set up job	2026-02-17T05:37:06.4211893Z 24.04.3
+build	Set up job	2026-02-17T05:37:06.4212384Z LTS
+build	Set up job	2026-02-17T05:37:06.4212970Z ##[endgroup]
+build	Set up job	2026-02-17T05:37:06.4213521Z ##[group]Runner Image
+build	Set up job	2026-02-17T05:37:06.4214068Z Image: ubuntu-24.04
+build	Set up job	2026-02-17T05:37:06.4214734Z Version: 20260209.23.1
+build	Set up job	2026-02-17T05:37:06.4215778Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260209.23/images/ubuntu/Ubuntu2404-Readme.md
+build	Set up job	2026-02-17T05:37:06.4217559Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260209.23
+build	Set up job	2026-02-17T05:37:06.4218501Z ##[endgroup]
+build	Set up job	2026-02-17T05:37:06.4219695Z ##[group]GITHUB_TOKEN Permissions
+build	Set up job	2026-02-17T05:37:06.4222085Z Contents: write
+build	Set up job	2026-02-17T05:37:06.4222802Z Metadata: read
+build	Set up job	2026-02-17T05:37:06.4223323Z ##[endgroup]
+build	Set up job	2026-02-17T05:37:06.4225397Z Secret source: Actions
+build	Set up job	2026-02-17T05:37:06.4226652Z Prepare workflow directory
+build	Set up job	2026-02-17T05:37:06.4576384Z Prepare all required actions
+build	Set up job	2026-02-17T05:37:06.4616930Z Getting action download info
+build	Set up job	2026-02-17T05:37:06.9139743Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+build	Set up job	2026-02-17T05:37:07.0986610Z Download action repository 'actions/setup-java@v4' (SHA:c1e323688fd81a25caa38c78aa6df2d33d3e20d9)
+build	Set up job	2026-02-17T05:37:07.5693425Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+build	Set up job	2026-02-17T05:37:07.6896851Z Download action repository 'dev-drprasad/delete-older-releases@v0.3.4' (SHA:dfbe6be2a006e9475dfcbe5b8d201f1824c2a9fe)
+build	Set up job	2026-02-17T05:37:07.9826765Z Download action repository 'softprops/action-gh-release@v2' (SHA:a06a81a03ee405af7f2048a818ed3f03bbf83c7b)
+build	Set up job	2026-02-17T05:37:08.4816414Z Complete job name: build
+build	Checkout code	﻿2026-02-17T05:37:08.5694096Z ##[group]Run actions/checkout@v4
+build	Checkout code	2026-02-17T05:37:08.5695440Z with:
+build	Checkout code	2026-02-17T05:37:08.5696360Z   repository: TheBizarreAbhishek/***
+build	Checkout code	2026-02-17T05:37:08.5697629Z   token: ***
+build	Checkout code	2026-02-17T05:37:08.5698408Z   ssh-strict: true
+build	Checkout code	2026-02-17T05:37:08.5699189Z   ssh-user: git
+build	Checkout code	2026-02-17T05:37:08.5700002Z   persist-credentials: true
+build	Checkout code	2026-02-17T05:37:08.5700897Z   clean: true
+build	Checkout code	2026-02-17T05:37:08.5701880Z   sparse-checkout-cone-mode: true
+build	Checkout code	2026-02-17T05:37:08.5702875Z   fetch-depth: 1
+build	Checkout code	2026-02-17T05:37:08.5703646Z   fetch-tags: false
+build	Checkout code	2026-02-17T05:37:08.5704446Z   show-progress: true
+build	Checkout code	2026-02-17T05:37:08.5705261Z   lfs: false
+build	Checkout code	2026-02-17T05:37:08.5706013Z   submodules: false
+build	Checkout code	2026-02-17T05:37:08.5706828Z   set-safe-directory: true
+build	Checkout code	2026-02-17T05:37:08.5708045Z ##[endgroup]
+build	Checkout code	2026-02-17T05:37:08.6825903Z Syncing repository: TheBizarreAbhishek/***
+build	Checkout code	2026-02-17T05:37:08.6828531Z ##[group]Getting Git version info
+build	Checkout code	2026-02-17T05:37:08.6829949Z Working directory is '/home/runner/work/***/***'
+build	Checkout code	2026-02-17T05:37:08.6832322Z [command]/usr/bin/git version
+build	Checkout code	2026-02-17T05:37:08.6833679Z git version 2.52.0
+build	Checkout code	2026-02-17T05:37:08.6860199Z ##[endgroup]
+build	Checkout code	2026-02-17T05:37:08.6876181Z Temporarily overriding HOME='/home/runner/work/_temp/2b4b5e33-ff86-4858-a513-56f76f69cd15' before making global git config changes
+build	Checkout code	2026-02-17T05:37:08.6888273Z Adding repository directory to the temporary git global config as a safe directory
+build	Checkout code	2026-02-17T05:37:08.6890618Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/***/***
+build	Checkout code	2026-02-17T05:37:08.6931581Z Deleting the contents of '/home/runner/work/***/***'
+build	Checkout code	2026-02-17T05:37:08.6935663Z ##[group]Initializing the repository
+build	Checkout code	2026-02-17T05:37:08.6939622Z [command]/usr/bin/git init /home/runner/work/***/***
+build	Checkout code	2026-02-17T05:37:08.7021902Z hint: Using 'master' as the name for the initial branch. This default branch name
+build	Checkout code	2026-02-17T05:37:08.7024365Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+build	Checkout code	2026-02-17T05:37:08.7026981Z hint: to use in all of your new repositories, which will suppress this warning,
+build	Checkout code	2026-02-17T05:37:08.7028642Z hint: call:
+build	Checkout code	2026-02-17T05:37:08.7029455Z hint:
+build	Checkout code	2026-02-17T05:37:08.7030544Z hint: 	git config --global init.defaultBranch <name>
+build	Checkout code	2026-02-17T05:37:08.7031976Z hint:
+build	Checkout code	2026-02-17T05:37:08.7033083Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+build	Checkout code	2026-02-17T05:37:08.7035261Z hint: 'development'. The just-created branch can be renamed via this command:
+build	Checkout code	2026-02-17T05:37:08.7036974Z hint:
+build	Checkout code	2026-02-17T05:37:08.7037738Z hint: 	git branch -m <name>
+build	Checkout code	2026-02-17T05:37:08.7038611Z hint:
+build	Checkout code	2026-02-17T05:37:08.7039773Z hint: Disable this message with "git config set advice.defaultBranchName false"
+build	Checkout code	2026-02-17T05:37:08.7042141Z Initialized empty Git repository in /home/runner/work/***/***/.git/
+build	Checkout code	2026-02-17T05:37:08.7045157Z [command]/usr/bin/git remote add origin https://github.com/TheBizarreAbhishek/***
+build	Checkout code	2026-02-17T05:37:08.7148431Z ##[endgroup]
+build	Checkout code	2026-02-17T05:37:08.7150428Z ##[group]Disabling automatic garbage collection
+build	Checkout code	2026-02-17T05:37:08.7152084Z [command]/usr/bin/git config --local gc.auto 0
+build	Checkout code	2026-02-17T05:37:08.7154787Z ##[endgroup]
+build	Checkout code	2026-02-17T05:37:08.7156075Z ##[group]Setting up auth
+build	Checkout code	2026-02-17T05:37:08.7157540Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build	Checkout code	2026-02-17T05:37:08.7161833Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build	Checkout code	2026-02-17T05:37:08.7501789Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build	Checkout code	2026-02-17T05:37:08.7534344Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build	Checkout code	2026-02-17T05:37:08.7777814Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build	Checkout code	2026-02-17T05:37:08.7813864Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build	Checkout code	2026-02-17T05:37:08.8066986Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+build	Checkout code	2026-02-17T05:37:08.8104055Z ##[endgroup]
+build	Checkout code	2026-02-17T05:37:08.8105544Z ##[group]Fetching the repository
+build	Checkout code	2026-02-17T05:37:08.8115074Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +d0ae32849adab53d0173108c90885ccd06ec0ed0:refs/remotes/origin/main
+build	Checkout code	2026-02-17T05:37:09.2034349Z From https://github.com/TheBizarreAbhishek/***
+build	Checkout code	2026-02-17T05:37:09.2038696Z  * [new ref]         d0ae32849adab53d0173108c90885ccd06ec0ed0 -> origin/main
+build	Checkout code	2026-02-17T05:37:09.2077960Z ##[endgroup]
+build	Checkout code	2026-02-17T05:37:09.2080021Z ##[group]Determining the checkout info
+build	Checkout code	2026-02-17T05:37:09.2082304Z ##[endgroup]
+build	Checkout code	2026-02-17T05:37:09.2088110Z [command]/usr/bin/git sparse-checkout disable
+build	Checkout code	2026-02-17T05:37:09.2137699Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+build	Checkout code	2026-02-17T05:37:09.2169067Z ##[group]Checking out the ref
+build	Checkout code	2026-02-17T05:37:09.2174393Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+build	Checkout code	2026-02-17T05:37:09.2870785Z Switched to a new branch 'main'
+build	Checkout code	2026-02-17T05:37:09.2873581Z branch 'main' set up to track 'origin/main'.
+build	Checkout code	2026-02-17T05:37:09.2881597Z ##[endgroup]
+build	Checkout code	2026-02-17T05:37:09.2921746Z [command]/usr/bin/git log -1 --format=%H
+build	Checkout code	2026-02-17T05:37:09.2947508Z d0ae32849adab53d0173108c90885ccd06ec0ed0
+build	Set up JDK 17	﻿2026-02-17T05:37:09.3297143Z ##[group]Run actions/setup-java@v4
+build	Set up JDK 17	2026-02-17T05:37:09.3298235Z with:
+build	Set up JDK 17	2026-02-17T05:37:09.3298952Z   java-version: 17
+build	Set up JDK 17	2026-02-17T05:37:09.3299797Z   distribution: temurin
+build	Set up JDK 17	2026-02-17T05:37:09.3300851Z   cache: gradle
+build	Set up JDK 17	2026-02-17T05:37:09.3301796Z   java-package: jdk
+build	Set up JDK 17	2026-02-17T05:37:09.3302603Z   check-latest: false
+build	Set up JDK 17	2026-02-17T05:37:09.3303410Z   server-id: github
+build	Set up JDK 17	2026-02-17T05:37:09.3304217Z   server-username: GITHUB_ACTOR
+build	Set up JDK 17	2026-02-17T05:37:09.3305162Z   server-password: GITHUB_TOKEN
+build	Set up JDK 17	2026-02-17T05:37:09.3306112Z   overwrite-settings: true
+build	Set up JDK 17	2026-02-17T05:37:09.3306993Z   job-status: success
+build	Set up JDK 17	2026-02-17T05:37:09.3308044Z   token: ***
+build	Set up JDK 17	2026-02-17T05:37:09.3308775Z ##[endgroup]
+build	Set up JDK 17	2026-02-17T05:37:09.5390878Z ##[group]Installed distributions
+build	Set up JDK 17	2026-02-17T05:37:09.5449207Z Resolved Java 17.0.18+8 from tool-cache
+build	Set up JDK 17	2026-02-17T05:37:09.5450958Z Setting Java 17.0.18+8 as the default
+build	Set up JDK 17	2026-02-17T05:37:09.5463551Z Creating toolchains.xml for JDK version 17 from temurin
+build	Set up JDK 17	2026-02-17T05:37:09.5547476Z Writing to /home/runner/.m2/toolchains.xml
+build	Set up JDK 17	2026-02-17T05:37:09.5549125Z 
+build	Set up JDK 17	2026-02-17T05:37:09.5549719Z Java configuration:
+build	Set up JDK 17	2026-02-17T05:37:09.5551624Z   Distribution: temurin
+build	Set up JDK 17	2026-02-17T05:37:09.5553423Z   Version: 17.0.18+8
+build	Set up JDK 17	2026-02-17T05:37:09.5555298Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Set up JDK 17	2026-02-17T05:37:09.5557024Z 
+build	Set up JDK 17	2026-02-17T05:37:09.5558769Z ##[endgroup]
+build	Set up JDK 17	2026-02-17T05:37:09.5587340Z Creating settings.xml with server-id: github
+build	Set up JDK 17	2026-02-17T05:37:09.5603884Z Writing to /home/runner/.m2/settings.xml
+build	Set up JDK 17	2026-02-17T05:37:09.7947427Z gradle cache is not found
+build	Grant execute permission for gradlew	﻿2026-02-17T05:37:09.8112072Z ##[group]Run chmod +x gradlew
+build	Grant execute permission for gradlew	2026-02-17T05:37:09.8113179Z [36;1mchmod +x gradlew[0m
+build	Grant execute permission for gradlew	2026-02-17T05:37:09.8173860Z shell: /usr/bin/bash -e {0}
+build	Grant execute permission for gradlew	2026-02-17T05:37:09.8174793Z env:
+build	Grant execute permission for gradlew	2026-02-17T05:37:09.8175863Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Grant execute permission for gradlew	2026-02-17T05:37:09.8177586Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Grant execute permission for gradlew	2026-02-17T05:37:09.8178960Z ##[endgroup]
+build	Create local.properties	﻿2026-02-17T05:37:09.8386895Z ##[group]Run echo "sdk.dir=$ANDROID_HOME" > local.properties
+build	Create local.properties	2026-02-17T05:37:09.8388390Z [36;1mecho "sdk.dir=$ANDROID_HOME" > local.properties[0m
+build	Create local.properties	2026-02-17T05:37:09.8390241Z [36;1mecho "GEMINI_API_KEY=***" >> local.properties[0m
+build	Create local.properties	2026-02-17T05:37:09.8391783Z [36;1mecho "WEATHER_API_KEY=" >> local.properties[0m
+build	Create local.properties	2026-02-17T05:37:09.8393014Z [36;1mecho "NEWS_API_KEY=" >> local.properties[0m
+build	Create local.properties	2026-02-17T05:37:09.8394527Z [36;1mecho "KEYSTORE_FILE=***-release-key.jks" >> local.properties[0m
+build	Create local.properties	2026-02-17T05:37:09.8396147Z [36;1mecho "KEYSTORE_PASSWORD=***" >> local.properties[0m
+build	Create local.properties	2026-02-17T05:37:09.8397477Z [36;1mecho "KEY_ALIAS=***" >> local.properties[0m
+build	Create local.properties	2026-02-17T05:37:09.8398804Z [36;1mecho "KEY_PASSWORD=***" >> local.properties[0m
+build	Create local.properties	2026-02-17T05:37:09.8453799Z shell: /usr/bin/bash -e {0}
+build	Create local.properties	2026-02-17T05:37:09.8454686Z env:
+build	Create local.properties	2026-02-17T05:37:09.8455716Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Create local.properties	2026-02-17T05:37:09.8457404Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Create local.properties	2026-02-17T05:37:09.8458792Z ##[endgroup]
+build	Decode Keystore	﻿2026-02-17T05:37:09.8660577Z ##[group]Run echo "***" | base64 --decode > ***-release-key.jks
+build	Decode Keystore	2026-02-17T05:37:09.8723052Z [36;1mecho "***" | base64 --decode > ***-release-key.jks[0m
+build	Decode Keystore	2026-02-17T05:37:09.8776995Z shell: /usr/bin/bash -e {0}
+build	Decode Keystore	2026-02-17T05:37:09.8777865Z env:
+build	Decode Keystore	2026-02-17T05:37:09.8778905Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Decode Keystore	2026-02-17T05:37:09.8780572Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Decode Keystore	2026-02-17T05:37:09.8782055Z ##[endgroup]
+build	Build with Gradle	﻿2026-02-17T05:37:09.8945446Z ##[group]Run ./gradlew build --stacktrace
+build	Build with Gradle	2026-02-17T05:37:09.8946555Z [36;1m./gradlew build --stacktrace[0m
+build	Build with Gradle	2026-02-17T05:37:09.9002520Z shell: /usr/bin/bash -e {0}
+build	Build with Gradle	2026-02-17T05:37:09.9003386Z env:
+build	Build with Gradle	2026-02-17T05:37:09.9004415Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Build with Gradle	2026-02-17T05:37:09.9006105Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Build with Gradle	2026-02-17T05:37:09.9007445Z ##[endgroup]
+build	Build with Gradle	2026-02-17T05:37:10.0724129Z Downloading https://services.gradle.org/distributions/gradle-8.2-bin.zip
+build	Build with Gradle	2026-02-17T05:37:11.7153192Z ............10%............20%............30%.............40%............50%............60%............70%.............80%............90%............100%
+build	Build with Gradle	2026-02-17T05:37:12.8268170Z 
+build	Build with Gradle	2026-02-17T05:37:12.8270981Z Welcome to Gradle 8.2!
+build	Build with Gradle	2026-02-17T05:37:12.8271552Z 
+build	Build with Gradle	2026-02-17T05:37:12.8271789Z Here are the highlights of this release:
+build	Build with Gradle	2026-02-17T05:37:12.8272509Z  - Kotlin DSL: new reference documentation, assignment syntax by default
+build	Build with Gradle	2026-02-17T05:37:12.8273331Z  - Kotlin DSL is now the default with Gradle init
+build	Build with Gradle	2026-02-17T05:37:12.8273998Z  - Improved suggestions to resolve errors in console output
+build	Build with Gradle	2026-02-17T05:37:12.8274436Z 
+build	Build with Gradle	2026-02-17T05:37:12.8274797Z For more details see https://docs.gradle.org/8.2/release-notes.html
+build	Build with Gradle	2026-02-17T05:37:12.8275280Z 
+build	Build with Gradle	2026-02-17T05:37:12.9254750Z Starting a Gradle Daemon (subsequent builds will be faster)
+build	Build with Gradle	2026-02-17T05:38:20.0280032Z > Task :app:preBuild UP-TO-DATE
+build	Build with Gradle	2026-02-17T05:38:20.0322838Z > Task :app:preDebugBuild UP-TO-DATE
+build	Build with Gradle	2026-02-17T05:38:20.1247914Z > Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+build	Build with Gradle	2026-02-17T05:38:50.1247859Z > Task :app:dataBindingMergeDependencyArtifactsDebug
+build	Build with Gradle	2026-02-17T05:39:30.9253348Z > Task :app:generateDebugResValues
+build	Build with Gradle	2026-02-17T05:39:30.9273239Z > Task :app:generateDebugResources
+build	Build with Gradle	2026-02-17T05:39:34.1247612Z > Task :app:packageDebugResources
+build	Build with Gradle	2026-02-17T05:39:35.1247420Z > Task :app:mergeDebugResources
+build	Build with Gradle	2026-02-17T05:39:35.3257372Z > Task :app:generateDebugBuildConfig
+build	Build with Gradle	2026-02-17T05:39:35.3261581Z > Task :app:javaPreCompileDebug
+build	Build with Gradle	2026-02-17T05:39:35.4248044Z > Task :app:parseDebugLocalResources
+build	Build with Gradle	2026-02-17T05:39:35.6258075Z > Task :app:checkDebugAarMetadata
+build	Build with Gradle	2026-02-17T05:39:35.8255910Z > Task :app:dataBindingGenBaseClassesDebug
+build	Build with Gradle	2026-02-17T05:39:35.9260899Z > Task :app:mapDebugSourceSetPaths
+build	Build with Gradle	2026-02-17T05:39:35.9268188Z > Task :app:createDebugCompatibleScreenManifests
+build	Build with Gradle	2026-02-17T05:39:35.9270284Z > Task :app:extractDeepLinksDebug
+build	Build with Gradle	2026-02-17T05:39:36.2247345Z > Task :app:processDebugMainManifest
+build	Build with Gradle	2026-02-17T05:39:36.5253560Z > Task :app:processDebugManifest
+build	Build with Gradle	2026-02-17T05:39:36.6248659Z > Task :app:mergeDebugShaders
+build	Build with Gradle	2026-02-17T05:39:36.6269924Z > Task :app:compileDebugShaders NO-SOURCE
+build	Build with Gradle	2026-02-17T05:39:36.6274096Z > Task :app:generateDebugAssets UP-TO-DATE
+build	Build with Gradle	2026-02-17T05:39:36.7248156Z > Task :app:mergeDebugAssets
+build	Build with Gradle	2026-02-17T05:39:36.7250648Z > Task :app:compressDebugAssets
+build	Build with Gradle	2026-02-17T05:39:36.7266765Z > Task :app:processDebugJavaRes NO-SOURCE
+build	Build with Gradle	2026-02-17T05:39:40.1250538Z > Task :app:desugarDebugFileDependencies
+build	Build with Gradle	2026-02-17T05:39:40.1252102Z > Task :app:mergeDebugJniLibFolders
+build	Build with Gradle	2026-02-17T05:39:40.1252877Z > Task :app:checkDebugDuplicateClasses
+build	Build with Gradle	2026-02-17T05:39:40.3254796Z > Task :app:mergeDebugJavaResource
+build	Build with Gradle	2026-02-17T05:39:40.3255796Z > Task :app:mergeDebugNativeLibs NO-SOURCE
+build	Build with Gradle	2026-02-17T05:40:06.5247024Z > Task :app:processDebugManifestForPackage
+build	Build with Gradle	2026-02-17T05:40:10.3254467Z > Task :app:mergeExtDexDebug
+build	Build with Gradle	2026-02-17T05:40:16.3264592Z > Task :app:stripDebugDebugSymbols NO-SOURCE
+build	Build with Gradle	2026-02-17T05:40:16.3275327Z > Task :app:mergeLibDexDebug
+build	Build with Gradle	2026-02-17T05:40:17.5247329Z > Task :app:processDebugResources
+build	Build with Gradle	2026-02-17T05:40:18.0274837Z > Task :app:validateSigningDebug
+build	Build with Gradle	2026-02-17T05:40:22.1252565Z 
+build	Build with Gradle	2026-02-17T05:40:22.1277212Z Note: Some input files use or override a deprecated API.
+build	Build with Gradle	2026-02-17T05:40:22.1277855Z > Task :app:compileDebugJavaWithJavac
+build	Build with Gradle	2026-02-17T05:40:22.1283194Z Note: Recompile with -Xlint:deprecation for details.
+build	Build with Gradle	2026-02-17T05:40:24.7312048Z 
+build	Build with Gradle	2026-02-17T05:40:24.7312702Z > Task :app:dexBuilderDebug
+build	Build with Gradle	2026-02-17T05:40:24.7314072Z > Task :app:writeDebugAppMetadata
+build	Build with Gradle	2026-02-17T05:40:24.8252446Z > Task :app:writeDebugSigningConfigVersions
+build	Build with Gradle	2026-02-17T05:40:24.8253095Z > Task :app:preReleaseBuild UP-TO-DATE
+build	Build with Gradle	2026-02-17T05:40:24.8253571Z > Task :app:mergeReleaseJniLibFolders
+build	Build with Gradle	2026-02-17T05:40:24.8254065Z > Task :app:mergeReleaseNativeLibs NO-SOURCE
+build	Build with Gradle	2026-02-17T05:40:24.8254597Z > Task :app:stripReleaseDebugSymbols NO-SOURCE
+build	Build with Gradle	2026-02-17T05:40:24.8255160Z > Task :app:extractReleaseNativeSymbolTables NO-SOURCE
+build	Build with Gradle	2026-02-17T05:40:24.8255769Z > Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+build	Build with Gradle	2026-02-17T05:40:24.8256834Z > Task :app:checkReleaseDuplicateClasses
+build	Build with Gradle	2026-02-17T05:40:24.9247500Z > Task :app:dataBindingMergeDependencyArtifactsRelease
+build	Build with Gradle	2026-02-17T05:40:24.9263510Z > Task :app:generateReleaseResValues
+build	Build with Gradle	2026-02-17T05:40:24.9271954Z > Task :app:generateReleaseResources
+build	Build with Gradle	2026-02-17T05:40:25.0247097Z > Task :app:mergeProjectDexDebug
+build	Build with Gradle	2026-02-17T05:40:27.4246609Z > Task :app:packageReleaseResources
+build	Build with Gradle	2026-02-17T05:40:27.5290416Z > Task :app:generateReleaseBuildConfig
+build	Build with Gradle	2026-02-17T05:40:27.6251535Z > Task :app:packageDebug
+build	Build with Gradle	2026-02-17T05:40:27.6252309Z > Task :app:createDebugApkListingFileRedirect
+build	Build with Gradle	2026-02-17T05:40:27.6253136Z > Task :app:assembleDebug
+build	Build with Gradle	2026-02-17T05:40:27.6253796Z > Task :app:parseReleaseLocalResources
+build	Build with Gradle	2026-02-17T05:40:27.6254297Z > Task :app:mapReleaseSourceSetPaths
+build	Build with Gradle	2026-02-17T05:40:27.6254831Z > Task :app:createReleaseCompatibleScreenManifests
+build	Build with Gradle	2026-02-17T05:40:27.6255368Z > Task :app:extractDeepLinksRelease
+build	Build with Gradle	2026-02-17T05:40:27.7276868Z > Task :app:processReleaseMainManifest
+build	Build with Gradle	2026-02-17T05:40:27.7311518Z > Task :app:processReleaseManifest
+build	Build with Gradle	2026-02-17T05:40:27.8246685Z > Task :app:checkReleaseAarMetadata
+build	Build with Gradle	2026-02-17T05:40:27.8253017Z > Task :app:desugarReleaseFileDependencies
+build	Build with Gradle	2026-02-17T05:40:50.2282339Z > Task :app:javaPreCompileRelease
+build	Build with Gradle	2026-02-17T05:40:54.9263978Z > Task :app:mergeReleaseResources
+build	Build with Gradle	2026-02-17T05:40:57.7252059Z > Task :app:processReleaseManifestForPackage
+build	Build with Gradle	2026-02-17T05:40:57.8246627Z > Task :app:mergeExtDexRelease
+build	Build with Gradle	2026-02-17T05:41:05.9247074Z > Task :app:dataBindingGenBaseClassesRelease
+build	Build with Gradle	2026-02-17T05:41:06.0259569Z > Task :app:mergeReleaseArtProfile
+build	Build with Gradle	2026-02-17T05:41:06.0263672Z > Task :app:mergeReleaseShaders
+build	Build with Gradle	2026-02-17T05:41:06.0265603Z > Task :app:compileReleaseShaders NO-SOURCE
+build	Build with Gradle	2026-02-17T05:41:06.0267568Z > Task :app:generateReleaseAssets UP-TO-DATE
+build	Build with Gradle	2026-02-17T05:41:06.0271155Z > Task :app:mergeReleaseAssets
+build	Build with Gradle	2026-02-17T05:41:06.0273315Z > Task :app:compressReleaseAssets
+build	Build with Gradle	2026-02-17T05:41:06.0276174Z > Task :app:processReleaseJavaRes NO-SOURCE
+build	Build with Gradle	2026-02-17T05:41:06.2246639Z > Task :app:collectReleaseDependencies
+build	Build with Gradle	2026-02-17T05:41:06.7253884Z > Task :app:sdkReleaseDependencyData
+build	Build with Gradle	2026-02-17T05:41:06.7258459Z > Task :app:validateSigningRelease
+build	Build with Gradle	2026-02-17T05:41:06.8247081Z > Task :app:writeReleaseAppMetadata
+build	Build with Gradle	2026-02-17T05:41:06.8252850Z > Task :app:writeReleaseSigningConfigVersions
+build	Build with Gradle	2026-02-17T05:41:07.1257467Z > Task :app:bundleDebugClassesToCompileJar
+build	Build with Gradle	2026-02-17T05:41:07.1262944Z > Task :app:extractProguardFiles
+build	Build with Gradle	2026-02-17T05:41:07.1263960Z > Task :app:preDebugAndroidTestBuild SKIPPED
+build	Build with Gradle	2026-02-17T05:41:07.1264679Z > Task :app:generateDebugAndroidTestResValues
+build	Build with Gradle	2026-02-17T05:41:07.2264879Z > Task :app:mergeReleaseJavaResource
+build	Build with Gradle	2026-02-17T05:41:07.4246766Z > Task :app:processReleaseResources
+build	Build with Gradle	2026-02-17T05:41:19.8248995Z > Task :app:generateDebugLintReportModel
+build	Build with Gradle	2026-02-17T05:41:20.6259647Z Note: Some input files use or override a deprecated API.
+build	Build with Gradle	2026-02-17T05:41:20.6260155Z 
+build	Build with Gradle	2026-02-17T05:41:20.6260424Z > Task :app:compileReleaseJavaWithJavac
+build	Build with Gradle	2026-02-17T05:41:20.6302421Z Note: Recompile with -Xlint:deprecation for details.
+build	Build with Gradle	2026-02-17T05:41:20.9254394Z 
+build	Build with Gradle	2026-02-17T05:41:20.9260737Z > Task :app:dexBuilderRelease
+build	Build with Gradle	2026-02-17T05:41:21.1272725Z > Task :app:mergeReleaseGlobalSynthetics
+build	Build with Gradle	2026-02-17T05:41:23.4246395Z > Task :app:mergeDexRelease
+build	Build with Gradle	2026-02-17T05:41:28.2260842Z > Task :app:bundleDebugClassesToRuntimeJar
+build	Build with Gradle	2026-02-17T05:41:28.2266100Z > Task :app:preDebugUnitTestBuild UP-TO-DATE
+build	Build with Gradle	2026-02-17T05:41:28.2297356Z > Task :app:javaPreCompileDebugUnitTest
+build	Build with Gradle	2026-02-17T05:41:28.2297965Z > Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+build	Build with Gradle	2026-02-17T05:41:28.2298583Z > Task :app:processDebugUnitTestJavaRes NO-SOURCE
+build	Build with Gradle	2026-02-17T05:41:28.2299111Z > Task :app:testDebugUnitTest NO-SOURCE
+build	Build with Gradle	2026-02-17T05:41:28.3264807Z > Task :app:bundleReleaseClassesToRuntimeJar
+build	Build with Gradle	2026-02-17T05:41:28.3265452Z > Task :app:bundleReleaseClassesToCompileJar
+build	Build with Gradle	2026-02-17T05:41:28.3265957Z > Task :app:preReleaseUnitTestBuild UP-TO-DATE
+build	Build with Gradle	2026-02-17T05:41:28.3266460Z > Task :app:javaPreCompileReleaseUnitTest
+build	Build with Gradle	2026-02-17T05:41:28.3267560Z > Task :app:compileReleaseUnitTestJavaWithJavac NO-SOURCE
+build	Build with Gradle	2026-02-17T05:41:28.3268168Z > Task :app:processReleaseUnitTestJavaRes NO-SOURCE
+build	Build with Gradle	2026-02-17T05:41:28.4253990Z > Task :app:testReleaseUnitTest NO-SOURCE
+build	Build with Gradle	2026-02-17T05:41:28.4258560Z > Task :app:test UP-TO-DATE
+build	Build with Gradle	2026-02-17T05:41:28.7252227Z > Task :app:optimizeReleaseResources
+build	Build with Gradle	2026-02-17T05:41:28.9248885Z > Task :app:compileReleaseArtProfile
+build	Build with Gradle	2026-02-17T05:41:29.6250754Z > Task :app:packageRelease
+build	Build with Gradle	2026-02-17T05:41:29.6251591Z > Task :app:createReleaseApkListingFileRedirect
+build	Build with Gradle	2026-02-17T05:41:29.6252151Z > Task :app:assembleRelease
+build	Build with Gradle	2026-02-17T05:41:29.6252517Z > Task :app:assemble
+build	Build with Gradle	2026-02-17T05:41:44.3282258Z > Task :app:lintAnalyzeDebug
+build	Build with Gradle	2026-02-17T05:41:44.6252712Z 
+build	Build with Gradle	2026-02-17T05:41:44.6253758Z > Task :app:lintReportDebug
+build	Build with Gradle	2026-02-17T05:41:44.6257951Z Wrote HTML report to file:///home/runner/work/***/***/app/build/reports/lint-results-debug.html
+build	Build with Gradle	2026-02-17T05:41:44.6258686Z 
+build	Build with Gradle	2026-02-17T05:41:44.6258842Z > Task :app:lintDebug
+build	Build with Gradle	2026-02-17T05:41:44.6259244Z > Task :app:lint
+build	Build with Gradle	2026-02-17T05:41:44.6259567Z > Task :app:check
+build	Build with Gradle	2026-02-17T05:41:44.6259876Z > Task :app:build
+build	Build with Gradle	2026-02-17T05:41:44.6260084Z 
+build	Build with Gradle	2026-02-17T05:41:44.6260238Z BUILD SUCCESSFUL in 4m 34s
+build	Build with Gradle	2026-02-17T05:41:44.6260654Z 83 actionable tasks: 83 executed
+build	Build Release APK	﻿2026-02-17T05:41:45.0185170Z ##[group]Run ./gradlew assembleRelease --stacktrace
+build	Build Release APK	2026-02-17T05:41:45.0185586Z [36;1m./gradlew assembleRelease --stacktrace[0m
+build	Build Release APK	2026-02-17T05:41:45.0235325Z shell: /usr/bin/bash -e {0}
+build	Build Release APK	2026-02-17T05:41:45.0235600Z env:
+build	Build Release APK	2026-02-17T05:41:45.0235922Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Build Release APK	2026-02-17T05:41:45.0236466Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Build Release APK	2026-02-17T05:41:45.0236874Z ##[endgroup]
+build	Build Release APK	2026-02-17T05:41:45.9185352Z > Task :app:preBuild UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:45.9199647Z > Task :app:preReleaseBuild UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:45.9220537Z > Task :app:mergeReleaseJniLibFolders UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.0151441Z > Task :app:mergeReleaseNativeLibs NO-SOURCE
+build	Build Release APK	2026-02-17T05:41:46.0152598Z > Task :app:stripReleaseDebugSymbols NO-SOURCE
+build	Build Release APK	2026-02-17T05:41:46.0183959Z > Task :app:extractReleaseNativeSymbolTables NO-SOURCE
+build	Build Release APK	2026-02-17T05:41:46.0185667Z > Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+build	Build Release APK	2026-02-17T05:41:46.0188035Z > Task :app:checkReleaseDuplicateClasses UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.0190381Z > Task :app:dataBindingMergeDependencyArtifactsRelease UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.0192179Z > Task :app:generateReleaseResValues UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.0194673Z > Task :app:generateReleaseResources UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.0196257Z > Task :app:mergeReleaseResources UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.0197987Z > Task :app:packageReleaseResources UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.0203723Z > Task :app:parseReleaseLocalResources UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1152506Z > Task :app:dataBindingGenBaseClassesRelease UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1153750Z > Task :app:generateReleaseBuildConfig UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1154767Z > Task :app:javaPreCompileRelease UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1155670Z > Task :app:checkReleaseAarMetadata UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1156285Z > Task :app:mapReleaseSourceSetPaths UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1156938Z > Task :app:createReleaseCompatibleScreenManifests UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1157617Z > Task :app:extractDeepLinksRelease UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1158154Z > Task :app:processReleaseMainManifest UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1158694Z > Task :app:processReleaseManifest UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1159271Z > Task :app:processReleaseManifestForPackage UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1159874Z > Task :app:processReleaseResources UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1160999Z > Task :app:compileReleaseJavaWithJavac UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1162209Z > Task :app:dexBuilderRelease UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1163580Z > Task :app:desugarReleaseFileDependencies UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1164770Z > Task :app:mergeExtDexRelease UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1165959Z > Task :app:mergeDexRelease UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1168242Z > Task :app:mergeReleaseArtProfile UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1169117Z > Task :app:mergeReleaseGlobalSynthetics UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1170010Z > Task :app:compileReleaseArtProfile UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1170813Z > Task :app:mergeReleaseShaders UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1192393Z > Task :app:compileReleaseShaders NO-SOURCE
+build	Build Release APK	2026-02-17T05:41:46.1194587Z > Task :app:generateReleaseAssets UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1201447Z > Task :app:mergeReleaseAssets UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1218845Z > Task :app:compressReleaseAssets UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1224694Z > Task :app:processReleaseJavaRes NO-SOURCE
+build	Build Release APK	2026-02-17T05:41:46.1770844Z > Task :app:mergeReleaseJavaResource UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1772206Z > Task :app:optimizeReleaseResources UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1774099Z > Task :app:collectReleaseDependencies UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1785089Z > Task :app:sdkReleaseDependencyData UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1786158Z > Task :app:validateSigningRelease UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1787016Z > Task :app:writeReleaseAppMetadata UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1788045Z > Task :app:writeReleaseSigningConfigVersions UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1802231Z > Task :app:packageRelease UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1803776Z > Task :app:createReleaseApkListingFileRedirect UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1804736Z > Task :app:assembleRelease UP-TO-DATE
+build	Build Release APK	2026-02-17T05:41:46.1805502Z 
+build	Build Release APK	2026-02-17T05:41:46.1806244Z BUILD SUCCESSFUL in 1s
+build	Build Release APK	2026-02-17T05:41:46.1806716Z 38 actionable tasks: 38 up-to-date
+build	Upload Release APK (Artifact)	﻿2026-02-17T05:41:46.2011952Z ##[group]Run actions/upload-artifact@v4
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.2012485Z with:
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.2012894Z   name: ***-release
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.2013337Z   path: app/build/outputs/apk/release/app-release.apk
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.2013871Z   if-no-files-found: warn
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.2014256Z   compression-level: 6
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.2014608Z   overwrite: false
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.2014973Z   include-hidden-files: false
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.2015316Z env:
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.2015793Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.2016648Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.2017321Z ##[endgroup]
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.5342569Z With the provided path, there will be 1 file uploaded
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.5344085Z Artifact name is valid!
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.5345158Z Root directory input is valid!
+build	Upload Release APK (Artifact)	2026-02-17T05:41:46.6750859Z Beginning upload of artifact content to blob storage
+build	Upload Release APK (Artifact)	2026-02-17T05:41:47.3650606Z Uploaded bytes 8388608
+build	Upload Release APK (Artifact)	2026-02-17T05:41:47.7904458Z Uploaded bytes 16777216
+build	Upload Release APK (Artifact)	2026-02-17T05:41:47.8592986Z Uploaded bytes 25165824
+build	Upload Release APK (Artifact)	2026-02-17T05:41:47.9404485Z Uploaded bytes 26338548
+build	Upload Release APK (Artifact)	2026-02-17T05:41:47.9731038Z Finished uploading artifact content to blob storage!
+build	Upload Release APK (Artifact)	2026-02-17T05:41:47.9734470Z SHA256 digest of uploaded artifact zip is e6cb9338ce2569ca9058393edf62f145e089cdf84989216cc2d5c6baba3a38e4
+build	Upload Release APK (Artifact)	2026-02-17T05:41:47.9735882Z Finalizing artifact upload
+build	Upload Release APK (Artifact)	2026-02-17T05:41:48.0589741Z Artifact ***-release.zip successfully finalized. Artifact ID 5534302597
+build	Upload Release APK (Artifact)	2026-02-17T05:41:48.0591710Z Artifact ***-release has been successfully uploaded! Final size is 26338548 bytes. Artifact ID is 5534302597
+build	Upload Release APK (Artifact)	2026-02-17T05:41:48.0602493Z Artifact download URL: https://github.com/TheBizarreAbhishek/***/actions/runs/22087255975/artifacts/5534302597
+build	Delete old releases	﻿2026-02-17T05:41:48.0791718Z ##[group]Run dev-drprasad/delete-older-releases@v0.3.4
+build	Delete old releases	2026-02-17T05:41:48.0792075Z with:
+build	Delete old releases	2026-02-17T05:41:48.0792258Z   keep_latest: 0
+build	Delete old releases	2026-02-17T05:41:48.0792451Z   delete_tags: true
+build	Delete old releases	2026-02-17T05:41:48.0792657Z   keep_min_download_counts: 0
+build	Delete old releases	2026-02-17T05:41:48.0792890Z   delete_expired_data: 0
+build	Delete old releases	2026-02-17T05:41:48.0793118Z   delete_prerelease_only: false
+build	Delete old releases	2026-02-17T05:41:48.0793364Z   github_rest_api_url: api.github.com
+build	Delete old releases	2026-02-17T05:41:48.0793605Z env:
+build	Delete old releases	2026-02-17T05:41:48.0793888Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Delete old releases	2026-02-17T05:41:48.0794552Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Delete old releases	2026-02-17T05:41:48.0795197Z   GITHUB_TOKEN: ***
+build	Delete old releases	2026-02-17T05:41:48.0795405Z ##[endgroup]
+build	Delete old releases	2026-02-17T05:41:48.1074117Z 💬  no `repo` name given. fall-ing back to this repo
+build	Delete old releases	2026-02-17T05:41:48.1078222Z 🌶  given `keep_latest` is 0, this will wipe out all releases
+build	Delete old releases	2026-02-17T05:41:48.1080733Z 🔖  corresponding tags also will be deleted
+build	Delete old releases	2026-02-17T05:41:48.1081915Z 🌶  given `keep_min_download_counts` is 0, this will not enable the download count removal rule
+build	Delete old releases	2026-02-17T05:41:48.1086457Z 🌶  given `delete_expired_data` is  0
+build	Delete old releases	2026-02-17T05:41:48.6045690Z 💬  found total of 1 active release(s)
+build	Delete old releases	2026-02-17T05:41:48.6046507Z 🍻  found 1 older release(s)
+build	Delete old releases	2026-02-17T05:41:48.6047157Z starting to delete build-7155e24 with id 287080098
+build	Delete old releases	2026-02-17T05:41:49.1524379Z 👍🏼  1 older release(s) deleted successfully!
+build	Get short SHA	﻿2026-02-17T05:41:49.1603202Z ##[group]Run echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+build	Get short SHA	2026-02-17T05:41:49.1604156Z [36;1mecho "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT[0m
+build	Get short SHA	2026-02-17T05:41:49.1660759Z shell: /usr/bin/bash -e {0}
+build	Get short SHA	2026-02-17T05:41:49.1661011Z env:
+build	Get short SHA	2026-02-17T05:41:49.1661551Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Get short SHA	2026-02-17T05:41:49.1662071Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Get short SHA	2026-02-17T05:41:49.1662440Z ##[endgroup]
+build	Create GitHub Release	﻿2026-02-17T05:41:49.1846823Z ##[group]Run softprops/action-gh-release@v2
+build	Create GitHub Release	2026-02-17T05:41:49.1847133Z with:
+build	Create GitHub Release	2026-02-17T05:41:49.1847322Z   tag_name: build-d0ae328
+build	Create GitHub Release	2026-02-17T05:41:49.1847562Z   name: KriShield Release (d0ae328)
+build	Create GitHub Release	2026-02-17T05:41:49.1848232Z   body: Automated release build from commit d0ae32849adab53d0173108c90885ccd06ec0ed0
+build	Create GitHub Release	
+build	Create GitHub Release	Branch: main
+build	Create GitHub Release	Commit: fix: Add missing closing brace to MarketDashboardActivity
+build	Create GitHub Release	
+build	Create GitHub Release	2026-02-17T05:41:49.1848975Z   files: app/build/outputs/apk/release/app-release.apk
+build	Create GitHub Release	2026-02-17T05:41:49.1849272Z   draft: false
+build	Create GitHub Release	2026-02-17T05:41:49.1849478Z   prerelease: false
+build	Create GitHub Release	2026-02-17T05:41:49.1849688Z   overwrite_files: true
+build	Create GitHub Release	2026-02-17T05:41:49.1849998Z   token: ***
+build	Create GitHub Release	2026-02-17T05:41:49.1850179Z env:
+build	Create GitHub Release	2026-02-17T05:41:49.1850460Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Create GitHub Release	2026-02-17T05:41:49.1850937Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Create GitHub Release	2026-02-17T05:41:49.1851539Z   GITHUB_TOKEN: ***
+build	Create GitHub Release	2026-02-17T05:41:49.1851737Z ##[endgroup]
+build	Create GitHub Release	2026-02-17T05:41:49.5197416Z 👩‍🏭 Creating new GitHub release for tag build-d0ae328...
+build	Create GitHub Release	2026-02-17T05:41:49.8520455Z ⬆️ Uploading app-release.apk...
+build	Create GitHub Release	2026-02-17T05:41:51.2933859Z ✅ Uploaded app-release.apk
+build	Create GitHub Release	2026-02-17T05:41:51.2944656Z Finalizing release...
+build	Create GitHub Release	2026-02-17T05:41:51.7736569Z 🎉 Release ready at https://github.com/TheBizarreAbhishek/***/releases/tag/build-d0ae328
+build	Run Tests	﻿2026-02-17T05:41:51.7853323Z ##[group]Run ./gradlew test --stacktrace
+build	Run Tests	2026-02-17T05:41:51.7853947Z [36;1m./gradlew test --stacktrace[0m
+build	Run Tests	2026-02-17T05:41:51.7909699Z shell: /usr/bin/bash -e {0}
+build	Run Tests	2026-02-17T05:41:51.7909977Z env:
+build	Run Tests	2026-02-17T05:41:51.7910278Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Run Tests	2026-02-17T05:41:51.7910777Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Run Tests	2026-02-17T05:41:51.7911162Z ##[endgroup]
+build	Run Tests	2026-02-17T05:41:52.6999433Z > Task :app:preBuild UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7000019Z > Task :app:preDebugBuild UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7891802Z > Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7893080Z > Task :app:generateDebugResValues UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7894597Z > Task :app:generateDebugResources UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7897755Z > Task :app:mergeDebugResources UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7899472Z > Task :app:packageDebugResources UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7902456Z > Task :app:parseDebugLocalResources UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7904666Z > Task :app:dataBindingGenBaseClassesDebug UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7907027Z > Task :app:generateDebugBuildConfig UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7909468Z > Task :app:javaPreCompileDebug UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7914623Z > Task :app:checkDebugAarMetadata UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7915254Z > Task :app:mapDebugSourceSetPaths UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7962123Z > Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7964606Z > Task :app:extractDeepLinksDebug UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.7965728Z > Task :app:processDebugMainManifest UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8016912Z > Task :app:processDebugManifest UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8022346Z > Task :app:processDebugManifestForPackage UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8027623Z > Task :app:processDebugResources UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8028560Z > Task :app:compileDebugJavaWithJavac UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8031553Z > Task :app:bundleDebugClassesToRuntimeJar UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8032709Z > Task :app:bundleDebugClassesToCompileJar UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8036711Z > Task :app:preDebugUnitTestBuild UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8037482Z > Task :app:javaPreCompileDebugUnitTest UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8038572Z > Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+build	Run Tests	2026-02-17T05:41:52.8039450Z > Task :app:processDebugJavaRes NO-SOURCE
+build	Run Tests	2026-02-17T05:41:52.8040096Z > Task :app:processDebugUnitTestJavaRes NO-SOURCE
+build	Run Tests	2026-02-17T05:41:52.8040663Z > Task :app:testDebugUnitTest NO-SOURCE
+build	Run Tests	2026-02-17T05:41:52.8041184Z > Task :app:preReleaseBuild UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8889811Z > Task :app:dataBindingMergeDependencyArtifactsRelease UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8890626Z > Task :app:generateReleaseResValues UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8891187Z > Task :app:generateReleaseResources UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8892404Z > Task :app:mergeReleaseResources UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8893642Z > Task :app:packageReleaseResources UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8903169Z > Task :app:parseReleaseLocalResources UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8921009Z > Task :app:dataBindingGenBaseClassesRelease UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8921914Z > Task :app:generateReleaseBuildConfig UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8922497Z > Task :app:javaPreCompileRelease UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8923041Z > Task :app:checkReleaseAarMetadata UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8923590Z > Task :app:mapReleaseSourceSetPaths UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8924256Z > Task :app:createReleaseCompatibleScreenManifests UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8924929Z > Task :app:extractDeepLinksRelease UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8925542Z > Task :app:processReleaseMainManifest UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8926143Z > Task :app:processReleaseManifest UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8926790Z > Task :app:processReleaseManifestForPackage UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8927466Z > Task :app:processReleaseResources UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8928090Z > Task :app:compileReleaseJavaWithJavac UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8929335Z > Task :app:bundleReleaseClassesToRuntimeJar UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8930035Z > Task :app:bundleReleaseClassesToCompileJar UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8930689Z > Task :app:preReleaseUnitTestBuild UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8931574Z > Task :app:javaPreCompileReleaseUnitTest UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8932227Z > Task :app:compileReleaseUnitTestJavaWithJavac NO-SOURCE
+build	Run Tests	2026-02-17T05:41:52.8932601Z > Task :app:processReleaseJavaRes NO-SOURCE
+build	Run Tests	2026-02-17T05:41:52.8932931Z > Task :app:processReleaseUnitTestJavaRes NO-SOURCE
+build	Run Tests	2026-02-17T05:41:52.8933249Z > Task :app:testReleaseUnitTest NO-SOURCE
+build	Run Tests	2026-02-17T05:41:52.8933530Z > Task :app:test UP-TO-DATE
+build	Run Tests	2026-02-17T05:41:52.8933682Z 
+build	Run Tests	2026-02-17T05:41:52.8933768Z BUILD SUCCESSFUL in 1s
+build	Run Tests	2026-02-17T05:41:52.8933990Z 40 actionable tasks: 40 up-to-date
+build	Upload Test Results	﻿2026-02-17T05:41:52.9221098Z ##[group]Run actions/upload-artifact@v4
+build	Upload Test Results	2026-02-17T05:41:52.9222472Z with:
+build	Upload Test Results	2026-02-17T05:41:52.9222737Z   name: test-results
+build	Upload Test Results	2026-02-17T05:41:52.9222974Z   path: app/build/test-results/
+build	Upload Test Results	2026-02-17T05:41:52.9223231Z   if-no-files-found: warn
+build	Upload Test Results	2026-02-17T05:41:52.9223464Z   compression-level: 6
+build	Upload Test Results	2026-02-17T05:41:52.9223918Z   overwrite: false
+build	Upload Test Results	2026-02-17T05:41:52.9224138Z   include-hidden-files: false
+build	Upload Test Results	2026-02-17T05:41:52.9224378Z env:
+build	Upload Test Results	2026-02-17T05:41:52.9224769Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Upload Test Results	2026-02-17T05:41:52.9225278Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+build	Upload Test Results	2026-02-17T05:41:52.9225647Z ##[endgroup]
+build	Upload Test Results	2026-02-17T05:41:53.1539038Z ##[warning]No files were found with the provided path: app/build/test-results/. No artifacts will be uploaded.
+build	Post Set up JDK 17	﻿2026-02-17T05:41:53.1682669Z Post job cleanup.
+build	Post Set up JDK 17	2026-02-17T05:41:53.3632951Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/***/*** --files-from manifest.txt --use-compress-program zstdmt
+build	Post Set up JDK 17	2026-02-17T05:41:56.4482486Z Sent 28612490 of 431265674 (6.6%), 27.3 MBs/sec
+build	Post Set up JDK 17	2026-02-17T05:41:56.7704071Z Sent 431265674 of 431265674 (100.0%), 309.9 MBs/sec
+build	Post Set up JDK 17	2026-02-17T05:41:56.9811056Z Cache saved with the key: setup-java-Linux-x64-gradle-1da7d2d64a990680d9688ae296cd82d9962a4723f1670d2d7bc97e9f817a9c95
+build	Post Checkout code	﻿2026-02-17T05:41:56.9996809Z Post job cleanup.
+build	Post Checkout code	2026-02-17T05:41:57.0970733Z [command]/usr/bin/git version
+build	Post Checkout code	2026-02-17T05:41:57.1008111Z git version 2.52.0
+build	Post Checkout code	2026-02-17T05:41:57.1053618Z Temporarily overriding HOME='/home/runner/work/_temp/a0ae4929-147e-4976-a79f-58795aeea686' before making global git config changes
+build	Post Checkout code	2026-02-17T05:41:57.1054983Z Adding repository directory to the temporary git global config as a safe directory
+build	Post Checkout code	2026-02-17T05:41:57.1068402Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/***/***
+build	Post Checkout code	2026-02-17T05:41:57.1104841Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build	Post Checkout code	2026-02-17T05:41:57.1138779Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build	Post Checkout code	2026-02-17T05:41:57.1382142Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build	Post Checkout code	2026-02-17T05:41:57.1404160Z http.https://github.com/.extraheader
+build	Post Checkout code	2026-02-17T05:41:57.1417252Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+build	Post Checkout code	2026-02-17T05:41:57.1449261Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build	Post Checkout code	2026-02-17T05:41:57.1711792Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build	Post Checkout code	2026-02-17T05:41:57.1745936Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build	Complete job	﻿2026-02-17T05:41:57.2097130Z Cleaning up orphan processes
+build	Complete job	2026-02-17T05:41:57.2404093Z Terminate orphan process: pid (2284) (java)
