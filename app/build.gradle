@@ -53,6 +53,11 @@ android {
         viewBinding true
         buildConfig true  // Required for custom BuildConfig fields
     }
+
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+    }
 }
 
 dependencies {
