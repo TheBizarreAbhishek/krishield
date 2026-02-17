@@ -148,19 +148,15 @@ public class SmartIrrigationActivity extends AppCompatActivity {
         layoutResult.setVisibility(View.GONE);
         btnAnalyze.setEnabled(false);
 
-        String prompt = String.format(
-                "You are an expert agronomist. User Input:\n" +
-                        "- Crop: %s\n" +
-                        "- Soil: %s\n" +
-                        "- Last Watered: %s\n" +
-                        "- Current Location Weather: %s\n\n" +
-                        "Task: Provide a recommendation (Water Today / Do Not Water / Wait) with a very short reason (2 lines max). "
-                        +
-                        "Keep it simple and direct for a farmer.",
-                crop, soil, date, weatherInfo);
+        // Use Repository for Caching
+        com.krishield.repositories.IrrigationRepository repository = new com.krishield.repositories.IrrigationRepository(
+                this);
 
-        geminiService.sendTextMessage(prompt, Executors.newSingleThreadExecutor(),
-                new GeminiService.ResponseCallback() {
+        // Force refresh is false by default, can be true if user explicitly requests
+        // refresh
+        // For now, we use cached result if available for valid timeframe
+        repository.getIrrigationAdvice(crop, soil, date, weatherInfo, false,
+                new com.krishield.repositories.IrrigationRepository.IrrigationCallback() {
                     @Override
                     public void onSuccess(String response) {
                         runOnUiThread(() -> {
@@ -176,7 +172,15 @@ public class SmartIrrigationActivity extends AppCompatActivity {
                         runOnUiThread(() -> {
                             progressBar.setVisibility(View.GONE);
                             btnAnalyze.setEnabled(true);
-                            Toast.makeText(SmartIrrigationActivity.this, "Error: " + error, Toast.LENGTH_SHORT).show();
+                            String msg = error;
+                            if (error.contains("quota") || error.contains("429")) {
+                                msg = "Server Busy (Rate Limit). Try again in a minute.";
+                            }
+                            Toast.makeText(SmartIrrigationActivity.this, msg, Toast.LENGTH_LONG).show();
+
+                            // Also show in text view for visibility
+                            layoutResult.setVisibility(View.VISIBLE);
+                            tvResult.setText(msg);
                         });
                     }
                 });
