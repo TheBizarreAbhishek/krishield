@@ -29,7 +29,8 @@ public class IrrigationRepository {
 
     public IrrigationRepository(Context context) {
         this.prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        this.geminiService = new GeminiService(null);
+        String customApiKey = com.krishield.activities.SettingsActivity.getSavedApiKey(context);
+        this.geminiService = new GeminiService(customApiKey);
         this.executor = Executors.newSingleThreadExecutor();
     }
 
